@@ -4,6 +4,8 @@ import com.auth0.jwt.JWT;
 import com.example.projekt.model.User;
 import com.example.projekt.service.UserDetailsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -73,7 +76,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
-        String response = TOKEN_PREFIX+token;
+
+        String response = "{\"token\": \""+token+"\" }";
+
+        res.setContentType("application/json");
+        res.setCharacterEncoding("UTF-8");
         res.getWriter().write(response);
         res.getWriter().flush();
         res.getWriter().close();
