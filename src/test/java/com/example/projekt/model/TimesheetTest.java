@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,5 +38,25 @@ public class TimesheetTest {
                             +" godzina zakończenia pracy: " + timesheet.getEndTimeOfWork() +"\n" );
 
     }
+
+    @Test
+    public void testTimesheetTime(){
+        LocalDate datetest = LocalDate.parse("2020-12-20");
+        LocalDate startOfMonth = datetest.withDayOfMonth(1);
+        LocalDate endOfMonth = datetest.withDayOfMonth(datetest.lengthOfMonth());
+     /*   System.out.println(datetest);
+        System.out.println(startOfMonth);
+        System.out.println(endOfMonth);*/
+
+
+    List<Timesheet> timesheets = timesheetJpaRepository.findAllByTimesheetDateBetweenAndEmployee_EmployeeId(startOfMonth,endOfMonth, 2);
+    for (int i=0; i<timesheets.size();i++){
+        System.out.println(timesheets.get(i).getTimesheetDate());
+        System.out.println(timesheets.get(i).getStartTimeOfWork());
+        System.out.println(timesheets.get(i).getEndTimeOfWork());
+        System.out.println(timesheets.get(i).getHarmfulHours());
+    }
+    }
+
 
 }

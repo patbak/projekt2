@@ -4,8 +4,7 @@ import com.auth0.jwt.JWT;
 import com.example.projekt.model.User;
 import com.example.projekt.service.UserDetailsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
