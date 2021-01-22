@@ -50,6 +50,25 @@ public class Employee {
     )
     private List<DailyMachineWorkReport> dailyMachineWorkReports;
 
+    @OneToMany
+            (
+                    mappedBy = "employee",
+                    cascade = CascadeType.ALL,
+                    orphanRemoval = true,
+                    fetch = FetchType.LAZY
+            )
+    private List<Hours> hours;
+
+    @OneToMany
+            (
+                    mappedBy = "employee",
+                    cascade = CascadeType.ALL,
+                    orphanRemoval = true,
+                    fetch = FetchType.LAZY
+            )
+    private List<Salary> salaries;
+
+
     public int getEmployeeId() {
         return employeeId;
     }
@@ -112,5 +131,21 @@ public class Employee {
 
     public void setDailyMachineWorkReports(List<DailyMachineWorkReport> dailyMachineWorkReports) {
         this.dailyMachineWorkReports = dailyMachineWorkReports;
+    }
+
+    public List<Hours> getHours() {
+        return hours;
+    }
+
+    public void setHours(List<Hours> hours) {
+        this.hours = hours;
+    }
+
+    public List<Salary> getSalaries() {
+        return salaries;
+    }
+
+    public void setSalaries(List<Salary> salaries) {
+        this.salaries = salaries;
     }
 }

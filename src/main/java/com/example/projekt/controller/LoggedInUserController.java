@@ -2,7 +2,7 @@ package com.example.projekt.controller;
 
 import com.example.projekt.entity.LoggedInUserDto;
 import com.example.projekt.service.LoggedInUserService;
-
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

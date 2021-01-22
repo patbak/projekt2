@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -29,4 +31,18 @@ public class EmployeeTest {
 
     }
 
+
+/*    @Test
+    @Transactional
+    public void testGetEployeeHours(){
+        Employee employee  = employeeJpaRepository.getOne(2);
+        List<Hours> hoursList = employeeJpaRepository.findAllByMonth("DECEMBER");
+        for(int i=0;i<hoursList.size();i++){
+            System.out.println(hoursList.get(i).getHours());
+            System.out.println(hoursList.get(i).getNightHours());
+            System.out.println(hoursList.get(i).getOvertime());
+            System.out.println(hoursList.get(i).getHarmfulHours());
+        }
+
+    }*/
 }

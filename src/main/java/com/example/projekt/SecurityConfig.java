@@ -31,21 +31,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+/*    private static final String[] AUTH_WHITELIST = {
 
-/*    public SecurityConfig(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder){
-        this.userDetailsService = userDetailsService;
+            // -- swagger ui
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**"
+    };*/
 
-
-    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/documentation/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
                 .antMatchers(HttpMethod.GET,CONFIRMATION_TOKEN_URL).permitAll()
                 .antMatchers(HttpMethod.GET,"/resetPassword").permitAll()
                 .antMatchers(HttpMethod.POST,"/confirmResetToken").permitAll()
+                .antMatchers(HttpMethod.GET,"/v2/api-docs").permitAll()
+              //.antMatchers(HttpMethod.GET,"/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
@@ -54,11 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
-/*    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception{
-        auth.inMemoryAuthentication()
-                .withUser("papryk").password(passwordEncoder().encode("pass")).roles("ADMIN");
-    }*/
+
 
    @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {

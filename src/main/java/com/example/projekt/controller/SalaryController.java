@@ -1,0 +1,26 @@
+package com.example.projekt.controller;
+
+import com.example.projekt.service.SalaryService;
+import com.example.projekt.service.WorktimeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class SalaryController {
+    @Autowired
+    private SalaryService salaryService;
+
+    @GetMapping("/countSalary")
+   @PreAuthorize("hasAuthority('SUPERVISOR')")
+    public ResponseEntity<String> countSalary(){
+
+        salaryService.countSalary();
+        return new ResponseEntity<>("Wynagrodzenia zostaly oblcizone", HttpStatus.OK);
+    }
+
+
+}

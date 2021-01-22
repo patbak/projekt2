@@ -1,15 +1,19 @@
 package com.example.projekt.service;
 
 import com.example.projekt.entity.Account;
+import com.example.projekt.model.Role;
 import com.example.projekt.model.User;
 import com.example.projekt.model.VerificationToken;
 import com.example.projekt.repository.AccountRepository;
+import com.example.projekt.repository.RoleJpaRepository;
 import com.example.projekt.repository.UserJpaRepository;
 import com.example.projekt.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -20,6 +24,8 @@ public class AccountServiceImpl implements AccountService {
     private VerificationTokenRepository verificationTokenRepository;
     @Autowired
     private UserJpaRepository userJpaRepository;
+    @Autowired
+    private RoleJpaRepository roleJpaRepository;
 
 
     @Override
@@ -43,7 +49,9 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void confirmAccount(String token) {
         VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
-
+        Role role = roleJpaRepository.getOne((long) 1);
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
         if(verificationToken.getExpiryDate().after(new Date())){
             Account account = accountRepository.findByLogin(verificationToken.getUsername());
             User user = new User();
@@ -54,6 +62,7 @@ public class AccountServiceImpl implements AccountService {
             user.setPassword(account.getPassword());
             user.setPhoneNumber(account.getPhoneNumber());
             user.setSupervisor(account.isSupervisor());
+            user.setRoles(roles);
             userJpaRepository.saveAndFlush(user);
             accountRepository.deleteById(account.getUserId());
             verificationTokenRepository.deleteById(verificationToken.getToken());
