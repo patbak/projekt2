@@ -6,19 +6,19 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "uzytkownicy")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_uzytkownika")
+    @Column(name = "id_user")
     private int userId;
 
-    @Column(name = "imie")
+    @Column(name = "first_name")
     private String name;
 
 
-    @Column(name = "nazwisko")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "email")
@@ -27,14 +27,22 @@ public class User {
     @Column(name = "login")
     private String login;
 
-    @Column(name = "haslo")
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "numer_telefonu")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "czy_kierownik")
-    private boolean  isSupervisor;
+   @Column(name = "permission_number")
+   private String permissionNumber;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_has_buildings",
+            joinColumns = @JoinColumn(name = "users_id_user"),
+            inverseJoinColumns = @JoinColumn(name = "buildings_id_building")
+    )
+    private Set<ConstructionSite> constructionSites = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -44,30 +52,30 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-/*    public User(String name, String lastName, String email, String login, String password, String phoneNumber, boolean isSupervisor){
-        this.name=name;
-        this.lastName=lastName;
-        this.email=email;
-        this.login=login;
-        this.password=password;
-        this.phoneNumber=phoneNumber;
-        this.isSupervisor=isSupervisor;
-    }*/
-
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-    private List<ConstructionSite> constructionSites;
+    private List<Comment> comments;
 
-    public List<ConstructionSite> getConstructionSites() {
+
+
+    public Set<ConstructionSite> getConstructionSites() {
         return constructionSites;
     }
 
-    public void setConstructionSites(List<ConstructionSite> constructionSites) {
+    public void setConstructionSites(Set<ConstructionSite> constructionSites) {
         this.constructionSites = constructionSites;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public List<DailyWorkReport> getDailyWorkReports() {
@@ -142,13 +150,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isSupervisor() {
-        return isSupervisor;
-    }
-
-    public void setSupervisor(boolean supervisor) {
-        isSupervisor = supervisor;
-    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -156,5 +157,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getPermissionNumber() {
+        return permissionNumber;
+    }
+
+    public void setPermissionNumber(String permissionNumber) {
+        this.permissionNumber = permissionNumber;
     }
 }

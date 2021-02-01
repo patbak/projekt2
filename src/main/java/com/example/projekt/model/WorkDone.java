@@ -4,34 +4,27 @@ package com.example.projekt.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "wykonane_roboty")
+@Table(name = "done_works")
 public class WorkDone {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_wykonanej_roboty")
+    @Column(name = "id_done_work")
     private int WorkDoneId;
 
-    @Column(name = "nazwa_wykonanej_roboty")
-    private String WorkDoneName;
-
-    @Column(name = "ilosc_robot")
+    @Column(name = "quantity_of_work")
     private float Quantity;
 
     @ManyToOne
-    @JoinColumn(name = "raport_dzienny_brygady_id_raport_dzienny_brygady")
+    @JoinColumn(name = "brigade_daily_reports_id_brigade_daily_report")
     private DailyWorkReport dailyWorkReport;
 
     @ManyToOne
-    @JoinColumn(name = "ocena_jakosci_id_ocena_jakosci")
+    @JoinColumn(name = "quality_evaluation_id_quality_evaluation")
     private QualityAssessment qualityAssessment;
 
     @ManyToOne
-    @JoinColumn(name = "roboty_id_roboty")
-    private Work work;
-
-    @ManyToOne
-    @JoinColumn(name = "normy_pracy_id_normy_pracy")
+    @JoinColumn(name = "labour_norms_id_labour_norm")
     private LabourStandard labourStandard;
 
     public int getWorkDoneId() {
@@ -40,14 +33,6 @@ public class WorkDone {
 
     public void setWorkDoneId(int workDoneId) {
         WorkDoneId = workDoneId;
-    }
-
-    public String getWorkDoneName() {
-        return WorkDoneName;
-    }
-
-    public void setWorkDoneName(String workDoneName) {
-        WorkDoneName = workDoneName;
     }
 
     public float getQuantity() {
@@ -74,14 +59,6 @@ public class WorkDone {
         this.qualityAssessment = qualityAssessment;
     }
 
-    public Work getWork() {
-        return work;
-    }
-
-    public void setWork(Work work) {
-        this.work = work;
-    }
-
     public LabourStandard getLabourStandard() {
         return labourStandard;
     }
@@ -89,4 +66,7 @@ public class WorkDone {
     public void setLabourStandard(LabourStandard labourStandard) {
         this.labourStandard = labourStandard;
     }
+
+
+
 }

@@ -6,42 +6,42 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "maszyny")
+@Table(name = "machines")
 public class Machine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_maszyny")
+    @Column(name = "id_machines")
     private int machineId;
 
-    @Column(name = "nazwa")
+    @Column(name = "name")
     private String machineName;
 
-    @Column(name = "numer_inwentarzowy")
+    @Column(name = "number")
     private String inventoryNumber;
 
-    @Column(name = "moc_km")
+    @Column(name = "power")
     private  int powerHP;
 
-    @Column(name = "zuzycie_paliwa")
+    @Column(name = "fuel_consumption")
     private float fuelConsumption;
 
-    @Column(name = "pojemnosc_zbiornika_paliwa")
+    @Column(name = "tank_capacity")
     private int fuelTankCapacity;
 
-    @Column(name = "rok_produkcji")
+    @Column(name = "year_of_production")
     private Date  yearOfProduction;
 
-    @Column(name = "uwagi")
+    @Column(name = "comments")
     private String comments;
 
-    @OneToMany(
+   @OneToMany(
             mappedBy = "machine",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-    private List<DailyMachineWorkReport> dailyMachineWorkReports;
+    private List<MachineReportHasMachines> machineReportHasMachines;
 
     public int getMachineId() {
         return machineId;
@@ -107,11 +107,5 @@ public class Machine {
         this.comments = comments;
     }
 
-    public List<DailyMachineWorkReport> getDailyMachineWorkReports() {
-        return dailyMachineWorkReports;
-    }
 
-    public void setDailyMachineWorkReports(List<DailyMachineWorkReport> dailyMachineWorkReports) {
-        this.dailyMachineWorkReports = dailyMachineWorkReports;
-    }
 }

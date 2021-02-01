@@ -16,11 +16,5 @@ public class VerificationController {
         accountService.confirmAccount(token);
     }
 
-/*    @PostMapping("/accountConfirm")
-    public void confirmAccount(@RequestParam("token") String token){
-
-        System.out.println("potwierdzenie rejestracji");
-        accountService.confirmAccount(token);
-    }*/
 
 }

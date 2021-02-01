@@ -3,38 +3,50 @@ package com.example.projekt.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "raport_dzienny_pracy_sprzetu")
+@Table(name = "equipment_daily_reports")
 public class DailyMachineWorkReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_raportu_dziennego_pracy_sprzetu")
+    @Column(name = "id_equipment_daily_report")
     private int DailyMachineWorkReportId;
 
-    @Column(name = "numer_raportu")
+    @Column(name = "report_number")
     private String reportNumber;
 
-    @Column(name = "data")
+    @Column(name = "date")
     private Date reportDate;
 
-    @Column(name = "zadanie")
+    @Column(name = "work")
     private String task;
 
-    @Column(name = "warunki_pogodowe")
-    private String weatherConditions;
-
-    @Column(name = "uwagi")
-    private String comments;
 
     @ManyToOne
-    @JoinColumn(name = "maszyny_id_maszyny")
-    private Machine machine;
+    @JoinColumn(name = "building_daily_reports_id_building_daily_report")
+    private BuildingDailyReports buildingDailyReports;
 
     @ManyToOne
-    @JoinColumn(name = "pracownicy_id_pracownika")
-    private Employee employee;
+    @JoinColumn(name = "users_id_user")
+    private User user;
+
+    @OneToMany(
+            mappedBy = "dailyMachineWorkReport",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<MachineReportHasMachines> machineReportHasMachinesList;
+
+    @OneToMany(
+            mappedBy = "dailyMachineWorkReport",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<OperatorWorkCards> operatorWorkCards;
 
 
     public int getDailyMachineWorkReportId() {
@@ -69,35 +81,35 @@ public class DailyMachineWorkReport {
         this.task = task;
     }
 
-    public String getWeatherConditions() {
-        return weatherConditions;
+    public BuildingDailyReports getBuildingDailyReports() {
+        return buildingDailyReports;
     }
 
-    public void setWeatherConditions(String weatherConditions) {
-        this.weatherConditions = weatherConditions;
+    public void setBuildingDailyReports(BuildingDailyReports buildingDailyReports) {
+        this.buildingDailyReports = buildingDailyReports;
     }
 
-    public String getComments() {
-        return comments;
+    public User getUser() {
+        return user;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Machine getMachine() {
-        return machine;
+    public List<MachineReportHasMachines> getMachineReportHasMachinesList() {
+        return machineReportHasMachinesList;
     }
 
-    public void setMachine(Machine machine) {
-        this.machine = machine;
+    public void setMachineReportHasMachinesList(List<MachineReportHasMachines> machineReportHasMachinesList) {
+        this.machineReportHasMachinesList = machineReportHasMachinesList;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<OperatorWorkCards> getOperatorWorkCards() {
+        return operatorWorkCards;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setOperatorWorkCards(List<OperatorWorkCards> operatorWorkCards) {
+        this.operatorWorkCards = operatorWorkCards;
     }
 }

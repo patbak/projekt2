@@ -1,21 +1,20 @@
 package com.example.projekt.model;
 
-
 import javax.persistence.*;
-
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-
 @Entity
-@Table(name = "work_cards")
-public class Timesheet {
+@Table(name = "operators_work_cards")
+public class OperatorWorkCards {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_work_card")
-    private int TimesheetId;
+    private int idWorkCard;
+
+    @Column(name = "date_of_work_card")
+    private LocalDate workCardDate;
 
     @Column(name = "time_of_begin")
     private LocalTime startTimeOfWork;
@@ -26,23 +25,28 @@ public class Timesheet {
     @Column(name = "harmful_hours")
     private int harmfulHours;
 
-    @Column(name = "date_of_work_card")
-    private LocalDate timesheetDate;
-
-    @ManyToOne
-    @JoinColumn(name = "brigade_daily_reports_id_brigade_daily_report")
-    private DailyWorkReport dailyWorkReport;
-
     @ManyToOne
     @JoinColumn(name = "workers_id_worker")
     private Employee employee;
 
-    public int getTimesheetId() {
-        return TimesheetId;
+    @ManyToOne
+    @JoinColumn(name = "equipment_daily_reports_id_equipment_daily_report")
+    private DailyMachineWorkReport dailyMachineWorkReport;
+
+    public int getIdWorkCard() {
+        return idWorkCard;
     }
 
-    public void setTimesheetId(int timesheetId) {
-        TimesheetId = timesheetId;
+    public void setIdWorkCard(int idWorkCard) {
+        this.idWorkCard = idWorkCard;
+    }
+
+    public LocalDate getWorkCardDate() {
+        return workCardDate;
+    }
+
+    public void setWorkCardDate(LocalDate workCardDate) {
+        this.workCardDate = workCardDate;
     }
 
     public LocalTime getStartTimeOfWork() {
@@ -69,22 +73,6 @@ public class Timesheet {
         this.harmfulHours = harmfulHours;
     }
 
-    public LocalDate getTimesheetDate() {
-        return timesheetDate;
-    }
-
-    public void setTimesheetDate(LocalDate timesheetDate) {
-        this.timesheetDate = timesheetDate;
-    }
-
-    public DailyWorkReport getDailyWorkReport() {
-        return dailyWorkReport;
-    }
-
-    public void setDailyWorkReport(DailyWorkReport dailyWorkReport) {
-        this.dailyWorkReport = dailyWorkReport;
-    }
-
     public Employee getEmployee() {
         return employee;
     }
@@ -93,4 +81,11 @@ public class Timesheet {
         this.employee = employee;
     }
 
+    public DailyMachineWorkReport getDailyMachineWorkReport() {
+        return dailyMachineWorkReport;
+    }
+
+    public void setDailyMachineWorkReport(DailyMachineWorkReport dailyMachineWorkReport) {
+        this.dailyMachineWorkReport = dailyMachineWorkReport;
+    }
 }

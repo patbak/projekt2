@@ -5,36 +5,36 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "normy_pracy")
+@Table(name = "labour_norms")
 public class LabourStandard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_normy_pracy")
+    @Column(name = "id_labour_norm")
     private int labourStandardId;
 
-    @Column(name = "numer_katalogu")
+    @Column(name = "directory_number")
     private int catalogNumber;
 
-    @Column(name = "numer_tablicy")
+    @Column(name = "table_number")
     private int tableNumber;
 
-    @Column(name = "numer_kolumny")
+    @Column(name = "column_number")
     private int columnNumber;
 
-    @Column(name = "numer_wiersza")
+    @Column(name = "row_number")
     private int rowNumber;
 
-    @Column(name = "nazwa_roboty")
+    @Column(name = "labour_name")
     private String workName;
 
-    @Column(name = "jednostka_miary_liczba")
+    @Column(name = "unit_number")
     private float unitOfMeasurementNumber;
 
-    @Column(name = "jednostka_miary_wartosc")
+    @Column(name = "unit_value")
     private String unitOfMeasurementValue;
 
-    @Column(name = "norma_pracy")
+    @Column(name = "labour_norm")
     private float labourStandard;
 
 

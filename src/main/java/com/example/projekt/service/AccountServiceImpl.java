@@ -49,11 +49,19 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void confirmAccount(String token) {
         VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
-        Role role = roleJpaRepository.getOne((long) 1);
-        Set<Role> roles = new HashSet<>();
-        roles.add(role);
+
         if(verificationToken.getExpiryDate().after(new Date())){
+
             Account account = accountRepository.findByLogin(verificationToken.getUsername());
+            Role role = new Role();
+            if(account.isSupervisor()==true){
+                role = roleJpaRepository.getOne((long) 1);
+            }else{
+                role = roleJpaRepository.getOne((long) 3);
+            }
+            Set<Role> roles = new HashSet<>();
+            roles.add(role);
+
             User user = new User();
             user.setName(account.getName());
             user.setLastName(account.getLastName());
@@ -61,8 +69,8 @@ public class AccountServiceImpl implements AccountService {
             user.setLogin(account.getLogin());
             user.setPassword(account.getPassword());
             user.setPhoneNumber(account.getPhoneNumber());
-            user.setSupervisor(account.isSupervisor());
             user.setRoles(roles);
+            user.setPermissionNumber(account.getPermissionNumber());
             userJpaRepository.saveAndFlush(user);
             accountRepository.deleteById(account.getUserId());
             verificationTokenRepository.deleteById(verificationToken.getToken());

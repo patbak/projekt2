@@ -5,18 +5,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "ocena_jakosci")
+@Table(name = "quality_evaluation")
 public class QualityAssessment {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_ocena_jakosci")
+    @Column(name = "id_quality_evaluation")
     private int qualityAssessmentId;
 
-    @Column(name = "wartosc")
+    @Column(name = "value")
     private int value;
 
-    @Column(name = "nazwa")
+    @Column(name = "name")
     private String qualityAssessmentName;
 
     @OneToMany(

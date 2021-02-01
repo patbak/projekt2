@@ -13,7 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,36 +25,46 @@ public class ConstructionSiteTest {
     @Autowired
     private ConstructionSiteJpaRepository constructionSiteJpaRepository;
 
-/*    @Autowired
-    private ConstructionSiteRepository constructionSiteRepository;*/
+
 
     @Test
     @Transactional
-    public void testJpaFindByName()throws Exception{
-    List<ConstructionSite> constructionSites = constructionSiteJpaRepository.findByNameContains("Kurów");
-        User user = constructionSites.get(0).getUser();
-        List<DailyWorkReport> dailyWorkReports = constructionSites.get(0).getDailyWorkReports();
-        System.out.println( dailyWorkReports.size());
-        System.out.println("Nazwa: "+constructionSites.get(0).getName()+"Imie kerownika: "+user.getName());
-        System.out.println("Raport dzienny:"+dailyWorkReports.get(0).getDailyWorkReportId()+
-                            " pogoda" + dailyWorkReports.get(0).getWeatherConditions()
-                            );
-        assertTrue(constructionSites.size()>0);
+    public void getConstructionSiteTest()throws Exception{
+
+        ConstructionSite constructionSite = constructionSiteJpaRepository.getOne(1);
+        System.out.println(constructionSite.getName());
+        System.out.println(constructionSite.getBuildingNumber());
+        System.out.println(constructionSite.getCoordinates());
+        System.out.println(constructionSite.getPlannedEndDate());
+        System.out.println(constructionSite.getPlannedStartDate());
+        Set<User> users = new HashSet<User>();
+        users=constructionSite.getUsers();
+        for(User user : users){
+            System.out.println(user.getName());
+            System.out.println(user.getLastName());
+            System.out.println(user.getLogin());
+            System.out.println(user.getEmail());
+
+        }
     }
 
-/*
-   @Test
-    public void testSaveAndFlush(){
+    @Test
+    @Transactional
+    public void getReportsByConstructionSite()throws Exception {
 
-        ConstructionSite constructionSite = new ConstructionSite();
-        constructionSite.setName("Przybysławice");
-        constructionSite.setDescription("xxxxxxxx");
-        constructionSite.setCoordinates("aaaaaaaaaassdsds");
+        ConstructionSite constructionSite = constructionSiteJpaRepository.getOne(1);
+        System.out.println(constructionSite.getName());
+        List<DailyWorkReport> dailyWorkReports = constructionSite.getDailyWorkReport();
 
-        assertTrue(constructionSiteRepository.create(constructionSite)!=null);
+        for (int i=0;i<dailyWorkReports.size();i++){
+            DailyWorkReport dailyWorkReport = dailyWorkReports.get(i);
+            System.out.println(dailyWorkReport.getReportDate());
+            System.out.println(dailyWorkReport.getReportNumber());
+        }
+
+
 
     }
-*/
 
 
 

@@ -6,28 +6,32 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "raport_dzienny_brygady")
+@Table(name = "brigade_daily_reports")
 public class DailyWorkReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_raport_dzienny_brygady")
+    @Column(name = "id_brigade_daily_report")
     private int DailyWorkReportId;
 
-    @Column(name = "data")
+    @Column(name = "date")
     private Date reportDate;
 
-    @Column(name = "warunki_pogodowe")
-    private String weatherConditions;
+    @Column(name = "report_number")
+    private String reportNumber;
 
 
     @ManyToOne
-    @JoinColumn(name = "uzytkownicy_id_uzytkownika")
+    @JoinColumn(name = "users_id_user")
      private User user;
 
     @ManyToOne
-    @JoinColumn(name = "budowa_id_budowy")
+    @JoinColumn(name = "buildings_id_building")
     private ConstructionSite constructionSite;
+
+    @ManyToOne
+    @JoinColumn(name = "building_daily_reports_id_building_daily_report")
+    private BuildingDailyReports buildingDailyReports;
 
 
     @OneToMany(
@@ -38,12 +42,13 @@ public class DailyWorkReport {
     )
     private List<UsedMaterial> usedMaterials;
 
-    @OneToMany
-    private  List<DailyWorkReport> dailyWorkReports;
-
-    @ManyToOne
-    @JoinColumn(name = "brygadzisci_id_brygadzisty")
-    private Foreman foreman;
+    @OneToMany(
+            mappedBy = "dailyWorkReport",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<WorkDone> worksDone;
 
     @OneToMany(
             mappedBy = "dailyWorkReport",
@@ -52,30 +57,6 @@ public class DailyWorkReport {
             fetch = FetchType.LAZY
     )
     private List<Timesheet> timesheets;
-
-    public List<DailyWorkReport> getDailyWorkReports() {
-        return dailyWorkReports;
-    }
-
-    public void setDailyWorkReports(List<DailyWorkReport> dailyWorkReports) {
-        this.dailyWorkReports = dailyWorkReports;
-    }
-
-    public Foreman getForeman() {
-        return foreman;
-    }
-
-    public void setForeman(Foreman foreman) {
-        this.foreman = foreman;
-    }
-
-    public List<Timesheet> getTimesheets() {
-        return timesheets;
-    }
-
-    public void setTimesheets(List<Timesheet> timesheets) {
-        this.timesheets = timesheets;
-    }
 
     public int getDailyWorkReportId() {
         return DailyWorkReportId;
@@ -93,12 +74,12 @@ public class DailyWorkReport {
         this.reportDate = reportDate;
     }
 
-    public String getWeatherConditions() {
-        return weatherConditions;
+    public String getReportNumber() {
+        return reportNumber;
     }
 
-    public void setWeatherConditions(String weatherConditions) {
-        this.weatherConditions = weatherConditions;
+    public void setReportNumber(String reportNumber) {
+        this.reportNumber = reportNumber;
     }
 
     public User getUser() {
@@ -123,5 +104,21 @@ public class DailyWorkReport {
 
     public void setUsedMaterials(List<UsedMaterial> usedMaterials) {
         this.usedMaterials = usedMaterials;
+    }
+
+    public List<Timesheet> getTimesheets() {
+        return timesheets;
+    }
+
+    public void setTimesheets(List<Timesheet> timesheets) {
+        this.timesheets = timesheets;
+    }
+
+    public List<WorkDone> getWorksDone() {
+        return worksDone;
+    }
+
+    public void setWorksDone(List<WorkDone> worksDone) {
+        this.worksDone = worksDone;
     }
 }

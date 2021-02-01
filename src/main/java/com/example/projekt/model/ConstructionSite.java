@@ -3,36 +3,48 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "budowa")
+@Table(name = "buildings")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class ConstructionSite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_budowy")
+    @Column(name = "id_building")
     private int ConstructionSiteId;
 
-    @Column(name = "nazwa")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "opis")
-    private String description;
+    @Column(name = "building_number")
+    private String buildingNumber;
 
-    @Column(name = "wspolrzedne")
+    @Column(name = "coordinates")
     private String coordinates;
 
-    @Column(name = "planowana_data_rozpoczecia")
+    @Column(name = "planned_start_date")
     private Date plannedStartDate;
 
-    @Column(name = "planowana_data_zakonczenia")
+    @Column(name = "planned_end_date")
     private Date plannedEndDate;
 
-    @ManyToOne
-    @JoinColumn(name = "uzytkownicy_id_uzytkownika")
-    private   User user;
+    @Column(name = "real_end_date")
+    private Date realEndDate;
+
+    @Column(name = "real_start_date")
+    private Date realStartDate;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_on_buildings",
+            joinColumns = @JoinColumn(name = "buildings_id_building"),
+            inverseJoinColumns = @JoinColumn(name = "users_id_user")
+    )
+    private Set<User> users = new HashSet<>();
 
    @OneToMany(
            mappedBy = "constructionSite", //dwukierunkowa relacja, pomogło przy sypaniu się aplikacji,
@@ -41,22 +53,6 @@ public class ConstructionSite {
            orphanRemoval = true
    )
    private List<DailyWorkReport> dailyWorkReport;
-
-    public List<DailyWorkReport> getDailyWorkReports() {
-        return dailyWorkReport;
-    }
-
-    public void setDailyWorkReports(List<DailyWorkReport> dailyWorkReports) {
-        this.dailyWorkReport = dailyWorkReports;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public int getConstructionSiteId() {
         return ConstructionSiteId;
@@ -74,12 +70,12 @@ public class ConstructionSite {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getBuildingNumber() {
+        return buildingNumber;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBuildingNumber(String buildingNumber) {
+        this.buildingNumber = buildingNumber;
     }
 
     public String getCoordinates() {
@@ -104,5 +100,37 @@ public class ConstructionSite {
 
     public void setPlannedEndDate(Date plannedEndDate) {
         this.plannedEndDate = plannedEndDate;
+    }
+
+    public Date getRealEndDate() {
+        return realEndDate;
+    }
+
+    public void setRealEndDate(Date realEndDate) {
+        this.realEndDate = realEndDate;
+    }
+
+    public Date getRealStartDate() {
+        return realStartDate;
+    }
+
+    public void setRealStartDate(Date realStartDate) {
+        this.realStartDate = realStartDate;
+    }
+
+    public List<DailyWorkReport> getDailyWorkReport() {
+        return dailyWorkReport;
+    }
+
+    public void setDailyWorkReport(List<DailyWorkReport> dailyWorkReport) {
+        this.dailyWorkReport = dailyWorkReport;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

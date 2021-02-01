@@ -18,11 +18,11 @@ public class Hours {
     private int harmfulHours;
     @Column(name = "overtime")
     private int overtime;
-    @Column(name = "month")
+    @Column(name = "date")
     private String month;
 
     @ManyToOne
-    @JoinColumn(name = "pracownicy_id_pracownika")
+    @JoinColumn(name = "workers_id_worker")
     private  Employee employee;
 
     public int getHours() {

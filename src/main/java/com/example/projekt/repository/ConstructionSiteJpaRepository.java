@@ -23,7 +23,7 @@ public interface ConstructionSiteJpaRepository extends JpaRepository<Constructio
      List<ConstructionSite> findByNameContains(String name);
 
      @Override
-     @PreAuthorize("hasAuthority('ENGIENEER')")
+     @PreAuthorize("hasAuthority('ENGINEER')")
      Page<ConstructionSite> findAll(Pageable pageable);
 
 }

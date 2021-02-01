@@ -3,18 +3,18 @@ package com.example.projekt.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "konto")
+@Table(name = "accounts")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_konto")
+    @Column(name = "id_account")
     private int userId;
 
-    @Column(name = "imie")
+    @Column(name = "name")
     private String name;
 
 
-    @Column(name = "nazwisko")
+    @Column(name = "surname")
     private String lastName;
 
     @Column(name = "email")
@@ -23,14 +23,17 @@ public class Account {
     @Column(name = "login")
     private String login;
 
-    @Column(name = "haslo")
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "numer_telefonu")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "czy_kierownik")
+    @Column(name = "is_supervisor")
     private boolean  isSupervisor;
+
+    @Column(name = "permission_number")
+    private String permissionNumber;
 
     public int getUserId() {
         return userId;
@@ -94,5 +97,13 @@ public class Account {
 
     public void setSupervisor(boolean supervisor) {
         isSupervisor = supervisor;
+    }
+
+    public String getPermissionNumber() {
+        return permissionNumber;
+    }
+
+    public void setPermissionNumber(String permissionNumber) {
+        this.permissionNumber = permissionNumber;
     }
 }

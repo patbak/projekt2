@@ -35,15 +35,7 @@ public class RegistrationController {
 
 @PostMapping("/sign-up")
 public void signUp(@Valid @RequestBody UserDto userDto){
- //System.out.println("Działa");
-/*    User user = new User();
-    user.setName(userDto.getFirstname());
-    user.setLastName(userDto.getLastname());
-    user.setEmail(userDto.getEmail());
-    user.setLogin(userDto.getUsername());
-    user.setPassword(encoder.encode(userDto.getPassword()));
-    user.setPhoneNumber(userDto.getPhoneNumber());
-    user.setSupervisor(userDto.isSupervisor());*/
+
     Account account = new Account();
 
     account.setName(userDto.getFirstname());
@@ -53,6 +45,7 @@ public void signUp(@Valid @RequestBody UserDto userDto){
     account.setPassword(encoder.encode(userDto.getPassword()));
     account.setPhoneNumber(userDto.getPhoneNumber());
     account.setSupervisor(userDto.isSupervisor());
+    account.setPermissionNumber(userDto.getPermissionNumber());
     accountRepository.saveAndFlush(account);
     eventPublisher.publishEvent(new UserRegistrationEvent(account,"uzytkownicy"));
 

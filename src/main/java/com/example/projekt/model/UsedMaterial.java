@@ -4,23 +4,23 @@ package com.example.projekt.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "zuzyte_materialy")
+@Table(name = "materials_used")
 public class UsedMaterial {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_zuzytego_materialu")
+    @Column(name = "id_material_used")
     private int usedMaterialId;
 
-    @Column(name = "ilosc")
+    @Column(name = "quantity")
     private float quantity;
 
     @ManyToOne
-    @JoinColumn(name = "materialy_id_materialu")
+    @JoinColumn(name = "materials_id_material")
     private Material material;
 
     @ManyToOne
-    @JoinColumn(name = "raport_dzienny_brygady_id_raport_dzienny_brygady")
+    @JoinColumn(name = "brigade_daily_reports_id_brigade_daily_report")
     private DailyWorkReport dailyWorkReport;
 
     public int getUsedMaterialId() {

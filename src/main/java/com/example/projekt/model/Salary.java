@@ -21,7 +21,7 @@ public class Salary {
     private double amountSalary;
 
     @ManyToOne
-    @JoinColumn(name = "pracownicy_id_pracownika")
+    @JoinColumn(name = "workers_id_worker")
     private  Employee employee;
 
     public void Salary(

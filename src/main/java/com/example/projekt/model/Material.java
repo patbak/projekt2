@@ -5,18 +5,18 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "materialy")
+@Table(name = "materials")
 public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_materialu")
+    @Column(name = "id_material")
     private int materialId;
 
-    @Column(name = "nazwa")
+    @Column(name = "name")
     private String materialName;
 
-    @Column(name = "jednostka")
+    @Column(name = "unit")
     private String materialUnit;
 
     @OneToMany(

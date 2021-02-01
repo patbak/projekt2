@@ -30,6 +30,7 @@ public class UserDto {
     private String confirmPassword;
     private String phoneNumber;
     private boolean isSupervisor;
+    private String permissionNumber;
 
     public UserDto(@NotEmpty(message = "Please enter your firstname") String firstname,
                    @NotEmpty(message = "Please enter your lastname") String lastname,
@@ -38,7 +39,9 @@ public class UserDto {
                    @NotEmpty(message = "Please enter in a password") String password,
                    @NotEmpty(message = "Please confirm your password") String confirmPassword,
                    @NotEmpty(message = "Please enter your phone number") String phoneNumber,
-                   @NotEmpty(message = "Please enter is it supervisor") boolean isSupervisor) {
+                   @NotEmpty(message = "Please enter is it supervisor") boolean isSupervisor,
+                   @NotEmpty(message = "Please enter permission number ") String permissionNumber
+                   ) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -47,6 +50,7 @@ public class UserDto {
         this.confirmPassword = confirmPassword;
         this.phoneNumber = phoneNumber;
         this.isSupervisor = isSupervisor;
+        this.permissionNumber = permissionNumber;
     }
 
     public String getPhoneNumber() {
@@ -111,5 +115,13 @@ public class UserDto {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getPermissionNumber() {
+        return permissionNumber;
+    }
+
+    public void setPermissionNumber(String permissionNumber) {
+        this.permissionNumber = permissionNumber;
     }
 }
