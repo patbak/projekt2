@@ -53,6 +53,9 @@ public class WorktimeService {// oblicza czas pracy dla każdego pracownika w po
     public void countWorkTime(List<Timesheet> timesheets) {
 
         hours = new Hours();
+        if(timesheets.size()<1){
+            return;
+        }
         for (int i = 0; i < timesheets.size(); i++) {
             //dla każdej karty pracy będzie obliczać ilość godzin które upłynęły w pracy
             Timesheet timesheet = timesheets.get(i);
@@ -69,9 +72,16 @@ public class WorktimeService {// oblicza czas pracy dla każdego pracownika w po
             hours.addHarmfulHours(timesheet.getHarmfulHours());
             hours.addNightHours(countNightHours(dateTime1,dateTime2));
             hours.setEmployee(timesheet.getEmployee());
+            System.out.println(hours.getHours());
+            System.out.println(hours.getNightHours());
+            System.out.println(hours.getOvertime());
+            System.out.println(hours.getHarmfulHours());
+            System.out.println(hours.getEmployee().getEmployeeId());
+            System.out.println(hours.getEmployee().getEmployeeName());
+            System.out.println(hours.getEmployee().getEmployeeLastName());
 
         }
-        hours.setMonth(LocalDate.now().minusMonths(1).getMonth().name());
+        hours.setDate(LocalDate.now().minusMonths(1).withDayOfMonth(LocalDate.now().minusMonths(1).lengthOfMonth()));
         hoursList.add(hours);
     }
 

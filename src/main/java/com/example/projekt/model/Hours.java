@@ -1,6 +1,7 @@
 package com.example.projekt.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "hours")
@@ -19,7 +20,7 @@ public class Hours {
     @Column(name = "overtime")
     private int overtime;
     @Column(name = "date")
-    private String month;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "workers_id_worker")
@@ -57,14 +58,6 @@ public class Hours {
         this.overtime = overtime;
     }
 
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
     public void addHours(int hours){
         this.hours+=hours;
     }
@@ -87,5 +80,21 @@ public class Hours {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public int getIdHours() {
+        return idHours;
+    }
+
+    public void setIdHours(int idHours) {
+        this.idHours = idHours;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

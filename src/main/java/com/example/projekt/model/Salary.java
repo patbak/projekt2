@@ -1,6 +1,7 @@
 package com.example.projekt.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "salary")
@@ -19,6 +20,8 @@ public class Salary {
     private double hoursSalary;
     @Column(name = "amount_salary")
     private double amountSalary;
+    @Column(name = "date")
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "workers_id_worker")
@@ -86,5 +89,21 @@ public class Salary {
 
     public void setAmountSalary(double amountSalary) {
         this.amountSalary = amountSalary;
+    }
+
+    public int getIdSalary() {
+        return idSalary;
+    }
+
+    public void setIdSalary(int idSalary) {
+        this.idSalary = idSalary;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

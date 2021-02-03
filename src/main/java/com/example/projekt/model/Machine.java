@@ -107,5 +107,11 @@ public class Machine {
         this.comments = comments;
     }
 
+    public List<MachineReportHasMachines> getMachineReportHasMachines() {
+        return machineReportHasMachines;
+    }
 
+    public void setMachineReportHasMachines(List<MachineReportHasMachines> machineReportHasMachines) {
+        this.machineReportHasMachines = machineReportHasMachines;
+    }
 }

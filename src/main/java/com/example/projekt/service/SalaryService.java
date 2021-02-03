@@ -25,24 +25,30 @@ public class SalaryService {
     @Autowired
     private SalaryJpaRepository salaryJpaRepository;
 
-    LocalDate date = LocalDate.now().minusMonths(1);
+    LocalDate date = LocalDate.now().minusMonths(1).withDayOfMonth(LocalDate.now().minusMonths(1).lengthOfMonth());
     List<Salary> salaries = new ArrayList<>();
 
     public void countSalary(){
 
-    List<Hours> hoursList = hoursJpaRepository.findAllByMonth(date.getMonth().toString());
+    List<Hours> hoursList = hoursJpaRepository.findAllByDate(date);
         for(int i=0;i<hoursList.size();i++){
+
         Hours hours = hoursList.get(i);
         Salary salary = new Salary();
         Employee employee = hours.getEmployee();
         salary.setHoursSalary(hours.getHours()*employee.getHourlyRate());
+        salary.setDate(date);
         salary.setHarmfulHoursSalary(hours.getHarmfulHours()*HARMFUL_ALLOWANCE);
         salary.setNightHoursSalary(hours.getNightHours()*NIGHT_ALLOWANCE*employee.getHourlyRate());
         salary.setOvertimeSalary(hours.getOvertime()*employee.getHourlyRate()*OVERTIME_ALLOWANCE);
         salary.setEmployee(employee);
         salary.countAmountSalary();
+        if(employee.getForemanAddition()!=0){
+            salary.setAmountSalary(salary.getAmountSalary()*employee.getForemanAddition());
+        }
         salaries.add(salary);
         }
+
     salaryJpaRepository.saveAll(salaries);
     }
 

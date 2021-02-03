@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface HoursJpaRepository extends JpaRepository<Hours,Integer> {
 
-    List<Hours> findAllByMonth(String month);
-
+    List<Hours> findAllByDate(LocalDate date);
 }
