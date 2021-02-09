@@ -1,5 +1,7 @@
 package com.example.projekt.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 
 public class Engineer {
@@ -15,19 +17,22 @@ public class Engineer {
     private String login;
 
     private String phoneNumber;
+    @JsonIgnore
+    private String password;
 
     private String permissionNumber;
 
     public Engineer() {
     }
 
-    public Engineer(int userId, String name, String lastName, String email, String login, String phoneNumber, String permissionNumber) {
+    public Engineer(int userId, String name, String lastName, String email, String login, String phoneNumber, String password, String permissionNumber) {
         this.userId = userId;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.login = login;
         this.phoneNumber = phoneNumber;
+        this.password = password;
         this.permissionNumber = permissionNumber;
     }
 
@@ -77,6 +82,14 @@ public class Engineer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPermissionNumber() {

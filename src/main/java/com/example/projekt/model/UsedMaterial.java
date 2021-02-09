@@ -46,4 +46,12 @@ public class UsedMaterial {
     public void setMaterial(Material material) {
         this.material = material;
     }
+
+    public DailyWorkReport getDailyWorkReport() {
+        return dailyWorkReport;
+    }
+
+    public void setDailyWorkReport(DailyWorkReport dailyWorkReport) {
+        this.dailyWorkReport = dailyWorkReport;
+    }
 }

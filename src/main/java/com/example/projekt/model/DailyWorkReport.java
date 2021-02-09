@@ -121,4 +121,12 @@ public class DailyWorkReport {
     public void setWorksDone(List<WorkDone> worksDone) {
         this.worksDone = worksDone;
     }
+
+    public BuildingDailyReports getBuildingDailyReports() {
+        return buildingDailyReports;
+    }
+
+    public void setBuildingDailyReports(BuildingDailyReports buildingDailyReports) {
+        this.buildingDailyReports = buildingDailyReports;
+    }
 }

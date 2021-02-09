@@ -23,35 +23,7 @@ public class BuildingService {
         List<ConstructionSite> constructionSites = repository.findAll();
         List<BuildingDto> buildingDtoList = new ArrayList<>();
         for (ConstructionSite constructionSite:constructionSites){
-            Set<User> users = constructionSite.getUsers();
-            List<Engineer> engineers = new ArrayList<>();
-            Engineer supervisor = new Engineer();
-            Engineer engineer = new Engineer();
-            for(User user:users){
-              Set<Role> roles = user.getRoles();
-              for (Role role:roles){
-                  if(role.getName().equals("ENGINEER")){
-                       engineer = setEngineer(user);
-                      engineers.add(engineer);
-                  }else{
-                       engineer = setEngineer(user);
-                      supervisor=engineer;
-                  }
-              }
-            }
-
-           BuildingDto buildingDto = new BuildingDto(
-                    constructionSite.getConstructionSiteId(),
-                    constructionSite.getBuildingNumber(),
-                    constructionSite.getName(),
-                    constructionSite.getCoordinates(),
-                    constructionSite.getPlannedStartDate(),
-                    constructionSite.getRealStartDate(),
-                    constructionSite.getPlannedEndDate(),
-                    constructionSite.getRealEndDate(),
-                    engineers,
-                   supervisor
-            );
+           BuildingDto buildingDto = setBuilding(constructionSite);
             buildingDtoList.add(buildingDto);
         }
     return buildingDtoList;
@@ -64,10 +36,44 @@ public class BuildingService {
                 user.getLastName(),
                 user.getEmail(),
                 user.getLogin(),
+                user.getPassword(),
                 user.getPhoneNumber(),
                 user.getPermissionNumber()
         );
         return  engineer;
+    }
+
+    public BuildingDto setBuilding(ConstructionSite constructionSite){
+        Set<User> users = constructionSite.getUsers();
+        List<Engineer> engineers = new ArrayList<>();
+        Engineer supervisor = new Engineer();
+        Engineer engineer = new Engineer();
+        for(User user:users){
+            Set<Role> roles = user.getRoles();
+            for (Role role:roles){
+                if(role.getName().equals("ENGINEER")){
+                    engineer = setEngineer(user);
+                    engineers.add(engineer);
+                }else{
+                    engineer = setEngineer(user);
+                    supervisor=engineer;
+                }
+            }
+        }
+        BuildingDto buildingDto = new BuildingDto(
+                constructionSite.getConstructionSiteId(),
+                constructionSite.getBuildingNumber(),
+                constructionSite.getName(),
+                constructionSite.getCoordinates(),
+                constructionSite.getPlannedStartDate(),
+                constructionSite.getRealStartDate(),
+                constructionSite.getPlannedEndDate(),
+                constructionSite.getRealEndDate(),
+                engineers,
+                supervisor
+
+        );
+        return  buildingDto;
     }
 
 }
