@@ -15,7 +15,7 @@ public class QualityEvaluationController {
     @Autowired
     private QualityEvaluationDtoService qualityEvaluationDtoService;
 
-    @GetMapping("/getQualityEvaluation")
+    @GetMapping("/QualityEvaluation")
     public List<QualityEvaluationDto> getMaterials(){
 
         List<QualityEvaluationDto> qualityEvaluationDtoList = qualityEvaluationDtoService.getQualityEvaluation();

@@ -15,7 +15,7 @@ public class EquipmentDailyReportsController {
     @Autowired
     private EquipmentDailyReportService equipmentDailyReportService;
 
-    @GetMapping("/getEquipmentReports")
+    @GetMapping("/EquipmentReports")
     public List<EquipmentDailyReportDto> getEquipmentReports(){
 
         List<EquipmentDailyReportDto> equipmentDailyReportDtoList = equipmentDailyReportService.getEquipmentReports() ;

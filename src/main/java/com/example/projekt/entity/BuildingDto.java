@@ -30,6 +30,9 @@ public class BuildingDto {
 
     private Engineer supervisor;
 
+    public BuildingDto() {
+    }
+
     public BuildingDto(
             int id,
             String buildingNumber,

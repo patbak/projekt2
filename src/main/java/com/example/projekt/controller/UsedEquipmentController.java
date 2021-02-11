@@ -16,7 +16,7 @@ public class UsedEquipmentController {
     @Autowired
     private UsedEquipmentService usedEquipmentService;
 
-    @GetMapping("/getUsedEquipment")
+    @GetMapping("/UsedEquipment")
     public List<UsedEquipmentDto> getUsedEquipment(){
 
         List<UsedEquipmentDto> usedEquipmentDtoList = usedEquipmentService.getUsedEquipment();

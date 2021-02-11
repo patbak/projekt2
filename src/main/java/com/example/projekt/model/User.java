@@ -36,13 +36,13 @@ public class User {
    @Column(name = "permission_number")
    private String permissionNumber;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+ /*   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_has_buildings",
             joinColumns = @JoinColumn(name = "users_id_user"),
             inverseJoinColumns = @JoinColumn(name = "buildings_id_building")
     )
-    private Set<ConstructionSite> constructionSites = new HashSet<>();
+    private Set<ConstructionSite> constructionSites = new HashSet<>();*/
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -61,14 +61,6 @@ public class User {
     private List<Comment> comments;
 
 
-
-    public Set<ConstructionSite> getConstructionSites() {
-        return constructionSites;
-    }
-
-    public void setConstructionSites(Set<ConstructionSite> constructionSites) {
-        this.constructionSites = constructionSites;
-    }
 
     public List<Comment> getComments() {
         return comments;

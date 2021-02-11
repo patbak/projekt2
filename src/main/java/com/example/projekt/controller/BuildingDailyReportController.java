@@ -15,7 +15,7 @@ public class BuildingDailyReportController {
     @Autowired
     private BuildingDailyReportDtoService buildingDailyReportDtoService;
 
-    @GetMapping("/getBuildingsDailyReports")
+    @GetMapping("/BuildingsDailyReports")
     public List<BuildingDailyReportsDto> getBuildingDailyReports(){
 
         List<BuildingDailyReportsDto> buildingDailyReportsDtoList = buildingDailyReportDtoService.getBuildingReports();

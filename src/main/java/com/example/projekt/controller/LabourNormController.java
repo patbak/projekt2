@@ -15,7 +15,7 @@ public class LabourNormController {
     @Autowired
     private LabourNormDtoService labourNormDtoService;
 
-    @GetMapping("/getLabourNorm")
+    @GetMapping("/LabourNorm")
     public List<LabourNormDto> getLabourNorms(){
 
         List<LabourNormDto> labourNormDtoList = labourNormDtoService.getLabourNorms();

@@ -16,7 +16,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/getComments")
+    @GetMapping("/Comments")
     public List<CommentsDto> getComments(){
 
         List<CommentsDto> commentsDtoList = commentService.getComments();

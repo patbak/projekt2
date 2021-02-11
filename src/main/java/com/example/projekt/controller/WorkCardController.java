@@ -16,7 +16,7 @@ public class WorkCardController {
     @Autowired
     private WorkCardService workCardService;
 
-    @GetMapping("/getWorkCards")
+    @GetMapping("/WorkCards")
     public List<WorkCardDto> getWorkCards(){
 
         List<WorkCardDto> workCardDtoList = workCardService.getWorkCards();

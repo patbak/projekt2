@@ -16,7 +16,7 @@ public class BrigadeDailyReportsController {
     @Autowired
     private BrigadeDailyReportService brigadeDailyReportService;
 
-    @GetMapping("/getBrigadeDailyReports")
+    @GetMapping("/BrigadeDailyReports")
     public List<BrigadeDailyReportDto> getReports(){
 
         List<BrigadeDailyReportDto> brigadeReports = brigadeDailyReportService.getBrigadeReports();

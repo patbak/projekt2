@@ -66,6 +66,22 @@ public class ConstructionSiteTest {
 
     }
 
+    @Test
+    @Transactional
+    public void getActiveBuildings()throws Exception {
+
+        List<ConstructionSite> constructionSites = constructionSiteJpaRepository.findAllByIsActive(true);
+
+        for(ConstructionSite constructionSite:constructionSites){
+            System.out.println(constructionSite.getName());
+            System.out.println(constructionSite.getCoordinates());
+            System.out.println(constructionSite.getConstructionSiteId());
+            System.out.println(constructionSite.getActive());
+
+        }
+
+    }
+
 
 
 

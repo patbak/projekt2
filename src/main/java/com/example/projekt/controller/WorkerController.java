@@ -17,7 +17,7 @@ public class WorkerController {
     @Autowired
     private WorkerService workerService;
 
-    @GetMapping("/getWorkers")
+    @GetMapping("/Workers")
     public List<WorkerDto> getBuildings(){
 
         List<WorkerDto> workerDtoList = workerService.getWorkers();

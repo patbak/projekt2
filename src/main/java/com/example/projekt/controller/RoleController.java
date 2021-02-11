@@ -16,7 +16,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @GetMapping("/getRoles")
+    @GetMapping("/Roles")
     public List<RoleDto> getRoles(){
 
         List<RoleDto> roleDtoList = roleService.getRoles();

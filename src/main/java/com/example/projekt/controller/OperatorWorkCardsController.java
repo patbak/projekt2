@@ -16,7 +16,7 @@ public class OperatorWorkCardsController {
     @Autowired
     private OperatorWorkCardsService operatorWorkCardsService;
 
-    @GetMapping("/getOperatorWorkCards")
+    @GetMapping("/OperatorWorkCards")
     public List<OperatorWorkCardDto> getOperatorWorkCards(){
 
         List<OperatorWorkCardDto> operatorWorkCardDtoList = operatorWorkCardsService.getOperatorWorkCards();

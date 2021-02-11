@@ -38,6 +38,18 @@ public class ConstructionSite {
     @Column(name = "real_start_date")
     private Date realStartDate;
 
+    @Column(name = "is_active")
+    private boolean isActive;
+
+    @OneToMany(
+            mappedBy = "constructionSite", //dwukierunkowa relacja, pomogło przy sypaniu się aplikacji,
+            // gdy odwoływało się do relacji powiązanych manytoone
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Costs> costsList;
+
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_on_buildings",
@@ -53,6 +65,20 @@ public class ConstructionSite {
            orphanRemoval = true
    )
    private List<DailyWorkReport> dailyWorkReport;
+
+    public ConstructionSite() {
+    }
+
+    public ConstructionSite(String name, String buildingNumber, String coordinates, Date plannedStartDate, Date plannedEndDate, Date realEndDate, Date realStartDate, Set<User> users) {
+        this.name = name;
+        this.buildingNumber = buildingNumber;
+        this.coordinates = coordinates;
+        this.plannedStartDate = plannedStartDate;
+        this.plannedEndDate = plannedEndDate;
+        this.realEndDate = realEndDate;
+        this.realStartDate = realStartDate;
+        this.users = users;
+    }
 
     public int getConstructionSiteId() {
         return ConstructionSiteId;
@@ -132,5 +158,21 @@ public class ConstructionSite {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public List<Costs> getCostsList() {
+        return costsList;
+    }
+
+    public void setCostsList(List<Costs> costsList) {
+        this.costsList = costsList;
     }
 }

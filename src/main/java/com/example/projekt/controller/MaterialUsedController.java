@@ -14,7 +14,7 @@ public class MaterialUsedController {
     @Autowired
     private MaterialUsedService materialUsedService;
 
-    @GetMapping("/getMaterialsUsed")
+    @GetMapping("/MaterialsUsed")
     public List<MaterialUsedDto> getMaterialsUsed(){
 
         List<MaterialUsedDto> materialUsedDtoList = materialUsedService.getMaterialsUsed();

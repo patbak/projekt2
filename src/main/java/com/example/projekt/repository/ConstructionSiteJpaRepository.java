@@ -26,4 +26,6 @@ public interface ConstructionSiteJpaRepository extends JpaRepository<Constructio
      @PreAuthorize("hasAuthority('ENGINEER')")
      Page<ConstructionSite> findAll(Pageable pageable);
 
+     List<ConstructionSite> findAllByIsActive(Boolean bool);
+
 }

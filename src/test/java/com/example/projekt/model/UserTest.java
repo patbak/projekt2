@@ -18,7 +18,7 @@ public class UserTest {
     @Autowired
     private UserJpaRepository userJpaRepository;
 
-    @Test
+/*    @Test
     @Transactional
     public void getUsersTest()throws Exception{
         List<User> users = userJpaRepository.findAll();
@@ -36,7 +36,7 @@ public class UserTest {
 
         }
         assertTrue(users.size()>0);
-    }
+    }*/
 
     @Test
     @Transactional

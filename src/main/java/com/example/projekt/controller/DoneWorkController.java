@@ -16,7 +16,7 @@ public class DoneWorkController {
     @Autowired
     private DoneWorkService doneWorkService;
 
-    @GetMapping("/getDoneWorks")
+    @GetMapping("/DoneWorks")
     public List<DoneWorkDto> getDoneWorks(){
 
         List<DoneWorkDto> doneWorkDtoList = doneWorkService.getDoneWork();

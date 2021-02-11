@@ -17,7 +17,7 @@ public class WeatherConditionsController {
     @Autowired
     private WeatherConditionsDtoService weatherConditionsDtoService;
 
-    @GetMapping("/getWeatherConditions")
+    @GetMapping("/WeatherConditions")
     public List<WeatherConditionsDto> getDoneWorks(){
 
         List<WeatherConditionsDto> weatherConditionsList = weatherConditionsDtoService.getWeatherConditions();
