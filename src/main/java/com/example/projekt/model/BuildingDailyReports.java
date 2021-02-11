@@ -47,6 +47,9 @@ public class BuildingDailyReports {
     )
     private List<DailyWorkReport> dailyWorkReports;
 
+
+
+
     public int getIdBuildingDailyReport() {
         return idBuildingDailyReport;
     }

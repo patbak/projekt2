@@ -1,8 +1,10 @@
 package com.example.projekt.service;
 
+import com.example.projekt.entity.BrigadeDailyReportDto;
 import com.example.projekt.entity.BuildingDto;
 import com.example.projekt.entity.Engineer;
 import com.example.projekt.model.ConstructionSite;
+import com.example.projekt.model.DailyWorkReport;
 import com.example.projekt.model.Role;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
@@ -25,6 +27,8 @@ public class BuildingService {
     private UserJpaRepository userJpaRepository;
     @Autowired
     private EngineerService engineerService;
+    @Autowired
+    private BrigadeDailyReportService brigadeDailyReportService;
 
     public List<BuildingDto>  getBuildings(){
         List<ConstructionSite> constructionSites = repository.findAll();
@@ -128,6 +132,17 @@ public class BuildingService {
             buildingDtoList.add(buildingDto);
         }
         return  buildingDtoList;
+    }
+
+    public List<BrigadeDailyReportDto> getBuildingReports(int id){
+        ConstructionSite constructionSite = repository.getOne(id);
+        List<DailyWorkReport> dailyWorkReportList = constructionSite.getDailyWorkReport();
+        List<BrigadeDailyReportDto> brigadeDailyReportDtoList = new ArrayList<>();
+        for (DailyWorkReport dailyWorkReport:dailyWorkReportList){
+            BrigadeDailyReportDto brigadeDailyReportDto = brigadeDailyReportService.setBrigadeReport(dailyWorkReport);
+            brigadeDailyReportDtoList.add(brigadeDailyReportDto);
+        }
+        return brigadeDailyReportDtoList;
     }
 
 

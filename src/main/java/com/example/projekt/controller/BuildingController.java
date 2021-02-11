@@ -1,5 +1,6 @@
 package com.example.projekt.controller;
 
+import com.example.projekt.entity.BrigadeDailyReportDto;
 import com.example.projekt.entity.BuildingDto;
 import com.example.projekt.entity.Engineer;
 import com.example.projekt.service.BuildingService;
@@ -13,26 +14,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class BuildingController {
 
     @Autowired
     private BuildingService buildingService;
 
-    @GetMapping("/Buildings")
+    @GetMapping("/buildings")
     public List<BuildingDto> getBuildings(){
 
     List<BuildingDto> buildingDtoList = buildingService.getBuildings();
     return buildingDtoList;
     }
 
-    @GetMapping("/Buildings/{id}")
+    @GetMapping("/buildings/{id}")
     public BuildingDto getBuildings(@PathVariable int id){
 
         return buildingService.getBuildingById(id);
     }
 
 
-    @PostMapping("/Buildings")
+    @PostMapping("/buildings")
     public ResponseEntity<String> postBuilding(@RequestBody BuildingDto buildingDto){
 
         buildingService.saveBuilding(buildingDto);
@@ -40,30 +42,36 @@ public class BuildingController {
 
     }
 
-    @GetMapping("/Buildings/{id}/Engineer")
+    @GetMapping("/buildings/{id}/Engineer")
     public List<Engineer> getEngineersOnBuilding(@PathVariable int id){
 
         return buildingService.getEngineersFromBuilding(id);
     }
 
-    @GetMapping("/Buildings/finished")
+    @GetMapping("/buildings/finished")
     public List<BuildingDto> getFinishedBuildings(){
 
         return buildingService.getBuildingsByActive(false);
     }
 
-    @GetMapping("/Buildings/active")
+    @GetMapping("/buildings/active")
     public List<BuildingDto> getActiveBuildings(){
 
         return buildingService.getBuildingsByActive(true);
     }
 
-    @PostMapping("/Buildings/{id}/Engineer")
+    @PostMapping("/buildings/{id}/Engineer")
     public ResponseEntity<String>  addEngineersToBuilding(@PathVariable int id, @RequestBody Engineer engineer){
 
         buildingService.addEngineerToBuilding(id, engineer);
 
        return  new ResponseEntity<>("Dodano inżyniera do budowy", HttpStatus.OK);
+    }
+
+    @GetMapping("/buildings/{id}/daily-reports")
+    public List<BrigadeDailyReportDto> getDailyReportsFromBuilding(@PathVariable int id){
+
+      return  buildingService.getBuildingReports(id);
     }
 
 
