@@ -1,13 +1,7 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.BuildingDailyReportsDto;
-import com.example.projekt.entity.BuildingDto;
-import com.example.projekt.entity.DailyReportCommandDto;
-import com.example.projekt.entity.WeatherConditionsDto;
-import com.example.projekt.model.BuildingDailyReports;
-import com.example.projekt.model.ConstructionSite;
-import com.example.projekt.model.DailyWorkReport;
-import com.example.projekt.model.WeatherConditions;
+import com.example.projekt.entity.*;
+import com.example.projekt.model.*;
 import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
 import com.example.projekt.repository.WeatherConditionsJpaRepository;
@@ -33,6 +27,12 @@ public class BuildingDailyReportDtoService {
     private ConstructionSiteJpaRepository constructionSiteJpaRepository;
     @Autowired
     private WeatherConditionsJpaRepository weatherConditionsJpaRepository;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private  EquipmentDailyReportService equipmentDailyReportService;
+    @Autowired
+    private BrigadeDailyReportService brigadeDailyReportService;
 
     public BuildingDailyReportsDto setBuildingReport(BuildingDailyReports buildingDailyReports){
         BuildingDto buildingDto = buildingService.setBuilding(buildingDailyReports.getConstructionSite());
@@ -79,6 +79,39 @@ public class BuildingDailyReportDtoService {
         buildingDailyReport.setWeatherConditions(weatherConditions);
         buildingDailyReportsJpaRepository.saveAndFlush(buildingDailyReport);
 
+    }
+
+    public List<CommentsDto> getBuildingDailyReportComments(int id){
+        BuildingDailyReports buildingDailyReport = buildingDailyReportsJpaRepository.getOne(id);
+       List<Comment> commentList =  buildingDailyReport.getComments();
+       List<CommentsDto> commentsDtoList = new ArrayList<>();
+       for(Comment comment:commentList){
+           CommentsDto commentsDto = commentService.setComment(comment);
+           commentsDtoList.add(commentsDto);
+       }
+       return commentsDtoList;
+    }
+
+    public List<EquipmentDailyReportDto> getEquipmentReportsByDailyReportId(int id){
+    BuildingDailyReports buildingDailyReports = buildingDailyReportsJpaRepository.getOne(id);
+    List<DailyMachineWorkReport> dailyMachineWorkReportsList = buildingDailyReports.getDailyMachineWorkReports();
+    List<EquipmentDailyReportDto> equipmentDailyReportDtoList = new ArrayList<>();
+    for(DailyMachineWorkReport dailyMachineWorkReport:dailyMachineWorkReportsList){
+        EquipmentDailyReportDto equipmentDailyReportDto = equipmentDailyReportService.setEquipmentReport(dailyMachineWorkReport);
+        equipmentDailyReportDtoList.add(equipmentDailyReportDto);
+    }
+    return equipmentDailyReportDtoList;
+    }
+
+    public List<BrigadeDailyReportDto> getBrigadeReportsByBuildingReports(int id){
+        BuildingDailyReports buildingDailyReports = buildingDailyReportsJpaRepository.getOne(id);
+       List<DailyWorkReport> dailyWorkReportList = buildingDailyReports.getDailyWorkReports();
+       List<BrigadeDailyReportDto> brigadeDailyReportDtoList =new ArrayList<>();
+       for(DailyWorkReport dailyWorkReport:dailyWorkReportList){
+           BrigadeDailyReportDto brigadeDailyReportDto = brigadeDailyReportService.setBrigadeReport(dailyWorkReport);
+           brigadeDailyReportDtoList.add(brigadeDailyReportDto);
+       }
+       return  brigadeDailyReportDtoList;
     }
 
 }

@@ -34,4 +34,15 @@ public class CommentService {
         return commentsDtoList;
     }
 
+    public CommentsDto setComment(Comment comment){
+        Engineer engineer = engineerService.setEngineer(comment.getUser());
+        CommentsDto commentsDto = new CommentsDto(
+                comment.getIdComment(),
+                comment.getText(),
+                comment.getCommentNumber(),
+                engineer
+        );
+        return  commentsDto;
+    }
+
 }

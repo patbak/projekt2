@@ -1,7 +1,5 @@
 package com.example.projekt.entity;
 
-import com.example.projekt.model.WorkDone;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -9,7 +7,7 @@ public class EquipmentDailyReportDto {
 
     private int id;
 
-    private BuildingDailyReportsDto buildingDailyReportsDto;
+    private BuildingDailyReportsDto buildingDailyReports;
 
     private Date date;
 
@@ -25,7 +23,7 @@ public class EquipmentDailyReportDto {
 
     public EquipmentDailyReportDto(int id, BuildingDailyReportsDto buildingDailyReportsDto, Date date, Engineer author, String reportNumber, String work, List<MachineDto> machineDto, List<WorkerDto> workerDtoList) {
         this.id = id;
-        this.buildingDailyReportsDto = buildingDailyReportsDto;
+        this.buildingDailyReports = buildingDailyReportsDto;
         this.date = date;
         this.author = author;
         this.reportNumber = reportNumber;
@@ -42,12 +40,12 @@ public class EquipmentDailyReportDto {
         this.id = id;
     }
 
-    public BuildingDailyReportsDto getBuildingDailyReportsDto() {
-        return buildingDailyReportsDto;
+    public BuildingDailyReportsDto getBuildingDailyReports() {
+        return buildingDailyReports;
     }
 
-    public void setBuildingDailyReportsDto(BuildingDailyReportsDto buildingDailyReportsDto) {
-        this.buildingDailyReportsDto = buildingDailyReportsDto;
+    public void setBuildingDailyReports(BuildingDailyReportsDto buildingDailyReports) {
+        this.buildingDailyReports = buildingDailyReports;
     }
 
     public Date getDate() {

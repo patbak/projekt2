@@ -3,6 +3,7 @@ package com.example.projekt.service;
 import com.example.projekt.entity.*;
 import com.example.projekt.model.DailyMachineWorkReport;
 import com.example.projekt.model.Employee;
+import com.example.projekt.model.MachineReportHasMachines;
 import com.example.projekt.model.OperatorWorkCards;
 import com.example.projekt.repository.DailyMachineWorkReportJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class EquipmentDailyReportService {
    private MachineService machineService;
    @Autowired
    private WorkerService workerService;
+   @Autowired
+   private UsedEquipmentService usedEquipmentService;
+   @Autowired
+   private OperatorWorkCardsService operatorWorkCardsService;
+
     public List<EquipmentDailyReportDto> getEquipmentReports(){
 
         List<DailyMachineWorkReport> dailyMachineWorkReports = dailyMachineWorkReportJpaRepository.findAll();
@@ -64,6 +70,34 @@ public class EquipmentDailyReportService {
             workerDtoList.add(workerDto);
         }
         return workerDtoList;
+    }
+
+    public EquipmentDailyReportDto getEquipmentDailyReportById(int id){
+        DailyMachineWorkReport dailyMachineWorkReport = dailyMachineWorkReportJpaRepository.getOne(id);
+        EquipmentDailyReportDto equipmentDailyReportDto = setEquipmentReport(dailyMachineWorkReport);
+        return equipmentDailyReportDto;
+    }
+
+    public List<UsedEquipmentDto> getUsedEquipmentByEquipmentReport(int id){
+        DailyMachineWorkReport dailyMachineWorkReport = dailyMachineWorkReportJpaRepository.getOne(id);
+        List<MachineReportHasMachines> machineReportHasMachinesList =  dailyMachineWorkReport.getMachineReportHasMachinesList();
+        List<UsedEquipmentDto> usedEquipmentDtoList = new ArrayList<>();
+        for(MachineReportHasMachines machineReportHasMachines:machineReportHasMachinesList){
+            UsedEquipmentDto usedEquipmentDto = usedEquipmentService.setUsedEquipment(machineReportHasMachines);
+            usedEquipmentDtoList.add(usedEquipmentDto);
+        }
+        return usedEquipmentDtoList;
+    }
+
+    public List<OperatorWorkCardDto> getOperatorWorkCardsByEquipmentReport(int id){
+        DailyMachineWorkReport dailyMachineWorkReport = dailyMachineWorkReportJpaRepository.getOne(id);
+        List<OperatorWorkCards> operatorWorkCardsList =  dailyMachineWorkReport.getOperatorWorkCards();
+        List<OperatorWorkCardDto> operatorWorkCardDtoList = new ArrayList<>();
+        for(OperatorWorkCards operatorWorkCards:operatorWorkCardsList){
+            OperatorWorkCardDto operatorWorkCardDto = operatorWorkCardsService.setOperatorCard(operatorWorkCards);
+            operatorWorkCardDtoList.add(operatorWorkCardDto);
+        }
+        return operatorWorkCardDtoList;
     }
 
 }

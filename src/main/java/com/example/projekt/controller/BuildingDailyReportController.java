@@ -1,16 +1,13 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.BuildingDailyReportsDto;
-import com.example.projekt.entity.BuildingDto;
-import com.example.projekt.entity.DailyReportCommandDto;
+import com.example.projekt.entity.*;
 import com.example.projekt.service.BuildingDailyReportDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.time.LocalDate;
+
 import java.util.List;
 
 @RestController
@@ -33,5 +30,21 @@ public class BuildingDailyReportController {
         buildingDailyReportDtoService.createBuildingReport(dailyReportCommandDto);
         return new ResponseEntity<String>("Dodano raport.", HttpStatus.CREATED);
     }
+
+    @GetMapping("/daily-reports/{id}/comments")
+    public List<CommentsDto> getBuildingDailyReportComments(@PathVariable int id){
+        return buildingDailyReportDtoService.getBuildingDailyReportComments(id);
+    }
+
+    @GetMapping("/daily-reports/{id}/equipment-daily-reports")
+    public List<EquipmentDailyReportDto> getBuildingDailyReportEquipmentReports(@PathVariable int id){
+        return buildingDailyReportDtoService.getEquipmentReportsByDailyReportId(id);
+    }
+
+    @GetMapping("/daily-reports/{id}/brigade-daily-reports")
+    public List<BrigadeDailyReportDto> getBuildingDailyReportBrigadeReports(@PathVariable int id){
+        return buildingDailyReportDtoService.getBrigadeReportsByBuildingReports(id);
+    }
+
 
 }
