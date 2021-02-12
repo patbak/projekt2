@@ -1,6 +1,7 @@
 package com.example.projekt.controller;
 
 import com.example.projekt.entity.BrigadeDailyReportDto;
+import com.example.projekt.entity.BuildingDailyReportsDto;
 import com.example.projekt.entity.BuildingDto;
 import com.example.projekt.entity.Engineer;
 import com.example.projekt.service.BuildingService;
@@ -69,7 +70,7 @@ public class BuildingController {
     }
 
     @GetMapping("/buildings/{id}/daily-reports")
-    public List<BrigadeDailyReportDto> getDailyReportsFromBuilding(@PathVariable int id){
+    public List<BuildingDailyReportsDto> getDailyReportsFromBuilding(@PathVariable int id){
 
       return  buildingService.getBuildingReports(id);
     }

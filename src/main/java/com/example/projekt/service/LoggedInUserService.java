@@ -37,6 +37,8 @@ public class LoggedInUserService {
 
 
         LoggedInUserDto loggedInUserDto = new LoggedInUserDto(
+                user.getUserId(),
+                user.getPermissionNumber(),
                 user.getName(),
                 user.getLastName(),
                 user.getEmail(),
@@ -44,8 +46,6 @@ public class LoggedInUserService {
                 user.getPhoneNumber(),
                 authorities
         );
- System.out.println(user.getName()+user.getEmail()+ user.getLastName());
- System.out.println(authorities);
 
         return loggedInUserDto;
 

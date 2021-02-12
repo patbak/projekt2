@@ -1,14 +1,18 @@
 package com.example.projekt.entity;
 
+import com.example.projekt.model.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.persistence.Column;
+import java.util.List;
+import java.util.Set;
+
 
 public class Engineer {
 
-    private int userId;
+    private int id;
 
-    private String name;
+    private String firstName;
 
     private String lastName;
 
@@ -22,34 +26,37 @@ public class Engineer {
 
     private String permissionNumber;
 
+    private List<SimpleGrantedAuthority> roles;
+
     public Engineer() {
     }
 
-    public Engineer(int userId, String name, String lastName, String email, String login, String phoneNumber, String password, String permissionNumber) {
-        this.userId = userId;
-        this.name = name;
+    public Engineer(int id, String firstName, String lastName, String email, String login, String phoneNumber, String password, String permissionNumber, List<SimpleGrantedAuthority> roles) {
+        this.id = id;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.login = login;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.permissionNumber = permissionNumber;
+        this.roles = roles;
     }
 
     public int getUserId() {
-        return userId;
+        return id;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.id = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -98,5 +105,13 @@ public class Engineer {
 
     public void setPermissionNumber(String permissionNumber) {
         this.permissionNumber = permissionNumber;
+    }
+
+    public List<SimpleGrantedAuthority> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<SimpleGrantedAuthority> roles) {
+        this.roles = roles;
     }
 }

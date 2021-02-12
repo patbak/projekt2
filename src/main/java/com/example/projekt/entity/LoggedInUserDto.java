@@ -1,60 +1,53 @@
 package com.example.projekt.entity;
 
 
-import com.example.projekt.model.Role;
-import com.example.projekt.validation.PasswordPolicy;
-import com.example.projekt.validation.UniqueEmail;
-import com.example.projekt.validation.UniqueUsername;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.w3c.dom.stylesheets.LinkStyle;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 public class LoggedInUserDto {
+    private int id;
 
-    private String firstname;
+    private String permissionNumber;
 
-    private String lastname;
+    private String firstName;
+
+    private String lastName;
 
     private String email;
 
-    private String username;
+    private String login;
 
     private String phoneNumber;
 
-    private List<SimpleGrantedAuthority> authorities;
+    private List<SimpleGrantedAuthority> roles;
 
 
-
-    public LoggedInUserDto(String firstname, String lastname, String email, String username, String phoneNumber, List<SimpleGrantedAuthority> authorities) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public LoggedInUserDto(int id, String permissionNumber, String firstName, String lastName, String email, String login, String phoneNumber, List<SimpleGrantedAuthority> roles) {
+        this.id = id;
+        this.permissionNumber = permissionNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.username = username;
+        this.login = login;
         this.phoneNumber = phoneNumber;
-        this.authorities=authorities;
+        this.roles = roles;
     }
 
-
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -65,12 +58,12 @@ public class LoggedInUserDto {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPhoneNumber() {
@@ -81,11 +74,27 @@ public class LoggedInUserDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<SimpleGrantedAuthority> getAuthorities() {
-        return authorities;
+    public List<SimpleGrantedAuthority> getRoles() {
+        return roles;
     }
 
-    public void setAuthorities(List<SimpleGrantedAuthority> authorities) {
-        this.authorities = authorities;
+    public void setRoles(List<SimpleGrantedAuthority> roles) {
+        this.roles = roles;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPermissionNumber() {
+        return permissionNumber;
+    }
+
+    public void setPermissionNumber(String permissionNumber) {
+        this.permissionNumber = permissionNumber;
     }
 }

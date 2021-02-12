@@ -66,6 +66,15 @@ public class ConstructionSite {
    )
    private List<DailyWorkReport> dailyWorkReport;
 
+    @OneToMany(
+            mappedBy = "constructionSite", //dwukierunkowa relacja, pomogło przy sypaniu się aplikacji,
+            // gdy odwoływało się do relacji powiązanych manytoone
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<BuildingDailyReports> buildingDailyReports;
+
+
     public ConstructionSite() {
     }
 
@@ -174,5 +183,21 @@ public class ConstructionSite {
 
     public void setCostsList(List<Costs> costsList) {
         this.costsList = costsList;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public List<BuildingDailyReports> getBuildingDailyReports() {
+        return buildingDailyReports;
+    }
+
+    public void setBuildingDailyReports(List<BuildingDailyReports> buildingDailyReports) {
+        this.buildingDailyReports = buildingDailyReports;
     }
 }

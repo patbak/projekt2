@@ -1,12 +1,10 @@
 package com.example.projekt.service;
 
 import com.example.projekt.entity.BrigadeDailyReportDto;
+import com.example.projekt.entity.BuildingDailyReportsDto;
 import com.example.projekt.entity.BuildingDto;
 import com.example.projekt.entity.Engineer;
-import com.example.projekt.model.ConstructionSite;
-import com.example.projekt.model.DailyWorkReport;
-import com.example.projekt.model.Role;
-import com.example.projekt.model.User;
+import com.example.projekt.model.*;
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
 import com.example.projekt.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,7 @@ public class BuildingService {
     @Autowired
     private EngineerService engineerService;
     @Autowired
-    private BrigadeDailyReportService brigadeDailyReportService;
+    private BuildingDailyReportDtoService buildingDailyReportDtoService;
 
     public List<BuildingDto>  getBuildings(){
         List<ConstructionSite> constructionSites = repository.findAll();
@@ -65,6 +63,7 @@ public class BuildingService {
                 }
             }
         }
+
         BuildingDto buildingDto = new BuildingDto(
                 constructionSite.getConstructionSiteId(),
                 constructionSite.getBuildingNumber(),
@@ -134,15 +133,16 @@ public class BuildingService {
         return  buildingDtoList;
     }
 
-    public List<BrigadeDailyReportDto> getBuildingReports(int id){
+    public List<BuildingDailyReportsDto> getBuildingReports(int id){
         ConstructionSite constructionSite = repository.getOne(id);
-        List<DailyWorkReport> dailyWorkReportList = constructionSite.getDailyWorkReport();
-        List<BrigadeDailyReportDto> brigadeDailyReportDtoList = new ArrayList<>();
-        for (DailyWorkReport dailyWorkReport:dailyWorkReportList){
-            BrigadeDailyReportDto brigadeDailyReportDto = brigadeDailyReportService.setBrigadeReport(dailyWorkReport);
-            brigadeDailyReportDtoList.add(brigadeDailyReportDto);
+        List<BuildingDailyReports> buildingDailyReports = constructionSite.getBuildingDailyReports();
+        List<BuildingDailyReportsDto> buildingDailyReportsDtoList = new ArrayList<>();
+        for (BuildingDailyReports buildingDailyReport:buildingDailyReports){
+            BuildingDailyReportsDto buildingDailyReportsDto = buildingDailyReportDtoService.setBuildingReport(buildingDailyReport);
+            buildingDailyReportsDtoList.add(buildingDailyReportsDto);
         }
-        return brigadeDailyReportDtoList;
+        return buildingDailyReportsDtoList;
+
     }
 
 
