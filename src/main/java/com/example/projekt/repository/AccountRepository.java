@@ -8,7 +8,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(path = "konto", collectionResourceRel = "konto")
+@RepositoryRestResource(path = "account", collectionResourceRel = "account")
 public interface AccountRepository extends JpaRepository<Account,Integer> {
     Account findByLogin(String login);
     Account findByEmail(String email);

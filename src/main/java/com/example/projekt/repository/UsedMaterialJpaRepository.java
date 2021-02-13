@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(path = "zuzyteMaterialy", collectionResourceRel = "zuzyteMaterialy")
+@RepositoryRestResource(path = "materialUsed", collectionResourceRel = "materialUsed")
 public interface UsedMaterialJpaRepository extends JpaRepository<UsedMaterial,Integer> {
 }

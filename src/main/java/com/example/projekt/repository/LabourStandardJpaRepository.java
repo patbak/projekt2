@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(path = "normyPracy", collectionResourceRel = "normyPracy")
+@RepositoryRestResource(path = "labourNorm", collectionResourceRel = "labourNorm")
 public interface LabourStandardJpaRepository extends JpaRepository<LabourStandard,Integer> {
 }

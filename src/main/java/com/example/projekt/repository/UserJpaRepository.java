@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@RepositoryRestResource(path = "uzytkownicy", collectionResourceRel = "uzytkownicy")
+@RepositoryRestResource(path = "users", collectionResourceRel = "users")
 public interface UserJpaRepository extends JpaRepository<User,Integer> {
     List<User> findByNameContains(String name);
     User findByLogin(String login);

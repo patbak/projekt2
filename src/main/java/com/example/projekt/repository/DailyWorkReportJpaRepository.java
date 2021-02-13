@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@RepositoryRestResource(path = "raportBrygady", collectionResourceRel = "raportBrygady")
+@RepositoryRestResource(path = "brigadeDailyReport", collectionResourceRel = "brigadeDailyReport")
 public interface DailyWorkReportJpaRepository  extends JpaRepository<DailyWorkReport, Integer>
 {
 }

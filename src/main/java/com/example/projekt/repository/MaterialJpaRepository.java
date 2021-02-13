@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@RepositoryRestResource(path = "materialy", collectionResourceRel = "materialy")
+@RepositoryRestResource(path = "materials", collectionResourceRel = "materials")
 public interface MaterialJpaRepository extends JpaRepository<Material,Integer> {
 
     List<Material> findByMaterialNameContains(String materialName);

@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(path = "ocenaJakosci", collectionResourceRel = "ocenaJakosci")
+@RepositoryRestResource(path = "quality", collectionResourceRel = "quality")
 public interface QualityAssessmentJpaRepository  extends JpaRepository<QualityAssessment, Integer>{
 }

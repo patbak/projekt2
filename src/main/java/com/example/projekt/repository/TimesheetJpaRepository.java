@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-@RepositoryRestResource(path = "kartyPracy", collectionResourceRel = "kartyPracy")
+@RepositoryRestResource(path = "workCards", collectionResourceRel = "workCards")
 public interface TimesheetJpaRepository extends JpaRepository<Timesheet, Integer> {
 
   //  List<Timesheet> findByReportDateAndEmployee_EmployeeId(Date date, int id);
