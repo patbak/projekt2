@@ -11,6 +11,9 @@ public class MachineReportHasMachines {
     @Column(name = "id_has_machines")
     private int hasMachineId;
 
+    @Column(name = "work_hours")
+    private float workHours;
+
     @ManyToOne
     @JoinColumn(name = "equipment_daily_reports_id_equipment_daily_report")
     private DailyMachineWorkReport dailyMachineWorkReport;
@@ -53,5 +56,13 @@ public class MachineReportHasMachines {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public float getWorkHours() {
+        return workHours;
+    }
+
+    public void setWorkHours(float workHours) {
+        this.workHours = workHours;
     }
 }

@@ -6,17 +6,19 @@ import com.example.projekt.service.BuildingDailyReportDtoService;
 import com.example.projekt.service.OperatorWorkCardsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class OperatorWorkCardsController {
 
     @Autowired
     private OperatorWorkCardsService operatorWorkCardsService;
 
-    @GetMapping("/OperatorWorkCards")
+    @GetMapping("/operator-work-cards")
     public List<OperatorWorkCardDto> getOperatorWorkCards(){
 
         List<OperatorWorkCardDto> operatorWorkCardDtoList = operatorWorkCardsService.getOperatorWorkCards();

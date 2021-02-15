@@ -1,18 +1,24 @@
 package com.example.projekt.model;
 
 import com.example.projekt.repository.DailyWorkReportJpaRepository;
+import com.example.projekt.service.DateConverterService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class DailyWorkReportTest {
 
     @Autowired
     private DailyWorkReportJpaRepository dailyWorkReportJpaRepository;
+    @Autowired
+    private DateConverterService dateConverterService;
 
     @Test
     @Transactional
@@ -56,5 +62,29 @@ public class DailyWorkReportTest {
 
 
     }
+
+    @Test
+    @Transactional
+    public void getDailyWorkReportByDates()throws Exception{
+
+        LocalDate date1 = LocalDate.parse("2021-01-01");
+        LocalDate date2 = LocalDate.parse("2021-01-31");
+
+        List<DailyWorkReport> dailyWorkReportList =
+                dailyWorkReportJpaRepository.findAllByReportDateBetweenAndConstructionSite_ConstructionSiteId(
+                        dateConverterService.convertToDateViaSqlDate(date1),
+                    dateConverterService.convertToDateViaSqlDate(date2),
+                        4);
+
+       for(DailyWorkReport dailyWorkReport:dailyWorkReportList){
+           System.out.println(dailyWorkReport.getReportDate());
+           System.out.println(dailyWorkReport.getReportNumber());
+           System.out.println(dailyWorkReport.getDailyWorkReportId());
+       }
+        assertTrue(dailyWorkReportList.size()>0);
+    }
+
+
+
 
 }

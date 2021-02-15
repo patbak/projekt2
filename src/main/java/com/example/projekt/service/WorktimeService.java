@@ -7,6 +7,7 @@ import com.example.projekt.model.Hours;
 import com.example.projekt.model.Timesheet;
 import com.example.projekt.repository.EmployeeJpaRepository;
 import com.example.projekt.repository.HoursJpaRepository;
+import com.example.projekt.repository.TimesheetJpaRepository;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,41 +25,25 @@ import java.util.List;
 import static java.lang.StrictMath.abs;
 
 @Service
-public class WorktimeService {// oblicza czas pracy dla każdego pracownika w poszczególnym miesiacu
+public class WorktimeService {
 
     @Autowired
     private EmployeeJpaRepository employeeJpaRepository;
-    private List<Hours> hoursList = new ArrayList<>();
+    private List<Hours> hoursList;
     private Hours hours;
     @Autowired
     private TimesheetService timesheetService;
     @Autowired
     private HoursJpaRepository hoursJpaRepository;
+    @Autowired
+    private TimesheetJpaRepository timesheetJpaRepository;
 
-
-    public void getTimesheetsToCount() {//wybiera karty pracy dla każdego pracownika z poprzedniego miesiąca
-        List<Employee> employees = employeeJpaRepository.findAll();
-        List<Timesheet> timesheets = new ArrayList<>();
-        for (int i = 0; i < employees.size(); i++) {
-            timesheets = timesheetService.getLastMonthTimesheets(
-                    employees.get(i).getEmployeeId()
-            );
-
-            countWorkTime(timesheets);
-
-        }
-        hoursJpaRepository.saveAll(hoursList);
-    }
-
-    public void countWorkTime(List<Timesheet> timesheets) {
-
-        hours = new Hours();
-        if(timesheets.size()<1){
-            return;
-        }
-        for (int i = 0; i < timesheets.size(); i++) {
+    public void countWorkTime() {
+        hoursList = new ArrayList<>();
+        List<Timesheet> timesheetList = timesheetService.getLastMonthTimesheets();
+        for (Timesheet timesheet:timesheetList) {
+            hours = new Hours();
             //dla każdej karty pracy będzie obliczać ilość godzin które upłynęły w pracy
-            Timesheet timesheet = timesheets.get(i);
             LocalTime startOfWork = timesheet.getStartTimeOfWork();
             LocalTime endOfWork = timesheet.getEndTimeOfWork();
             LocalDate reportDate = timesheet.getTimesheetDate();
@@ -72,17 +57,11 @@ public class WorktimeService {// oblicza czas pracy dla każdego pracownika w po
             hours.addHarmfulHours(timesheet.getHarmfulHours());
             hours.addNightHours(countNightHours(dateTime1,dateTime2));
             hours.setEmployee(timesheet.getEmployee());
-            System.out.println(hours.getHours());
-            System.out.println(hours.getNightHours());
-            System.out.println(hours.getOvertime());
-            System.out.println(hours.getHarmfulHours());
-            System.out.println(hours.getEmployee().getEmployeeId());
-            System.out.println(hours.getEmployee().getEmployeeName());
-            System.out.println(hours.getEmployee().getEmployeeLastName());
-
+            hours.setDate(timesheet.getTimesheetDate());
+            hours.setConstructionSite(timesheet.getDailyWorkReport().getConstructionSite());
+            hoursList.add(hours);
         }
-        hours.setDate(LocalDate.now().minusMonths(1).withDayOfMonth(LocalDate.now().minusMonths(1).lengthOfMonth()));
-        hoursList.add(hours);
+        hoursJpaRepository.saveAll(hoursList);
     }
 
     public int countHours(LocalDateTime startOfWork, LocalDateTime endOfWork) {

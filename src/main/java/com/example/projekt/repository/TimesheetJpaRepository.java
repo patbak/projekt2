@@ -17,8 +17,10 @@ public interface TimesheetJpaRepository extends JpaRepository<Timesheet, Integer
   //  List<Timesheet> findByReportDateAndEmployee_EmployeeId(Date date, int id);
 
     List<Timesheet> findAllByTimesheetDateBetweenAndEmployee_EmployeeId(
-            LocalDate startOfMounth,
-            LocalDate endOfMounth,
+            LocalDate startOfMonth,
+            LocalDate endOfMouth,
             int id
     );
+
+    List<Timesheet> findAllByTimesheetDateBetween(LocalDate startOfMonth, LocalDate endOfMonth);
 }

@@ -9,4 +9,8 @@ import java.util.List;
 public interface HoursJpaRepository extends JpaRepository<Hours,Integer> {
 
     List<Hours> findAllByDate(LocalDate date);
+
+    List<Hours> findAllByDateBetweenAndAndEmployee_EmployeeId(LocalDate startOfMonth, LocalDate endOfMonth, int id);
+
+    List<Hours> findAllByDateBetweenAndConstructionSite_ConstructionSiteId(LocalDate startOfMonth, LocalDate endOfMonth, int id);
 }

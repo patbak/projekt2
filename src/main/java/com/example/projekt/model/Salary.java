@@ -39,6 +39,21 @@ public class Salary {
         this.harmfulHoursSalary=harmfulHoursSalary;
     }
 
+    public void addOvertimeSalary(double overtimeSalary){
+        this.overtimeSalary+=overtimeSalary;
+    }
+
+    public void addHoursSalary(double hoursSalary){
+        this.hoursSalary+=hoursSalary;
+    }
+
+    public void addNightSalary(double nightHoursSalary){
+        this.nightHoursSalary+=nightHoursSalary;
+    }
+    public void addHarmfulSalary(double harmfulSalary){
+        this.harmfulHoursSalary+=harmfulSalary;
+    }
+
     public void countAmountSalary(){
         this.amountSalary=this.hoursSalary+this.harmfulHoursSalary+this.nightHoursSalary+this.overtimeSalary;
     }

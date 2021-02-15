@@ -24,11 +24,13 @@ public class SalaryService {
     private HoursJpaRepository hoursJpaRepository;
     @Autowired
     private SalaryJpaRepository salaryJpaRepository;
+    @Autowired
+    private EmployeeJpaRepository employeeJpaRepository;
+    LocalDate startOfMonth = LocalDate.now().minusMonths(1).withDayOfMonth(1);
+    LocalDate endOfMonth = LocalDate.now().minusMonths(1).withDayOfMonth(LocalDate.now().minusMonths(1).lengthOfMonth());
 
-    LocalDate date = LocalDate.now().minusMonths(1).withDayOfMonth(LocalDate.now().minusMonths(1).lengthOfMonth());
-    List<Salary> salaries = new ArrayList<>();
 
-    public void countSalary(){
+/*    public void countSalary(){
 
     List<Hours> hoursList = hoursJpaRepository.findAllByDate(date);
         for(int i=0;i<hoursList.size();i++){
@@ -50,8 +52,28 @@ public class SalaryService {
         }
 
     salaryJpaRepository.saveAll(salaries);
-    }
+    }*/
 
+    public void countSalary(){
+        List<Employee> employeeList = employeeJpaRepository.findAll();
+        List<Salary> salaries = new ArrayList<>();
+        for (Employee employee:employeeList){
+        List<Hours> hoursList = hoursJpaRepository.findAllByDateBetweenAndAndEmployee_EmployeeId(startOfMonth, endOfMonth, employee.getEmployeeId());
+            Salary salary = new Salary();
+            salary.setDate(endOfMonth);
+            salary.setEmployee(employee);
+        for (Hours hours:hoursList){
+            System.out.println(hours.getEmployee().getEmployeeId());
+            salary.addHoursSalary(hours.getHours()*employee.getHourlyRate());
+            salary.addHarmfulSalary(hours.getHarmfulHours()*(employee.getHourlyRate()+HARMFUL_ALLOWANCE));
+            salary.addOvertimeSalary(hours.getOvertime()*employee.getHourlyRate()*OVERTIME_ALLOWANCE);
+            salary.addNightSalary(hours.getNightHours()*employee.getHourlyRate()*NIGHT_ALLOWANCE);
+            salary.countAmountSalary();
+            salaries.add(salary);
+        }
+        }
+        salaryJpaRepository.saveAll(salaries);
+    }
 
 
 

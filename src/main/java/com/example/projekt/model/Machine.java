@@ -35,6 +35,9 @@ public class Machine {
     @Column(name = "comments")
     private String comments;
 
+    @Column(name = "average_cost")
+    private float avgCosts;
+
    @OneToMany(
             mappedBy = "machine",
             cascade = CascadeType.ALL,
@@ -113,5 +116,13 @@ public class Machine {
 
     public void setMachineReportHasMachines(List<MachineReportHasMachines> machineReportHasMachines) {
         this.machineReportHasMachines = machineReportHasMachines;
+    }
+
+    public float getAvgCosts() {
+        return avgCosts;
+    }
+
+    public void setAvgCosts(float avgCosts) {
+        this.avgCosts = avgCosts;
     }
 }

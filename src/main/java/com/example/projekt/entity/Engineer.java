@@ -26,12 +26,12 @@ public class Engineer {
 
     private String permissionNumber;
 
-    private List<SimpleGrantedAuthority> roles;
+    private List<RoleDto> roles;
 
     public Engineer() {
     }
 
-    public Engineer(int id, String firstName, String lastName, String email, String login, String phoneNumber, String password, String permissionNumber, List<SimpleGrantedAuthority> roles) {
+    public Engineer(int id, String firstName, String lastName, String email, String login, String phoneNumber, String password, String permissionNumber, List<RoleDto> roles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,6 +40,22 @@ public class Engineer {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.permissionNumber = permissionNumber;
+        this.roles = roles;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleDto> roles) {
         this.roles = roles;
     }
 
@@ -107,11 +123,4 @@ public class Engineer {
         this.permissionNumber = permissionNumber;
     }
 
-    public List<SimpleGrantedAuthority> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<SimpleGrantedAuthority> roles) {
-        this.roles = roles;
-    }
 }

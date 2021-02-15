@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/uzytkownicy")
+@RequestMapping("/api")
 public class RegistrationController {
     @Autowired
     private AccountRepository accountRepository;

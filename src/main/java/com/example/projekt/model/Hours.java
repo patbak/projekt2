@@ -22,9 +22,14 @@ public class Hours {
     @Column(name = "date")
     private LocalDate date;
 
+
     @ManyToOne
     @JoinColumn(name = "workers_id_worker")
     private  Employee employee;
+
+    @ManyToOne
+    @JoinColumn(name = "building_id_building")
+    private  ConstructionSite constructionSite;
 
     public int getHours() {
         return hours;
@@ -96,5 +101,13 @@ public class Hours {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public ConstructionSite getConstructionSite() {
+        return constructionSite;
+    }
+
+    public void setConstructionSite(ConstructionSite constructionSite) {
+        this.constructionSite = constructionSite;
     }
 }

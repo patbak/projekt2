@@ -1,6 +1,7 @@
 package com.example.projekt.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -13,15 +14,17 @@ public class Costs {
     private int id;
 
     @Column(name = "workers_cost")
-    private float workersCost;
+    private double workersCost;
     @Column(name = "equipment_cost")
-    private float equipmentCost;
+    private double equipmentCost;
     @Column(name = "material_cost")
-    private float materialCost;
+    private double materialCost;
     @Column(name = "monthly_cost")
-    private float monthlyCost;
+    private double monthlyCost;
     @Column(name = "total_cost")
-    private float totalCost;
+    private double totalCost;
+    @Column(name = "date")
+    private LocalDate date;
 
    @ManyToOne
     @JoinColumn(name = "buildings_id_building")
@@ -30,13 +33,32 @@ public class Costs {
     public Costs() {
     }
 
-    public Costs(int id, float workersCost, float equipmentCost, float materialCost, float monthlyCost, float totalCost) {
+    public Costs(int id, double workersCost, double equipmentCost, double materialCost, double monthlyCost, double totalCost, ConstructionSite constructionSite) {
         this.id = id;
         this.workersCost = workersCost;
         this.equipmentCost = equipmentCost;
         this.materialCost = materialCost;
         this.monthlyCost = monthlyCost;
         this.totalCost = totalCost;
+        this.constructionSite = constructionSite;
+    }
+
+    public void addWorkerCosts(double workersCost){
+        this.workersCost+=workersCost;
+    }
+
+    public void addMaterialCost(double materialCost){
+        this.materialCost+=materialCost;
+    }
+
+    public void addEquipmentCost(double equipmentCost){ this.equipmentCost+=equipmentCost;}
+
+    public void countmonthlyCost(double workersCost, double equipmentCost, double materialCost){
+        this.monthlyCost= workersCost+equipmentCost+materialCost;
+    }
+
+    public void countTotalCosts(double totalCost, double monthlyCost){
+        this.totalCost= totalCost+monthlyCost;
     }
 
     public int getId() {
@@ -47,43 +69,59 @@ public class Costs {
         this.id = id;
     }
 
-    public float getWorkersCost() {
+    public double getWorkersCost() {
         return workersCost;
     }
 
-    public void setWorkersCost(float workersCost) {
+    public void setWorkersCost(double workersCost) {
         this.workersCost = workersCost;
     }
 
-    public float getEquipmentCost() {
+    public double getEquipmentCost() {
         return equipmentCost;
     }
 
-    public void setEquipmentCost(float equipmentCost) {
+    public void setEquipmentCost(double equipmentCost) {
         this.equipmentCost = equipmentCost;
     }
 
-    public float getMaterialCost() {
+    public double getMaterialCost() {
         return materialCost;
     }
 
-    public void setMaterialCost(float materialCost) {
+    public void setMaterialCost(double materialCost) {
         this.materialCost = materialCost;
     }
 
-    public float getMonthlyCost() {
+    public double getMonthlyCost() {
         return monthlyCost;
     }
 
-    public void setMonthlyCost(float monthlyCost) {
+    public void setMonthlyCost(double monthlyCost) {
         this.monthlyCost = monthlyCost;
     }
 
-    public float getTotalCost() {
+    public double getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(float totalCost) {
+    public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public ConstructionSite getConstructionSite() {
+        return constructionSite;
+    }
+
+    public void setConstructionSite(ConstructionSite constructionSite) {
+        this.constructionSite = constructionSite;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

@@ -19,6 +19,9 @@ public class Material {
     @Column(name = "unit")
     private String materialUnit;
 
+    @Column(name = "average_cost")
+    private float avgCost;
+
     @OneToMany(
             mappedBy = "material",
             cascade = CascadeType.ALL,
@@ -57,5 +60,13 @@ public class Material {
 
     public void setMaterialUnit(String materialUnit) {
         this.materialUnit = materialUnit;
+    }
+
+    public float getAvgCost() {
+        return avgCost;
+    }
+
+    public void setAvgCost(float avgCost) {
+        this.avgCost = avgCost;
     }
 }

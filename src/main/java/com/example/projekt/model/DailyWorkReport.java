@@ -12,14 +12,13 @@ public class DailyWorkReport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_brigade_daily_report")
-    private int DailyWorkReportId;
+    private int dailyWorkReportId;
 
     @Column(name = "date")
     private Date reportDate;
 
     @Column(name = "report_number")
     private String reportNumber;
-
 
     @ManyToOne
     @JoinColumn(name = "users_id_user")
@@ -32,7 +31,6 @@ public class DailyWorkReport {
     @ManyToOne
     @JoinColumn(name = "building_daily_reports_id_building_daily_report")
     private BuildingDailyReports buildingDailyReports;
-
 
     @OneToMany(
             mappedBy = "dailyWorkReport",
@@ -59,11 +57,11 @@ public class DailyWorkReport {
     private List<Timesheet> timesheets;
 
     public int getDailyWorkReportId() {
-        return DailyWorkReportId;
+        return dailyWorkReportId;
     }
 
     public void setDailyWorkReportId(int dailyWorkReportId) {
-        DailyWorkReportId = dailyWorkReportId;
+        this.dailyWorkReportId = dailyWorkReportId;
     }
 
     public Date getReportDate() {

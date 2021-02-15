@@ -15,7 +15,7 @@ public class ConstructionSite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_building")
-    private int ConstructionSiteId;
+    private int constructionSiteId;
 
     @Column(name = "name")
     private String name;
@@ -49,6 +49,14 @@ public class ConstructionSite {
     )
     private List<Costs> costsList;
 
+
+    @OneToMany(
+            mappedBy = "constructionSite", //dwukierunkowa relacja, pomogło przy sypaniu się aplikacji,
+            // gdy odwoływało się do relacji powiązanych manytoone
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Hours> hoursList;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -90,11 +98,11 @@ public class ConstructionSite {
     }
 
     public int getConstructionSiteId() {
-        return ConstructionSiteId;
+        return constructionSiteId;
     }
 
     public void setConstructionSiteId(int constructionSiteId) {
-        ConstructionSiteId = constructionSiteId;
+        this.constructionSiteId = constructionSiteId;
     }
 
     public String getName() {
@@ -199,5 +207,13 @@ public class ConstructionSite {
 
     public void setBuildingDailyReports(List<BuildingDailyReports> buildingDailyReports) {
         this.buildingDailyReports = buildingDailyReports;
+    }
+
+    public List<Hours> getHoursList() {
+        return hoursList;
+    }
+
+    public void setHoursList(List<Hours> hoursList) {
+        this.hoursList = hoursList;
     }
 }

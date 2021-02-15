@@ -32,5 +32,15 @@ public class TimesheetService {
         return timesheets;
     }
 
+    public List<Timesheet> getLastMonthTimesheets(){
+        LocalDate localDate = LocalDate.now();
+        LocalDate lastMonth = localDate.minusMonths(1);
+
+        LocalDate startOfMonth = LocalDate.of(lastMonth.getYear(), lastMonth.getMonth(), 1);
+        LocalDate endOfMonth = LocalDate.of(lastMonth.getYear(), lastMonth.getMonth(), lastMonth.lengthOfMonth());
+        List<Timesheet> timesheets = timesheetJpaRepository.findAllByTimesheetDateBetween(startOfMonth,endOfMonth);
+        return  timesheets;
+    }
+
 
 }
