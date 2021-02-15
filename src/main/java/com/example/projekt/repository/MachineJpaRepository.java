@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(path = "maszyny", collectionResourceRel = "maszyny")
+@RepositoryRestResource(path = "machines", collectionResourceRel = "machines")
 public interface MachineJpaRepository extends JpaRepository<Machine, Integer> {
 }

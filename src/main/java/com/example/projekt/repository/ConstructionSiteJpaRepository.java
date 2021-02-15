@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@RepositoryRestResource(path = "budowa", collectionResourceRel = "budowa")
+@RepositoryRestResource(path = "building", collectionResourceRel = "building")
 
 public interface ConstructionSiteJpaRepository extends JpaRepository<ConstructionSite,Integer> {
 

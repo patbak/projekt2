@@ -6,7 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(path = "wykonaneRoboty", collectionResourceRel = "wykonaneRoboty")
+@RepositoryRestResource(path = "doneWorks", collectionResourceRel = "doneWorks")
 public interface WorkDoneJpaRepository extends JpaRepository<WorkDone, Integer> {
 
 }
