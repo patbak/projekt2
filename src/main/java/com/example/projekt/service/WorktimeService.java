@@ -10,6 +10,7 @@ import com.example.projekt.repository.HoursJpaRepository;
 import com.example.projekt.repository.TimesheetJpaRepository;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -38,6 +39,7 @@ public class WorktimeService {
     @Autowired
     private TimesheetJpaRepository timesheetJpaRepository;
 
+    @Scheduled(cron = "30 9 5 * * *")
     public void countWorkTime() {
         hoursList = new ArrayList<>();
         List<Timesheet> timesheetList = timesheetService.getLastMonthTimesheets();

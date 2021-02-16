@@ -8,6 +8,7 @@ import com.example.projekt.repository.EmployeeJpaRepository;
 import com.example.projekt.repository.HoursJpaRepository;
 import com.example.projekt.repository.SalaryJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -54,6 +55,7 @@ public class SalaryService {
     salaryJpaRepository.saveAll(salaries);
     }*/
 
+    @Scheduled(cron = "30 10 5 * * *")
     public void countSalary(){
         List<Employee> employeeList = employeeJpaRepository.findAll();
         List<Salary> salaries = new ArrayList<>();

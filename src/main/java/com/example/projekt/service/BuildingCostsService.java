@@ -3,6 +3,7 @@ package com.example.projekt.service;
 import com.example.projekt.model.*;
 import com.example.projekt.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -36,6 +37,8 @@ public class BuildingCostsService {
     private LocalDate todayDate=LocalDate.now();
     private List<Costs> costsList;
 
+
+    @Scheduled(cron = "30 11 5 * * *")
     public void countBuildingCosts(){
         costsList = new ArrayList<>();
         List<ConstructionSite> constructionSiteList = constructionSiteJpaRepository.findAllByIsActive(true);
