@@ -26,23 +26,23 @@ public class BrigadeDailyReportsController {
         return brigadeDailyReportService.getBrigadeReports();
     }
 
-    @GetMapping("/brigade-daily-report/{id}")
+    @GetMapping("/brigade-daily-reports/{id}")
     public BrigadeDailyReportDto getReportById(@PathVariable int id){
 
         return brigadeDailyReportService.getBrigadeReportById(id);
     }
 
-    @GetMapping("/brigade-daily-report/{id}/work-cards")
+    @GetMapping("/brigade-daily-reports/{id}/work-cards")
     public List<WorkCardDto> getReportsWorkCardsByReportId(@PathVariable int id){
         return brigadeDailyReportService.getReportsWorkCards(id);
     }
 
-    @GetMapping("/brigade-daily-report/{id}/done-works")
+    @GetMapping("/brigade-daily-reports/{id}/done-works")
     public List<DoneWorkDto> getReportsDoneWorksByReportId(@PathVariable int id){
         return brigadeDailyReportService.getReportsDoneWorks(id);
     }
 
-    @GetMapping("/brigade-daily-report/{id}/materials-used")
+    @GetMapping("/brigade-daily-reports/{id}/materials-used")
     public List<MaterialUsedDto> getReportsMaterialsUsed(@PathVariable int id){
         return brigadeDailyReportService.getReportsMaterialUsed(id);
     }
