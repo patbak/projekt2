@@ -1,8 +1,5 @@
 package com.example.projekt.entity;
 
-import com.example.projekt.model.BuildingDailyReports;
-import com.example.projekt.model.DailyWorkReport;
-
 import java.sql.Date;
 
 public class BrigadeDailyReportDto {
@@ -15,7 +12,7 @@ public class BrigadeDailyReportDto {
 
     private Engineer author;
 
-    private BuildingDailyReportsDto buildingDailyReports;
+    private BuildingDailyReportsDto buildingDailyReport;
 
     public BrigadeDailyReportDto() {
     }
@@ -25,7 +22,7 @@ public class BrigadeDailyReportDto {
         this.date = date;
         this.reportNumber = reportNumber;
         this.author = author;
-        this.buildingDailyReports = buildingDailyReports;
+        this.buildingDailyReport = buildingDailyReports;
     }
 
     public int getId() {
@@ -60,11 +57,11 @@ public class BrigadeDailyReportDto {
         this.author = author;
     }
 
-    public BuildingDailyReportsDto getBuildingDailyReports() {
-        return buildingDailyReports;
+    public BuildingDailyReportsDto getBuildingDailyReport() {
+        return buildingDailyReport;
     }
 
-    public void setBuildingDailyReports(BuildingDailyReportsDto buildingDailyReports) {
-        this.buildingDailyReports = buildingDailyReports;
+    public void setBuildingDailyReport(BuildingDailyReportsDto buildingDailyReport) {
+        this.buildingDailyReport = buildingDailyReport;
     }
 }

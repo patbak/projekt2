@@ -46,16 +46,13 @@ public class EquipmentDailyReportService {
 
         BuildingDailyReportsDto buildingDailyReportsDto = buildingDailyReportDtoService.setBuildingReport(dailyMachineWorkReport.getBuildingDailyReports());
         Engineer engineer = engineerService.setEngineer(dailyMachineWorkReport.getUser());
-        List<MachineDto> machineDtoList = machineService.setMachineList(dailyMachineWorkReport.getMachineReportHasMachinesList());
         EquipmentDailyReportDto equipmentDailyReportDto = new EquipmentDailyReportDto(
                 dailyMachineWorkReport.getDailyMachineWorkReportId(),
                 buildingDailyReportsDto,
                 dailyMachineWorkReport.getReportDate(),
                 engineer,
                 dailyMachineWorkReport.getReportNumber(),
-                dailyMachineWorkReport.getTask(),
-                machineDtoList,
-                getWorkersFromOperatorCards(dailyMachineWorkReport.getOperatorWorkCards())
+                dailyMachineWorkReport.getTask()
         );
         return equipmentDailyReportDto;
     }

@@ -7,7 +7,7 @@ public class EquipmentDailyReportDto {
 
     private int id;
 
-    private BuildingDailyReportsDto buildingDailyReports;
+    private BuildingDailyReportsDto buildingDailyReport;
 
     private Date date;
 
@@ -17,19 +17,15 @@ public class EquipmentDailyReportDto {
 
     private String Work;
 
-    private List<MachineDto> machineDto;
 
-    private List<WorkerDto> workerDtoList;
-
-    public EquipmentDailyReportDto(int id, BuildingDailyReportsDto buildingDailyReportsDto, Date date, Engineer author, String reportNumber, String work, List<MachineDto> machineDto, List<WorkerDto> workerDtoList) {
+    public EquipmentDailyReportDto(int id, BuildingDailyReportsDto buildingDailyReportsDto, Date date, Engineer author, String reportNumber, String work) {
         this.id = id;
-        this.buildingDailyReports = buildingDailyReportsDto;
+        this.buildingDailyReport = buildingDailyReportsDto;
         this.date = date;
         this.author = author;
         this.reportNumber = reportNumber;
         Work = work;
-        this.machineDto = machineDto;
-        this.workerDtoList = workerDtoList;
+
     }
 
     public int getId() {
@@ -40,12 +36,12 @@ public class EquipmentDailyReportDto {
         this.id = id;
     }
 
-    public BuildingDailyReportsDto getBuildingDailyReports() {
-        return buildingDailyReports;
+    public BuildingDailyReportsDto getBuildingDailyReport() {
+        return buildingDailyReport;
     }
 
-    public void setBuildingDailyReports(BuildingDailyReportsDto buildingDailyReports) {
-        this.buildingDailyReports = buildingDailyReports;
+    public void setBuildingDailyReport(BuildingDailyReportsDto buildingDailyReport) {
+        this.buildingDailyReport = buildingDailyReport;
     }
 
     public Date getDate() {
@@ -80,19 +76,4 @@ public class EquipmentDailyReportDto {
         Work = work;
     }
 
-    public List<MachineDto> getMachineDto() {
-        return machineDto;
-    }
-
-    public void setMachineDto(List<MachineDto> machineDto) {
-        this.machineDto = machineDto;
-    }
-
-    public List<WorkerDto> getWorkerDtoList() {
-        return workerDtoList;
-    }
-
-    public void setWorkerDtoList(List<WorkerDto> workerDtoList) {
-        this.workerDtoList = workerDtoList;
-    }
 }

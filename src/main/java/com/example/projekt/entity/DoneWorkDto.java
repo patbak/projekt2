@@ -1,26 +1,23 @@
 package com.example.projekt.entity;
 
-import com.example.projekt.model.LabourStandard;
-import com.example.projekt.model.QualityAssessment;
-
 public class DoneWorkDto {
 
     private int id;
 
     private float quantityOfWork;
 
-    private BrigadeDailyReportDto brigadeDailyReportDto;
+    private BrigadeDailyReportDto brigadeDailyReport;
 
-    private LabourNormDto labourNormDto;
+    private LabourNormDto labourNorm;
 
-    private QualityEvaluationDto qualityEvaluationDto;
+    private QualityEvaluationDto qualityEvaluation;
 
     public DoneWorkDto(int id, float quantityOfWork, BrigadeDailyReportDto brigadeDailyReportDto, LabourNormDto labourNormDto, QualityEvaluationDto qualityEvaluationDto) {
         this.id = id;
         this.quantityOfWork = quantityOfWork;
-        this.brigadeDailyReportDto = brigadeDailyReportDto;
-        this.labourNormDto = labourNormDto;
-        this.qualityEvaluationDto = qualityEvaluationDto;
+        this.brigadeDailyReport = brigadeDailyReportDto;
+        this.labourNorm = labourNormDto;
+        this.qualityEvaluation = qualityEvaluationDto;
     }
 
     public int getId() {
@@ -39,27 +36,27 @@ public class DoneWorkDto {
         this.quantityOfWork = quantityOfWork;
     }
 
-    public BrigadeDailyReportDto getBrigadeDailyReportDto() {
-        return brigadeDailyReportDto;
+    public BrigadeDailyReportDto getBrigadeDailyReport() {
+        return brigadeDailyReport;
     }
 
-    public void setBrigadeDailyReportDto(BrigadeDailyReportDto brigadeDailyReportDto) {
-        this.brigadeDailyReportDto = brigadeDailyReportDto;
+    public void setBrigadeDailyReport(BrigadeDailyReportDto brigadeDailyReport) {
+        this.brigadeDailyReport = brigadeDailyReport;
     }
 
-    public LabourNormDto getLabourNormDto() {
-        return labourNormDto;
+    public LabourNormDto getLabourNorm() {
+        return labourNorm;
     }
 
-    public void setLabourNormDto(LabourNormDto labourNormDto) {
-        this.labourNormDto = labourNormDto;
+    public void setLabourNorm(LabourNormDto labourNorm) {
+        this.labourNorm = labourNorm;
     }
 
-    public QualityEvaluationDto getQualityEvaluationDto() {
-        return qualityEvaluationDto;
+    public QualityEvaluationDto getQualityEvaluation() {
+        return qualityEvaluation;
     }
 
-    public void setQualityEvaluationDto(QualityEvaluationDto qualityEvaluationDto) {
-        this.qualityEvaluationDto = qualityEvaluationDto;
+    public void setQualityEvaluation(QualityEvaluationDto qualityEvaluation) {
+        this.qualityEvaluation = qualityEvaluation;
     }
 }

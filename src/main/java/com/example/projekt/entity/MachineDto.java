@@ -18,6 +18,7 @@ public class MachineDto {
 
     private String comments;
 
+
     public MachineDto(int id, String name, String number, int power, float fuelConsumption, int tankCapacity, int yearOfProduction, String comments) {
         this.id = id;
         this.name = name;
@@ -27,6 +28,10 @@ public class MachineDto {
         this.tankCapacity = tankCapacity;
         this.yearOfProduction = yearOfProduction;
         this.comments = comments;
+    }
+
+    public float getFuelConsumption() {
+        return fuelConsumption;
     }
 
     public int getId() {

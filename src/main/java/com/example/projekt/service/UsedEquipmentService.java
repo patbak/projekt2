@@ -36,6 +36,7 @@ public class UsedEquipmentService {
         MachineDto machineDto = machineService.setMachine(machineReportHasMachines.getMachine());
         WorkerDto workerDto = workerService.setWorker(machineReportHasMachines.getEmployee());
         UsedEquipmentDto usedEquipmentDto = new UsedEquipmentDto(
+                machineReportHasMachines.getHasMachineId(),
                machineDto,
                 workerDto
         );

@@ -1,25 +1,23 @@
 package com.example.projekt.entity;
 
-import javax.persistence.Column;
-
 public class WeatherConditionsDto {
 
-    private int idWeatherCondition;
+    private int id;
 
     private String weatherCondition;
 
 
     public WeatherConditionsDto(int idWeatherCondition, String weatherCondition) {
-        this.idWeatherCondition = idWeatherCondition;
+        this.id = idWeatherCondition;
         this.weatherCondition = weatherCondition;
     }
 
-    public int getIdWeatherCondition() {
-        return idWeatherCondition;
+    public int getId() {
+        return id;
     }
 
-    public void setIdWeatherCondition(int idWeatherCondition) {
-        this.idWeatherCondition = idWeatherCondition;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getWeatherCondition() {

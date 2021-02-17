@@ -1,8 +1,5 @@
 package com.example.projekt.entity;
 
-import org.apache.tomcat.jni.Local;
-
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -20,7 +17,7 @@ public class OperatorWorkCardDto {
 
     private WorkerDto worker;
 
-    private EquipmentDailyReportDto equipmentDailyReportDto;
+    private EquipmentDailyReportDto equipmentDailyReport;
 
     public OperatorWorkCardDto(int id, LocalDate dateOfWorkCard, int harmfulHours, LocalTime timeOfBegin, LocalTime timeOfEnd, WorkerDto worker, EquipmentDailyReportDto equipmentDailyReportDto) {
         this.id = id;
@@ -29,7 +26,7 @@ public class OperatorWorkCardDto {
         this.timeOfBegin = timeOfBegin;
         this.timeOfEnd = timeOfEnd;
         this.worker = worker;
-        this.equipmentDailyReportDto = equipmentDailyReportDto;
+        this.equipmentDailyReport = equipmentDailyReportDto;
     }
 
     public int getId() {
@@ -80,11 +77,11 @@ public class OperatorWorkCardDto {
         this.worker = worker;
     }
 
-    public EquipmentDailyReportDto getEquipmentDailyReportDto() {
-        return equipmentDailyReportDto;
+    public EquipmentDailyReportDto getEquipmentDailyReport() {
+        return equipmentDailyReport;
     }
 
-    public void setEquipmentDailyReportDto(EquipmentDailyReportDto equipmentDailyReportDto) {
-        this.equipmentDailyReportDto = equipmentDailyReportDto;
+    public void setEquipmentDailyReport(EquipmentDailyReportDto equipmentDailyReport) {
+        this.equipmentDailyReport = equipmentDailyReport;
     }
 }
