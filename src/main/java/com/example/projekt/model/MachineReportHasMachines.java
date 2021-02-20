@@ -26,6 +26,15 @@ public class MachineReportHasMachines {
     @JoinColumn(name = "workers_id_worker")
     private  Employee employee;
 
+    public MachineReportHasMachines() {
+    }
+
+    public MachineReportHasMachines(DailyMachineWorkReport dailyMachineWorkReport, Machine machine, Employee employee) {
+        this.dailyMachineWorkReport = dailyMachineWorkReport;
+        this.machine = machine;
+        this.employee = employee;
+    }
+
     public int getHasMachineId() {
         return hasMachineId;
     }

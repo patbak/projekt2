@@ -33,6 +33,18 @@ public class OperatorWorkCards {
     @JoinColumn(name = "equipment_daily_reports_id_equipment_daily_report")
     private DailyMachineWorkReport dailyMachineWorkReport;
 
+    public OperatorWorkCards() {
+    }
+
+    public OperatorWorkCards(LocalDate workCardDate, LocalTime startTimeOfWork, LocalTime endTimeOfWork, int harmfulHours, Employee employee, DailyMachineWorkReport dailyMachineWorkReport) {
+        this.workCardDate = workCardDate;
+        this.startTimeOfWork = startTimeOfWork;
+        this.endTimeOfWork = endTimeOfWork;
+        this.harmfulHours = harmfulHours;
+        this.employee = employee;
+        this.dailyMachineWorkReport = dailyMachineWorkReport;
+    }
+
     public int getIdWorkCard() {
         return idWorkCard;
     }

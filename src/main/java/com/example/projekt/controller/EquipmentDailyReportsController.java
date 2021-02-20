@@ -1,16 +1,14 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.CommentsDto;
-import com.example.projekt.entity.EquipmentDailyReportDto;
-import com.example.projekt.entity.OperatorWorkCardDto;
-import com.example.projekt.entity.UsedEquipmentDto;
+import com.example.projekt.entity.*;
 import com.example.projekt.service.CommentService;
 import com.example.projekt.service.EquipmentDailyReportService;
+import com.example.projekt.service.OperatorWorkCardsService;
+import com.example.projekt.service.UsedEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -19,6 +17,10 @@ public class EquipmentDailyReportsController {
 
     @Autowired
     private EquipmentDailyReportService equipmentDailyReportService;
+    @Autowired
+    private UsedEquipmentService usedEquipmentService;
+    @Autowired
+    private OperatorWorkCardsService operatorWorkCardsService;
 
     @GetMapping("/equipment-daily-reports")
     public List<EquipmentDailyReportDto> getEquipmentReports(){
@@ -44,6 +46,36 @@ public class EquipmentDailyReportsController {
     public List<OperatorWorkCardDto> getOperatorWorkCardsByEquipmentReport(@PathVariable int id){
 
         return equipmentDailyReportService.getOperatorWorkCardsByEquipmentReport(id);
+    }
+
+    @PostMapping("/equipment-daily-reports/{id}/used-equipments")
+    public ResponseEntity<String> createUsedMaterial(@PathVariable int id, @RequestBody UsedEquipmentCommandDto usedEquipmentCommandDto){
+    usedEquipmentService.createUsedEquipment(id, usedEquipmentCommandDto);
+    return new ResponseEntity<>("Dodano maszyny do raportu.", HttpStatus.CREATED);
+    }
+
+    @PutMapping("/equipment-daily-reports/{dailyReportId}/used-equipments/{usedEquipmentId}")
+    public ResponseEntity<String> updateUsedMaterial(
+            @PathVariable int dailyReportId,
+            @PathVariable int usedEquipmentId,
+            @RequestBody UsedEquipmentCommandDto usedEquipmentCommandDto){
+            usedEquipmentService.updateUsedEquipment(usedEquipmentId, usedEquipmentCommandDto);
+        return new ResponseEntity<>("Dodano maszyny do raportu.", HttpStatus.OK);
+    }
+
+    @PostMapping("/equipment-daily-reports/{dailyReportId}/operators-work-cards")
+    public ResponseEntity<String> createWorkCard(@PathVariable int dailyReportId, @RequestBody OperatorWorkCardCommandDto operatorWorkCardCommandDto){
+        operatorWorkCardsService.createOperatorWorkCard(dailyReportId, operatorWorkCardCommandDto);
+        return new ResponseEntity<>("Dodano kartę pracy operatora.", HttpStatus.CREATED);
+    }
+
+    @PutMapping("/equipment-daily-reports/{dailyReportId}/operators-work-cards/{operatorWorkCardId}")
+    public ResponseEntity<String> updateWorkCard(
+            @PathVariable int dailyReportId,
+            @PathVariable int operatorWorkCardId,
+            @RequestBody OperatorWorkCardCommandDto operatorWorkCardCommandDto){
+        operatorWorkCardsService.updateOperatorWorkCard(operatorWorkCardId, operatorWorkCardCommandDto);
+        return new ResponseEntity<>("Zaktualizowano kartę pracy operatora.", HttpStatus.OK);
     }
 
 }

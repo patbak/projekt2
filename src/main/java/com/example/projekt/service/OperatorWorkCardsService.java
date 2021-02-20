@@ -1,9 +1,14 @@
 package com.example.projekt.service;
 
 import com.example.projekt.entity.EquipmentDailyReportDto;
+import com.example.projekt.entity.OperatorWorkCardCommandDto;
 import com.example.projekt.entity.OperatorWorkCardDto;
 import com.example.projekt.entity.WorkerDto;
+import com.example.projekt.model.DailyMachineWorkReport;
+import com.example.projekt.model.Employee;
 import com.example.projekt.model.OperatorWorkCards;
+import com.example.projekt.repository.DailyMachineWorkReportJpaRepository;
+import com.example.projekt.repository.EmployeeJpaRepository;
 import com.example.projekt.repository.OperatorWorkCardsJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +25,10 @@ public class OperatorWorkCardsService {
     private WorkerService workerService;
     @Autowired
     private EquipmentDailyReportService equipmentDailyReportService;
+    @Autowired
+    private EmployeeJpaRepository employeeJpaRepository;
+    @Autowired
+    private DailyMachineWorkReportJpaRepository dailyMachineWorkReportJpaRepository;
 
     public List<OperatorWorkCardDto> getOperatorWorkCards(){
         List<OperatorWorkCards> operatorWorkCards = operatorWorkCardsJpaRepository.findAll();
@@ -46,4 +55,28 @@ public class OperatorWorkCardsService {
     return operatorWorkCardDto;
     }
 
+    public void createOperatorWorkCard(int  dailyReportId, OperatorWorkCardCommandDto operatorWorkCardCommandDto){
+        DailyMachineWorkReport dailyMachineWorkReport = dailyMachineWorkReportJpaRepository.getOne(dailyReportId);
+        Employee employee = employeeJpaRepository.getOne(operatorWorkCardCommandDto.getWorkerId());
+        OperatorWorkCards operatorWorkCards = new OperatorWorkCards(
+                operatorWorkCardCommandDto.getDateOfWorkCard(),
+                operatorWorkCardCommandDto.getTimeOfBegin(),
+                operatorWorkCardCommandDto.getTimeOfEnd(),
+                operatorWorkCardCommandDto.getHarmfulHours(),
+                employee,
+                dailyMachineWorkReport
+        );
+        operatorWorkCardsJpaRepository.saveAndFlush(operatorWorkCards);
+    }
+
+    public void updateOperatorWorkCard(int operatorWorkCardId, OperatorWorkCardCommandDto operatorWorkCardCommandDto){
+        OperatorWorkCards operatorWorkCards = operatorWorkCardsJpaRepository.getOne(operatorWorkCardId);
+        Employee employee = employeeJpaRepository.getOne(operatorWorkCardCommandDto.getWorkerId());
+        operatorWorkCards.setWorkCardDate(operatorWorkCardCommandDto.getDateOfWorkCard());
+        operatorWorkCards.setEmployee(employee);
+        operatorWorkCards.setStartTimeOfWork(operatorWorkCardCommandDto.getTimeOfBegin());
+        operatorWorkCards.setEndTimeOfWork(operatorWorkCardCommandDto.getTimeOfEnd());
+        operatorWorkCards.setHarmfulHours(operatorWorkCardCommandDto.getHarmfulHours());
+        operatorWorkCardsJpaRepository.saveAndFlush(operatorWorkCards);
+    }
 }
