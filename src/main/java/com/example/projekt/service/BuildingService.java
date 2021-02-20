@@ -5,12 +5,14 @@ import com.example.projekt.entity.BuildingDailyReportsDto;
 import com.example.projekt.entity.BuildingDto;
 import com.example.projekt.entity.Engineer;
 import com.example.projekt.model.*;
+import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
 import com.example.projekt.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -144,6 +146,8 @@ public class BuildingService {
         return buildingDailyReportsDtoList;
 
     }
+
+
 
 
 

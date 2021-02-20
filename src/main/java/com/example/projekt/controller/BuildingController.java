@@ -4,6 +4,7 @@ import com.example.projekt.entity.BrigadeDailyReportDto;
 import com.example.projekt.entity.BuildingDailyReportsDto;
 import com.example.projekt.entity.BuildingDto;
 import com.example.projekt.entity.Engineer;
+import com.example.projekt.service.BuildingDailyReportDtoService;
 import com.example.projekt.service.BuildingService;
 import com.example.projekt.service.WorktimeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class BuildingController {
 
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private BuildingDailyReportDtoService buildingDailyReportDtoService;
 
     @GetMapping("/buildings")
     public List<BuildingDto> getBuildings(){
@@ -73,6 +76,12 @@ public class BuildingController {
     public List<BuildingDailyReportsDto> getDailyReportsFromBuilding(@PathVariable int id){
 
       return  buildingService.getBuildingReports(id);
+    }
+
+    @PostMapping("/buildings/{id}/daily-reports")
+    public ResponseEntity<String> createBuildingReport(@PathVariable int id){
+       buildingDailyReportDtoService.createBuilding(id);
+        return  new ResponseEntity<>("Dodano raport budowy", HttpStatus.CREATED);
     }
 
 

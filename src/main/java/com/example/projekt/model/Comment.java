@@ -25,6 +25,16 @@ public class Comment {
     @JoinColumn(name = "users_id_user")
     private User user;
 
+    public Comment() {
+    }
+
+    public Comment(String commentNumber, String text, BuildingDailyReports buildingDailyReports, User user) {
+        this.commentNumber = commentNumber;
+        this.text = text;
+        this.buildingDailyReports = buildingDailyReports;
+        this.user = user;
+    }
+
     public int getIdComment() {
         return idComment;
     }

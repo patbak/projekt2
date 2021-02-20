@@ -47,8 +47,13 @@ public class BuildingDailyReports {
     )
     private List<DailyWorkReport> dailyWorkReports;
 
+    public BuildingDailyReports() {
+    }
 
-
+    public BuildingDailyReports(Date reportDate, ConstructionSite constructionSite) {
+        this.reportDate = reportDate;
+        this.constructionSite = constructionSite;
+    }
 
     public int getIdBuildingDailyReport() {
         return idBuildingDailyReport;

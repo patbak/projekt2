@@ -49,6 +49,15 @@ public class DailyMachineWorkReport {
     private List<OperatorWorkCards> operatorWorkCards;
 
 
+    public DailyMachineWorkReport() {
+    }
+
+    public DailyMachineWorkReport(Date reportDate, BuildingDailyReports buildingDailyReports, User user) {
+        this.reportDate = reportDate;
+        this.buildingDailyReports = buildingDailyReports;
+        this.user = user;
+    }
+
     public int getDailyMachineWorkReportId() {
         return DailyMachineWorkReportId;
     }

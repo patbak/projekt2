@@ -1,13 +1,13 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.BrigadeDailyReportDto;
-import com.example.projekt.entity.DoneWorkDto;
-import com.example.projekt.entity.LabourNormDto;
-import com.example.projekt.entity.QualityEvaluationDto;
+import com.example.projekt.entity.*;
 import com.example.projekt.model.DailyWorkReport;
 import com.example.projekt.model.LabourStandard;
 import com.example.projekt.model.QualityAssessment;
 import com.example.projekt.model.WorkDone;
+import com.example.projekt.repository.DailyWorkReportJpaRepository;
+import com.example.projekt.repository.LabourStandardJpaRepository;
+import com.example.projekt.repository.QualityAssessmentJpaRepository;
 import com.example.projekt.repository.WorkDoneJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +26,12 @@ public class DoneWorkService {
     private LabourNormDtoService labourNormDtoService;
     @Autowired
     private QualityEvaluationDtoService qualityEvaluationDtoService;
+    @Autowired
+    private DailyWorkReportJpaRepository dailyWorkReportJpaRepository;
+    @Autowired
+    private LabourStandardJpaRepository labourStandardJpaRepository;
+    @Autowired
+    private QualityAssessmentJpaRepository qualityAssessmentJpaRepository;
 
     public List<DoneWorkDto> getDoneWork(){
     List<WorkDone> workDoneList = workDoneJpaRepository.findAll();
@@ -64,6 +70,28 @@ public class DoneWorkService {
         return doneWorkDto;
     }
 
+    public void createDoneWork(int brigadeReportId, DoneWorkCommandDto doneWorkCommandDto){
+
+        DailyWorkReport dailyWorkReport = dailyWorkReportJpaRepository.getOne(brigadeReportId);
+        LabourStandard labourStandard = labourStandardJpaRepository.getOne(doneWorkCommandDto.getLabourNormId());
+        QualityAssessment qualityAssessment = qualityAssessmentJpaRepository.getOne(doneWorkCommandDto.getQualityEvaluationId());
+        WorkDone workDone = new WorkDone();
+        workDone.setQuantity(doneWorkCommandDto.getQuantityOfWork());
+        workDone.setDailyWorkReport(dailyWorkReport);
+        workDone.setLabourStandard(labourStandard);
+        workDone.setQualityAssessment(qualityAssessment);
+        workDoneJpaRepository.saveAndFlush(workDone);
+    }
+
+    public void updateDoneWork(DoneWorkCommandDto doneWorkCommandDto, int doneWorkId){
+        WorkDone workDone = workDoneJpaRepository.getOne(doneWorkId);
+        QualityAssessment qualityAssessment = qualityAssessmentJpaRepository.getOne(doneWorkCommandDto.getQualityEvaluationId());
+        LabourStandard labourStandard = labourStandardJpaRepository.getOne(doneWorkCommandDto.getLabourNormId());
+        workDone.setQuantity(doneWorkCommandDto.getQuantityOfWork());
+        workDone.setQualityAssessment(qualityAssessment);
+        workDone.setLabourStandard(labourStandard);
+        workDoneJpaRepository.saveAndFlush(workDone);
+    }
 
 
 

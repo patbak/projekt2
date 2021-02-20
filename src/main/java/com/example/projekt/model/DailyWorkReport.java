@@ -56,6 +56,16 @@ public class DailyWorkReport {
     )
     private List<Timesheet> timesheets;
 
+    public DailyWorkReport() {
+    }
+
+    public DailyWorkReport(Date reportDate, User user, ConstructionSite constructionSite, BuildingDailyReports buildingDailyReports) {
+        this.reportDate = reportDate;
+        this.user = user;
+        this.constructionSite = constructionSite;
+        this.buildingDailyReports = buildingDailyReports;
+    }
+
     public int getDailyWorkReportId() {
         return dailyWorkReportId;
     }

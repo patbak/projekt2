@@ -1,9 +1,15 @@
 package com.example.projekt.service;
 
+import com.example.projekt.entity.CommentsCommandDto;
 import com.example.projekt.entity.CommentsDto;
 import com.example.projekt.entity.Engineer;
+import com.example.projekt.model.BuildingDailyReports;
 import com.example.projekt.model.Comment;
+import com.example.projekt.model.DailyWorkReport;
+import com.example.projekt.model.User;
+import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.CommentJpaRepository;
+import com.example.projekt.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +23,10 @@ public class CommentService {
     private CommentJpaRepository commentJpaRepository;
     @Autowired
     private EngineerService engineerService;
+    @Autowired
+    private BuildingDailyReportsJpaRepository buildingDailyReportsJpaRepository;
+    @Autowired
+    private UserJpaRepository userJpaRepository;
 
     public List<CommentsDto> getComments(){
         List<Comment> comments = commentJpaRepository.findAll();
@@ -45,4 +55,10 @@ public class CommentService {
         return  commentsDto;
     }
 
+    public void createComment(int id, CommentsCommandDto commentsCommandDto){
+        BuildingDailyReports buildingDailyReports = buildingDailyReportsJpaRepository.getOne(id);
+        User user = userJpaRepository.getOne(commentsCommandDto.getUserId());
+        Comment comment = new Comment(commentsCommandDto.getCommentNumber(), commentsCommandDto.getComment(), buildingDailyReports, user);
+        commentJpaRepository.saveAndFlush(comment);
+    }
 }

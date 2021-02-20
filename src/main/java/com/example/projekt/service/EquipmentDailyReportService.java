@@ -1,12 +1,14 @@
 package com.example.projekt.service;
 
 import com.example.projekt.entity.*;
-import com.example.projekt.model.DailyMachineWorkReport;
-import com.example.projekt.model.Employee;
-import com.example.projekt.model.MachineReportHasMachines;
-import com.example.projekt.model.OperatorWorkCards;
+import com.example.projekt.model.*;
+import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.DailyMachineWorkReportJpaRepository;
+import com.example.projekt.repository.DailyWorkReportJpaRepository;
+import com.example.projekt.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,15 +23,19 @@ public class EquipmentDailyReportService {
    @Autowired
    private BuildingDailyReportDtoService buildingDailyReportDtoService;
    @Autowired
-    private EngineerService engineerService;
-   @Autowired
-   private MachineService machineService;
+   private EngineerService engineerService;
    @Autowired
    private WorkerService workerService;
    @Autowired
    private UsedEquipmentService usedEquipmentService;
    @Autowired
    private OperatorWorkCardsService operatorWorkCardsService;
+   @Autowired
+   private BuildingDailyReportsJpaRepository buildingDailyReportsJpaRepository;
+   @Autowired
+   private UserJpaRepository userJpaRepository;
+   @Autowired
+   private DailyWorkReportJpaRepository dailyWorkReportJpaRepository;
 
     public List<EquipmentDailyReportDto> getEquipmentReports(){
 
@@ -95,6 +101,14 @@ public class EquipmentDailyReportService {
             operatorWorkCardDtoList.add(operatorWorkCardDto);
         }
         return operatorWorkCardDtoList;
+    }
+
+    public void createEquipmentDailyReport(int id){
+        BuildingDailyReports buildingDailyReports = buildingDailyReportsJpaRepository.getOne(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userJpaRepository.findByLogin(authentication.getName());
+        DailyMachineWorkReport dailyMachineWorkReport = new DailyMachineWorkReport(buildingDailyReports.getReportDate(), buildingDailyReports, user);
+        dailyMachineWorkReportJpaRepository.saveAndFlush(dailyMachineWorkReport);
     }
 
 }

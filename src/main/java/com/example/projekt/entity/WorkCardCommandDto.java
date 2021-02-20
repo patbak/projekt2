@@ -1,13 +1,9 @@
 package com.example.projekt.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class WorkCardDto {
-
-    private int id;
+public class WorkCardCommandDto {
 
     private LocalDate dateOfWork;
 
@@ -17,28 +13,14 @@ public class WorkCardDto {
 
     private LocalTime timeOfEnd;
 
-    private WorkerDto worker;
+    private int workerId;
 
-    private BrigadeDailyReportDto brigadeDailyReport;
-
-
-    public WorkCardDto(int id, LocalDate dateOfWorkCard, int harmfulHours, LocalTime timeOfBegin, LocalTime timeOfEnd, WorkerDto worker, BrigadeDailyReportDto brigadeDailyReport) {
-        this.id = id;
-        this.dateOfWork = dateOfWorkCard;
+    public WorkCardCommandDto(LocalDate dateOfWork, int harmfulHours, LocalTime timeOfBegin, LocalTime timeOfEnd, int workerId) {
+        this.dateOfWork = dateOfWork;
         this.harmfulHours = harmfulHours;
         this.timeOfBegin = timeOfBegin;
         this.timeOfEnd = timeOfEnd;
-        this.worker = worker;
-        this.brigadeDailyReport = brigadeDailyReport;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.workerId = workerId;
     }
 
     public LocalDate getDateOfWork() {
@@ -73,20 +55,11 @@ public class WorkCardDto {
         this.timeOfEnd = timeOfEnd;
     }
 
-    public WorkerDto getWorker() {
-        return worker;
+    public int getWorkerId() {
+        return workerId;
     }
 
-    public void setWorker(WorkerDto worker) {
-        this.worker = worker;
+    public void setWorkerId(int workerId) {
+        this.workerId = workerId;
     }
-
-    public BrigadeDailyReportDto getBrigadeDailyReport() {
-        return brigadeDailyReport;
-    }
-
-    public void setBrigadeDailyReport(BrigadeDailyReportDto brigadeDailyReport) {
-        this.brigadeDailyReport = brigadeDailyReport;
-    }
-
 }

@@ -23,6 +23,15 @@ public class UsedMaterial {
     @JoinColumn(name = "brigade_daily_reports_id_brigade_daily_report")
     private DailyWorkReport dailyWorkReport;
 
+    public UsedMaterial() {
+    }
+
+    public UsedMaterial(float quantity, Material material, DailyWorkReport dailyWorkReport) {
+        this.quantity = quantity;
+        this.material = material;
+        this.dailyWorkReport = dailyWorkReport;
+    }
+
     public int getUsedMaterialId() {
         return usedMaterialId;
     }

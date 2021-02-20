@@ -2,10 +2,15 @@ package com.example.projekt.service;
 
 import com.example.projekt.entity.*;
 import com.example.projekt.model.*;
+import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.DailyWorkReportJpaRepository;
+import com.example.projekt.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +30,12 @@ public class BrigadeDailyReportService {
     private DoneWorkService doneWorkService;
     @Autowired
     private MaterialUsedService materialUsedService;
+    @Autowired
+    private DailyWorkReportJpaRepository dailyWorkReportJpaRepository;
+    @Autowired
+    private BuildingDailyReportsJpaRepository buildingDailyReportsJpaRepository;
+    @Autowired
+    private UserJpaRepository userJpaRepository;
 
     public List<BrigadeDailyReportDto> getBrigadeReports(){
         List<DailyWorkReport> dailyWorkReports = jpaRepository.findAll();
@@ -99,6 +110,14 @@ public class BrigadeDailyReportService {
     }
 
 
+    public void createBrigadeDailyReport(int id){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userJpaRepository.findByLogin(authentication.getName());
+        BuildingDailyReports buildingDailyReports = buildingDailyReportsJpaRepository.getOne(id);
+        ConstructionSite constructionSite = buildingDailyReports.getConstructionSite();
+        DailyWorkReport dailyWorkReport = new DailyWorkReport(buildingDailyReports.getReportDate(), user,constructionSite, buildingDailyReports );
+        dailyWorkReportJpaRepository.saveAndFlush(dailyWorkReport);
+    }
 
 
 

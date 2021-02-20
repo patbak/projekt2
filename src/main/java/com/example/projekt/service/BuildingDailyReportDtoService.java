@@ -33,6 +33,8 @@ public class BuildingDailyReportDtoService {
     private  EquipmentDailyReportService equipmentDailyReportService;
     @Autowired
     private BrigadeDailyReportService brigadeDailyReportService;
+    @Autowired
+    private DateConverterService dateConverterService;
 
     public BuildingDailyReportsDto setBuildingReport(BuildingDailyReports buildingDailyReports){
         BuildingDto buildingDto = buildingService.setBuilding(buildingDailyReports.getConstructionSite());
@@ -112,6 +114,13 @@ public class BuildingDailyReportDtoService {
            brigadeDailyReportDtoList.add(brigadeDailyReportDto);
        }
        return  brigadeDailyReportDtoList;
+    }
+
+    public void createBuilding(int id){
+        ConstructionSite constructionSite = constructionSiteJpaRepository.getOne(id);
+        LocalDate date = LocalDate.now();
+        BuildingDailyReports buildingDailyReports = new BuildingDailyReports(dateConverterService.convertToDateViaSqlDate(date),constructionSite);
+        buildingDailyReportsJpaRepository.saveAndFlush(buildingDailyReports);
     }
 
 }

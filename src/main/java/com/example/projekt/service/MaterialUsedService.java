@@ -1,9 +1,14 @@
 package com.example.projekt.service;
 
+import com.example.projekt.entity.MaterialUsedCommandDto;
 import com.example.projekt.entity.MaterialUsedDto;
 import com.example.projekt.entity.BrigadeDailyReportDto;
 import com.example.projekt.entity.MaterialDto;
+import com.example.projekt.model.DailyWorkReport;
+import com.example.projekt.model.Material;
 import com.example.projekt.model.UsedMaterial;
+import com.example.projekt.repository.DailyWorkReportJpaRepository;
+import com.example.projekt.repository.MaterialJpaRepository;
 import com.example.projekt.repository.UsedMaterialJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +25,10 @@ public class MaterialUsedService {
     private MaterialService materialService;
     @Autowired
     private UsedMaterialJpaRepository usedMaterialJpaRepository;
-
+    @Autowired
+    private DailyWorkReportJpaRepository dailyWorkReportJpaRepository;
+    @Autowired
+    private MaterialJpaRepository materialJpaRepository;
 
     public List<MaterialUsedDto> getMaterialsUsed(){
        List<UsedMaterial> usedMaterials = usedMaterialJpaRepository.findAll();
@@ -43,5 +51,26 @@ public class MaterialUsedService {
                 materialDto
         );
         return materialUsedDto;
+    }
+
+    public void createMaterialUsed(int brigadeDailyReportId, MaterialUsedCommandDto materialUsedCommandDto){
+
+        DailyWorkReport dailyWorkReport = dailyWorkReportJpaRepository.getOne(brigadeDailyReportId);
+        Material material = materialJpaRepository.getOne(materialUsedCommandDto.getMaterialId());
+
+        UsedMaterial usedMaterial = new UsedMaterial(
+                materialUsedCommandDto.getQuantity(),
+                material,
+                dailyWorkReport
+        );
+       usedMaterialJpaRepository.saveAndFlush(usedMaterial);
+    }
+
+    public void updateMaterialUsed(int brigadeDailyReportId, int materialUsedId, MaterialUsedCommandDto materialUsedCommandDto){
+      UsedMaterial usedMaterial =  usedMaterialJpaRepository.getOne(materialUsedId);
+      Material material = materialJpaRepository.getOne(materialUsedCommandDto.getMaterialId());
+      usedMaterial.setQuantity(materialUsedCommandDto.getQuantity());
+      usedMaterial.setMaterial(material);
+      usedMaterialJpaRepository.saveAndFlush(usedMaterial);
     }
 }
