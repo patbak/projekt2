@@ -49,33 +49,29 @@ public class EquipmentDailyReportsController {
     }
 
     @PostMapping("/equipment-daily-reports/{id}/used-equipments")
-    public ResponseEntity<String> createUsedMaterial(@PathVariable int id, @RequestBody UsedEquipmentCommandDto usedEquipmentCommandDto){
+    public void createUsedMaterial(@PathVariable int id, @RequestBody UsedEquipmentCommandDto usedEquipmentCommandDto){
     usedEquipmentService.createUsedEquipment(id, usedEquipmentCommandDto);
-    return new ResponseEntity<>("Dodano maszyny do raportu.", HttpStatus.CREATED);
     }
 
     @PutMapping("/equipment-daily-reports/{dailyReportId}/used-equipments/{usedEquipmentId}")
-    public ResponseEntity<String> updateUsedMaterial(
+    public void updateUsedMaterial(
             @PathVariable int dailyReportId,
             @PathVariable int usedEquipmentId,
             @RequestBody UsedEquipmentCommandDto usedEquipmentCommandDto){
             usedEquipmentService.updateUsedEquipment(usedEquipmentId, usedEquipmentCommandDto);
-        return new ResponseEntity<>("Dodano maszyny do raportu.", HttpStatus.OK);
     }
 
     @PostMapping("/equipment-daily-reports/{dailyReportId}/operators-work-cards")
-    public ResponseEntity<String> createWorkCard(@PathVariable int dailyReportId, @RequestBody OperatorWorkCardCommandDto operatorWorkCardCommandDto){
+    public void createWorkCard(@PathVariable int dailyReportId, @RequestBody OperatorWorkCardCommandDto operatorWorkCardCommandDto){
         operatorWorkCardsService.createOperatorWorkCard(dailyReportId, operatorWorkCardCommandDto);
-        return new ResponseEntity<>("Dodano kartę pracy operatora.", HttpStatus.CREATED);
     }
 
     @PutMapping("/equipment-daily-reports/{dailyReportId}/operators-work-cards/{operatorWorkCardId}")
-    public ResponseEntity<String> updateWorkCard(
+    public void updateWorkCard(
             @PathVariable int dailyReportId,
             @PathVariable int operatorWorkCardId,
             @RequestBody OperatorWorkCardCommandDto operatorWorkCardCommandDto){
         operatorWorkCardsService.updateOperatorWorkCard(operatorWorkCardId, operatorWorkCardCommandDto);
-        return new ResponseEntity<>("Zaktualizowano kartę pracy operatora.", HttpStatus.OK);
     }
 
 }

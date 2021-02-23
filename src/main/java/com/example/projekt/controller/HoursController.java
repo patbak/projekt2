@@ -19,11 +19,8 @@ public class HoursController {
 
     @GetMapping("/countHours")
     @PreAuthorize("hasAuthority('SUPERVISOR')")
-    public ResponseEntity<String> countWorktime(){
-
-
+    public void countWorktime(){
         worktimeService.countWorkTime();
-        return new ResponseEntity<>("Czas pracy został policzony.", HttpStatus.OK);
     }
 
 }

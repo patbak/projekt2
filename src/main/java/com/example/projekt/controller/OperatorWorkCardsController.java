@@ -20,9 +20,7 @@ public class OperatorWorkCardsController {
 
     @GetMapping("/operator-work-cards")
     public List<OperatorWorkCardDto> getOperatorWorkCards(){
-
-        List<OperatorWorkCardDto> operatorWorkCardDtoList = operatorWorkCardsService.getOperatorWorkCards();
-        return operatorWorkCardDtoList;
+        return operatorWorkCardsService.getOperatorWorkCards();
     }
 
 }

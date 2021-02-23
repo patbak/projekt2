@@ -30,22 +30,16 @@ public class BuildingController {
 
     @GetMapping("/buildings/{id}")
     public BuildingDto getBuildings(@PathVariable int id){
-
         return buildingService.getBuildingById(id);
     }
 
-
     @PostMapping("/buildings")
-    public ResponseEntity<String> postBuilding(@RequestBody BuildingCommandDto buildingCommandDto){
-
+    public void postBuilding(@RequestBody BuildingCommandDto buildingCommandDto){
         buildingService.saveBuilding(buildingCommandDto);
-        return new ResponseEntity<>("Budowa została dodana.", HttpStatus.OK);
-
     }
 
     @GetMapping("/buildings/{id}/Engineer")
     public List<Engineer> getEngineersOnBuilding(@PathVariable int id){
-
         return buildingService.getEngineersFromBuilding(id);
     }
 
@@ -57,16 +51,12 @@ public class BuildingController {
 
     @GetMapping("/buildings/active")
     public List<BuildingDto> getActiveBuildings(){
-
         return buildingService.getBuildingsByActive(true);
     }
 
     @PostMapping("/buildings/{id}/Engineer")
-    public ResponseEntity<String>  addEngineersToBuilding(@PathVariable int id, @RequestBody Engineer engineer){
-
+    public void addEngineersToBuilding(@PathVariable int id, @RequestBody Engineer engineer){
         buildingService.addEngineerToBuilding(id, engineer);
-
-       return  new ResponseEntity<>("Dodano inżyniera do budowy", HttpStatus.OK);
     }
 
     @GetMapping("/buildings/{id}/daily-reports")
@@ -76,9 +66,8 @@ public class BuildingController {
     }
 
     @PostMapping("/buildings/{id}/daily-reports")
-    public ResponseEntity<String> createBuildingReport(@PathVariable int id){
-       buildingDailyReportDtoService.createBuilding(id);
-        return  new ResponseEntity<>("Dodano raport budowy", HttpStatus.CREATED);
+    public void createBuildingReport(@PathVariable int id, @RequestBody DailyReportCommandDto dailyReportCommandDto){
+       buildingDailyReportDtoService.createBuildingReport(dailyReportCommandDto);
     }
 
 

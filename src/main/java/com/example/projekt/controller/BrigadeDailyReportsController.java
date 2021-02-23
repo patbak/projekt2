@@ -53,49 +53,46 @@ public class BrigadeDailyReportsController {
     }
 
     @PostMapping("/brigade-daily-reports/{id}/work-cards")
-    public ResponseEntity<String> createWorkCard(@PathVariable int id, @RequestBody WorkCardCommandDto workCardDto){
+    public void createWorkCard(@PathVariable int id, @RequestBody WorkCardCommandDto workCardDto){
         workCardService.createWorkCard(id,workCardDto);
-        return new ResponseEntity<>("Dodano karte pracy.", HttpStatus.CREATED);
     }
 
     @PutMapping("/brigade-daily-reports/{brigadeDailyReportId}/work-cards/{workCardId}")
-    public ResponseEntity<String> updateWorkCard(
+    public void updateWorkCard(
             @PathVariable int brigadeDailyReportId,
             @PathVariable int workCardId,
             @RequestBody WorkCardCommandDto workCardCommandDto ){
         workCardService.updateWorkCard(workCardId, workCardCommandDto);
-        return new ResponseEntity<>("Zaktualizowano karte pracy.", HttpStatus.OK);
     }
 
     @PostMapping("/brigade-daily-reports/{id}/done-works")
-    public ResponseEntity<String> createDoneWork(@PathVariable int id, @RequestBody DoneWorkCommandDto doneWorkCommandDto){
+    public void createDoneWork(@PathVariable int id, @RequestBody DoneWorkCommandDto doneWorkCommandDto){
         doneWorkService.createDoneWork(id,doneWorkCommandDto);
-        return new ResponseEntity<>("Dodano wykonaną robotę.", HttpStatus.CREATED);
+
     }
 
     @PostMapping("/brigade-daily-reports/{brigadeDailyReportId}/done-works/{doneWorkId}")
-    public ResponseEntity<String> updateDoneWork(
+    public void updateDoneWork(
             @PathVariable int brigadeDailyReportId,
             @PathVariable int doneWorkId,
             @RequestBody DoneWorkCommandDto doneWorkCommandDto
             ){
         doneWorkService.updateDoneWork(doneWorkCommandDto,doneWorkId);
-        return new ResponseEntity<>("Zaktualizowano wykonaną robotę.", HttpStatus.OK);
+
     }
 
     @PostMapping("/brigade-daily-reports/{brigadeDailyReportId}/materials-used")
-    public ResponseEntity<String> createUsedMaterial(@PathVariable int brigadeDailyReportId, @RequestBody MaterialUsedCommandDto materialUsedCommandDto){
+    public void createUsedMaterial(@PathVariable int brigadeDailyReportId, @RequestBody MaterialUsedCommandDto materialUsedCommandDto){
         materialUsedService.createMaterialUsed(brigadeDailyReportId,materialUsedCommandDto);
-        return new ResponseEntity<>("Dodano zużyty materiał.", HttpStatus.CREATED);
+
     }
 
     @PutMapping("/brigade-daily-reports/{brigadeDailyReportId}/materials-used/{materialUsedId}")
-    public ResponseEntity<String> createUsedMaterial(
+    public void createUsedMaterial(
             @PathVariable int brigadeDailyReportId,
             @PathVariable int materialUsedId,
             @RequestBody MaterialUsedCommandDto materialUsedCommandDto){
         materialUsedService.updateMaterialUsed(brigadeDailyReportId,materialUsedId,materialUsedCommandDto);
-        return new ResponseEntity<>("Zaktualizowano zużyty materiał.", HttpStatus.OK);
     }
 
 

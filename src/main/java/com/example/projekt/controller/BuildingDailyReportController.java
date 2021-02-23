@@ -32,9 +32,8 @@ public class BuildingDailyReportController {
     }
 
     @PostMapping("/daily-reports")
-    public ResponseEntity<String> createDailyReport(@RequestBody DailyReportCommandDto dailyReportCommandDto){
+    public void createDailyReport(@RequestBody DailyReportCommandDto dailyReportCommandDto){
         buildingDailyReportDtoService.createBuildingReport(dailyReportCommandDto);
-        return new ResponseEntity<String>("Dodano raport.", HttpStatus.CREATED);
     }
 
     @GetMapping("/daily-reports/{id}/comments")
@@ -53,21 +52,18 @@ public class BuildingDailyReportController {
     }
 
     @PostMapping("/daily-reports/{id}/brigade-daily-reports")
-    public ResponseEntity<String> createBrigadeDailyReport(@PathVariable int id){
+    public void createBrigadeDailyReport(@PathVariable int id){
         brigadeDailyReportService.createBrigadeDailyReport(id);
-        return new ResponseEntity<String>("Dodano raport brygady.", HttpStatus.CREATED);
     }
 
     @PostMapping("/daily-reports/{id}/equipment-daily-reports")
-    public ResponseEntity<String> createEquipmentDailyReport(@PathVariable int id){
+    public void createEquipmentDailyReport(@PathVariable int id){
         equipmentDailyReportService.createEquipmentDailyReport(id);
-        return new ResponseEntity<String>("Dodano raport maszyn.", HttpStatus.CREATED);
     }
 
     @PostMapping("/daily-reports/{id}/comments")
-    public ResponseEntity<String> createComment(@PathVariable int id, @RequestBody CommentsCommandDto commentsCommandDto){
+    public void createComment(@PathVariable int id, @RequestBody CommentsCommandDto commentsCommandDto){
         commentService.createComment(id, commentsCommandDto);
-        return new ResponseEntity<String>("Dodano komentarz.", HttpStatus.CREATED);
     }
 
 

@@ -18,10 +18,8 @@ public class SalaryController {
 
     @GetMapping("/count-salary")
    @PreAuthorize("hasAuthority('SUPERVISOR')")
-    public ResponseEntity<String> countSalary(){
-
+    public void countSalary(){
         salaryService.countSalary();
-        return new ResponseEntity<>("Wynagrodzenia zostaly oblcizone", HttpStatus.OK);
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.projekt.service;
 
 import com.example.projekt.entity.LoggedInUserDto;
+import com.example.projekt.entity.RoleDto;
 import com.example.projekt.model.Role;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.UserJpaRepository;
@@ -23,6 +24,8 @@ public class LoggedInUserService {
 
     @Autowired
     private UserJpaRepository userJpaRepository;
+    @Autowired
+    private RoleService roleService;
 
     public LoggedInUserDto getUserDetails(){
 
@@ -30,9 +33,9 @@ public class LoggedInUserService {
         String currentPrincipalName = authentication.getName();
         User user = userJpaRepository.findByLogin(currentPrincipalName);
         Set<Role> roles = user.getRoles();
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+      List<RoleDto> rolesList = new ArrayList<>();
         for(Role role : roles){
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
+            rolesList.add(roleService.setRole(role));
         }
 
 
@@ -44,7 +47,7 @@ public class LoggedInUserService {
                 user.getEmail(),
                 user.getLogin(),
                 user.getPhoneNumber(),
-                authorities
+                rolesList
         );
 
         return loggedInUserDto;

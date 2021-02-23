@@ -74,7 +74,7 @@ public class BuildingDailyReportDtoService {
 
     public void createBuildingReport(DailyReportCommandDto dailyReportCommandDto){
         ConstructionSite constructionSite = constructionSiteJpaRepository.getOne(dailyReportCommandDto.getBuildingId());
-        WeatherConditions weatherConditions = weatherConditionsJpaRepository.getOne(dailyReportCommandDto.getWeatherConditionId());
+        //WeatherConditions weatherConditions = weatherConditionsJpaRepository.getOne(dailyReportCommandDto.getWeatherConditionId());
         BuildingDailyReports buildingDailyReport = new BuildingDailyReports();
         buildingDailyReport.setConstructionSite(constructionSite);
         buildingDailyReport.setReportDate(dailyReportCommandDto.getDate());

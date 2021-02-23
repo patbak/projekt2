@@ -1,8 +1,6 @@
 package com.example.projekt.entity;
 
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.List;
 
 public class LoggedInUserDto {
@@ -20,10 +18,13 @@ public class LoggedInUserDto {
 
     private String phoneNumber;
 
+    private List<RoleDto> role;
+/*
+
     private List<SimpleGrantedAuthority> roles;
+*/
 
-
-    public LoggedInUserDto(int id, String permissionNumber, String firstName, String lastName, String email, String login, String phoneNumber, List<SimpleGrantedAuthority> roles) {
+    public LoggedInUserDto(int id, String permissionNumber, String firstName, String lastName, String email, String login, String phoneNumber, List<RoleDto> role) {
         this.id = id;
         this.permissionNumber = permissionNumber;
         this.firstName = firstName;
@@ -31,7 +32,7 @@ public class LoggedInUserDto {
         this.email = email;
         this.login = login;
         this.phoneNumber = phoneNumber;
-        this.roles = roles;
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -74,14 +75,6 @@ public class LoggedInUserDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<SimpleGrantedAuthority> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<SimpleGrantedAuthority> roles) {
-        this.roles = roles;
-    }
-
     public int getId() {
         return id;
     }
@@ -96,5 +89,13 @@ public class LoggedInUserDto {
 
     public void setPermissionNumber(String permissionNumber) {
         this.permissionNumber = permissionNumber;
+    }
+
+    public List<RoleDto> getRole() {
+        return role;
+    }
+
+    public void setRole(List<RoleDto> role) {
+        this.role = role;
     }
 }

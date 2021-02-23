@@ -12,8 +12,6 @@ public class VerificationController {
 
     @GetMapping("/account-confirm")
     public void confirmAccount(@RequestParam("token") String token){
-
-        System.out.println("potwierdzenie rejestracji");
         accountService.confirmAccount(token);
     }
 
