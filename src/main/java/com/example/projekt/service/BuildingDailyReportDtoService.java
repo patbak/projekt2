@@ -78,7 +78,7 @@ public class BuildingDailyReportDtoService {
         BuildingDailyReports buildingDailyReport = new BuildingDailyReports();
         buildingDailyReport.setConstructionSite(constructionSite);
         buildingDailyReport.setReportDate(dailyReportCommandDto.getDate());
-        buildingDailyReport.setWeatherConditions(weatherConditions);
+        buildingDailyReport.setWeatherConditions(weatherConditionsDtoService.setRandomWeatherConditions());
         buildingDailyReportsJpaRepository.saveAndFlush(buildingDailyReport);
 
     }

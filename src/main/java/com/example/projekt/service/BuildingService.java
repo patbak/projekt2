@@ -1,9 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.BrigadeDailyReportDto;
-import com.example.projekt.entity.BuildingDailyReportsDto;
-import com.example.projekt.entity.BuildingDto;
-import com.example.projekt.entity.Engineer;
+import com.example.projekt.entity.*;
 import com.example.projekt.model.*;
 import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
@@ -82,23 +79,23 @@ public class BuildingService {
         return  buildingDto;
     }
 
-    public void saveBuilding(BuildingDto buildingDto){
-        List<Engineer> engineerList = buildingDto.getEngineers();
+    public void saveBuilding(BuildingCommandDto buildingCommandDto){
+        List<Integer> engineerList = buildingCommandDto.getEngineersIds();
         Set<User> users = new HashSet<>();
-        User supervisor = userJpaRepository.getOne(buildingDto.getSupervisor().getUserId());
+        User supervisor = userJpaRepository.getOne(buildingCommandDto.getSupervisorId());
         users.add(supervisor);
-        for(Engineer engineer: engineerList){
-            User user = userJpaRepository.getOne(engineer.getUserId());
+        for(Integer integer: engineerList){
+            User user = userJpaRepository.getOne(integer.intValue());
             users.add(user);
         }
         ConstructionSite constructionSite = new ConstructionSite(
-                buildingDto.getName(),
-                buildingDto.getBuildingNumber(),
-                buildingDto.getCoordinates(),
-                buildingDto.getPlannedStartDate(),
-                buildingDto.getPlannedEndDate(),
-                buildingDto.getRealEndDate(),
-                buildingDto.getRealStartDate(),
+                buildingCommandDto.getName(),
+                buildingCommandDto.getBuildingNumber(),
+                buildingCommandDto.getCoordinates(),
+                buildingCommandDto.getPlannedStartDate(),
+                buildingCommandDto.getPlannedEndDate(),
+                buildingCommandDto.getRealEndDate(),
+                buildingCommandDto.getRealStartDate(),
                 users
         );
 

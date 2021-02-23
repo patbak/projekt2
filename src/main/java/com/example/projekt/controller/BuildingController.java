@@ -1,9 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.BrigadeDailyReportDto;
-import com.example.projekt.entity.BuildingDailyReportsDto;
-import com.example.projekt.entity.BuildingDto;
-import com.example.projekt.entity.Engineer;
+import com.example.projekt.entity.*;
 import com.example.projekt.service.BuildingDailyReportDtoService;
 import com.example.projekt.service.BuildingService;
 import com.example.projekt.service.WorktimeService;
@@ -39,9 +36,9 @@ public class BuildingController {
 
 
     @PostMapping("/buildings")
-    public ResponseEntity<String> postBuilding(@RequestBody BuildingDto buildingDto){
+    public ResponseEntity<String> postBuilding(@RequestBody BuildingCommandDto buildingCommandDto){
 
-        buildingService.saveBuilding(buildingDto);
+        buildingService.saveBuilding(buildingCommandDto);
         return new ResponseEntity<>("Budowa została dodana.", HttpStatus.OK);
 
     }

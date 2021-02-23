@@ -33,4 +33,21 @@ public class WeatherConditionsTest {
         }
     }
 
+    @Test
+    @Transactional
+    public void getRandomWeatherConditionsTest()throws Exception{
+
+        List<WeatherConditions> weatherConditions = repository.findAll();
+        int min= 0;
+        int max = weatherConditions.size();
+        for (int j=0;j<10;j++){
+            int number= (int) ((Math.random() * (max - min)) + min);
+            System.out.println(number);
+            WeatherConditions weatherCondition = weatherConditions.get(number);
+            System.out.println(weatherCondition.getIdWeatherCondition());
+            System.out.println(weatherCondition.getWeatherCondition());
+        }
+
+    }
+
 }

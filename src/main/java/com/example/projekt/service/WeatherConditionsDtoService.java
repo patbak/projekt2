@@ -33,4 +33,15 @@ public class WeatherConditionsDtoService {
         return weatherConditionsDto;
     }
 
+    public WeatherConditions setRandomWeatherConditions(){
+        List<WeatherConditions> weatherConditions = weatherConditionsJpaRepository.findAll();
+        int min= 0;
+        int max = weatherConditions.size();
+        int number= (int) ((Math.random() * (max - min)) + min);
+        WeatherConditions weatherCondition = weatherConditions.get(number);
+        return weatherCondition;
+    }
+
+
+
 }

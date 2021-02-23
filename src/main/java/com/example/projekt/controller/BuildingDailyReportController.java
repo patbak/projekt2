@@ -33,9 +33,6 @@ public class BuildingDailyReportController {
 
     @PostMapping("/daily-reports")
     public ResponseEntity<String> createDailyReport(@RequestBody DailyReportCommandDto dailyReportCommandDto){
-        System.out.println(dailyReportCommandDto.getBuildingId());
-        System.out.println(dailyReportCommandDto.getDate());
-        System.out.println(dailyReportCommandDto.getWeatherConditionId());
         buildingDailyReportDtoService.createBuildingReport(dailyReportCommandDto);
         return new ResponseEntity<String>("Dodano raport.", HttpStatus.CREATED);
     }
