@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.Account;
+import com.example.projekt.dto.Account;
 import com.example.projekt.model.Role;
 import com.example.projekt.model.User;
 import com.example.projekt.model.VerificationToken;

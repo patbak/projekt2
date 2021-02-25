@@ -1,7 +1,6 @@
-package com.example.projekt.entity;
+package com.example.projekt.dto;
 
 import java.sql.Date;
-import java.util.List;
 
 public class EquipmentDailyReportDto {
 

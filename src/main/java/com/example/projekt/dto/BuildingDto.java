@@ -1,10 +1,6 @@
-package com.example.projekt.entity;
-
-import com.example.projekt.model.User;
-import org.springframework.stereotype.Component;
+package com.example.projekt.dto;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 

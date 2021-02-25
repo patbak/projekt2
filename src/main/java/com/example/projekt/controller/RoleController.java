@@ -1,8 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.DoneWorkDto;
-import com.example.projekt.entity.RoleDto;
-import com.example.projekt.service.DoneWorkService;
+import com.example.projekt.dto.RoleDto;
 import com.example.projekt.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

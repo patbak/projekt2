@@ -1,8 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.BuildingDailyReportsDto;
-import com.example.projekt.entity.OperatorWorkCardDto;
-import com.example.projekt.service.BuildingDailyReportDtoService;
+import com.example.projekt.dto.OperatorWorkCardDto;
 import com.example.projekt.service.OperatorWorkCardsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

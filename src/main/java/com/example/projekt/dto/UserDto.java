@@ -1,4 +1,4 @@
-package com.example.projekt.entity;
+package com.example.projekt.dto;
 
 import com.example.projekt.validation.PasswordConfirmed;
 import com.example.projekt.validation.PasswordPolicy;
@@ -6,7 +6,6 @@ import com.example.projekt.validation.UniqueEmail;
 import com.example.projekt.validation.UniqueUsername;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @PasswordConfirmed

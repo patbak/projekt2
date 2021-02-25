@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.PasswordDto;
+import com.example.projekt.dto.PasswordDto;
 import com.example.projekt.model.ResetToken;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.ResetTokenRepository;
@@ -11,7 +11,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.UUID;
 @Service
 public class PasswordServiceImpl implements PasswordService {

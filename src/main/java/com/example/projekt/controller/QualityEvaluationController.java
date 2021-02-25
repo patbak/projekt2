@@ -1,7 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.MaterialDto;
-import com.example.projekt.entity.QualityEvaluationDto;
+import com.example.projekt.dto.QualityEvaluationDto;
 import com.example.projekt.service.QualityEvaluationDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

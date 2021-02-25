@@ -1,4 +1,4 @@
-package com.example.projekt.entity;
+package com.example.projekt.dto;
 
 public class RoleDto {
     private Long id;

@@ -1,9 +1,9 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.BrigadeDailyReportDto;
-import com.example.projekt.entity.WorkCardCommandDto;
-import com.example.projekt.entity.WorkCardDto;
-import com.example.projekt.entity.WorkerDto;
+import com.example.projekt.dto.BrigadeDailyReportDto;
+import com.example.projekt.dto.WorkCardCommandDto;
+import com.example.projekt.dto.WorkCardDto;
+import com.example.projekt.dto.WorkerDto;
 import com.example.projekt.model.DailyWorkReport;
 import com.example.projekt.model.Employee;
 import com.example.projekt.model.Timesheet;
@@ -13,7 +13,6 @@ import com.example.projekt.repository.TimesheetJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 

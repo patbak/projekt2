@@ -1,13 +1,10 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.*;
-import com.example.projekt.service.CommentService;
+import com.example.projekt.dto.*;
 import com.example.projekt.service.EquipmentDailyReportService;
 import com.example.projekt.service.OperatorWorkCardsService;
 import com.example.projekt.service.UsedEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

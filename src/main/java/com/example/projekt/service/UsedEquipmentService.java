@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.*;
+import com.example.projekt.dto.*;
 import com.example.projekt.model.*;
 import com.example.projekt.repository.DailyMachineWorkReportJpaRepository;
 import com.example.projekt.repository.EmployeeJpaRepository;
@@ -8,7 +8,6 @@ import com.example.projekt.repository.MachineJpaRepository;
 import com.example.projekt.repository.MachineReportHasMachinesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;

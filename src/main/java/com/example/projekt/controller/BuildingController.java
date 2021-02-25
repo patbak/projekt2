@@ -1,13 +1,9 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.*;
+import com.example.projekt.dto.*;
 import com.example.projekt.service.BuildingDailyReportDtoService;
 import com.example.projekt.service.BuildingService;
-import com.example.projekt.service.WorktimeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,7 +34,7 @@ public class BuildingController {
         buildingService.saveBuilding(buildingCommandDto);
     }
 
-    @GetMapping("/buildings/{id}/Engineer")
+    @GetMapping("/buildings/{id}/engineers")
     public List<Engineer> getEngineersOnBuilding(@PathVariable int id){
         return buildingService.getEngineersFromBuilding(id);
     }
@@ -54,9 +50,9 @@ public class BuildingController {
         return buildingService.getBuildingsByActive(true);
     }
 
-    @PostMapping("/buildings/{id}/Engineer")
-    public void addEngineersToBuilding(@PathVariable int id, @RequestBody Engineer engineer){
-        buildingService.addEngineerToBuilding(id, engineer);
+    @PostMapping("/buildings/{id}/engineers")
+    public void addEngineersToBuilding(@PathVariable int id, @RequestBody EngineerCommandDto engineerCommandDto){
+        buildingService.addEngineerToBuilding(id, engineerCommandDto);
     }
 
     @GetMapping("/buildings/{id}/daily-reports")
@@ -66,8 +62,8 @@ public class BuildingController {
     }
 
     @PostMapping("/buildings/{id}/daily-reports")
-    public void createBuildingReport(@PathVariable int id, @RequestBody DailyReportCommandDto dailyReportCommandDto){
-       buildingDailyReportDtoService.createBuildingReport(dailyReportCommandDto);
+    public void createBuildingReport(@PathVariable int id){
+       buildingDailyReportDtoService.createEmptyBuildingReport(id);
     }
 
 

@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.*;
+import com.example.projekt.dto.*;
 import com.example.projekt.model.*;
 import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.DailyWorkReportJpaRepository;
@@ -10,10 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class BrigadeDailyReportService {

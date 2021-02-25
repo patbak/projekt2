@@ -1,9 +1,9 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.EquipmentDailyReportDto;
-import com.example.projekt.entity.OperatorWorkCardCommandDto;
-import com.example.projekt.entity.OperatorWorkCardDto;
-import com.example.projekt.entity.WorkerDto;
+import com.example.projekt.dto.EquipmentDailyReportDto;
+import com.example.projekt.dto.OperatorWorkCardCommandDto;
+import com.example.projekt.dto.OperatorWorkCardDto;
+import com.example.projekt.dto.WorkerDto;
 import com.example.projekt.model.DailyMachineWorkReport;
 import com.example.projekt.model.Employee;
 import com.example.projekt.model.OperatorWorkCards;

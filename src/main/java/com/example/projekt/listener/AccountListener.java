@@ -1,8 +1,7 @@
 package com.example.projekt.listener;
 
-import com.example.projekt.entity.Account;
+import com.example.projekt.dto.Account;
 import com.example.projekt.event.UserRegistrationEvent;
-import com.example.projekt.model.User;
 import com.example.projekt.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;

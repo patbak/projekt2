@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.WorkerDto;
+import com.example.projekt.dto.WorkerDto;
 import com.example.projekt.model.Employee;
 import com.example.projekt.repository.EmployeeJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

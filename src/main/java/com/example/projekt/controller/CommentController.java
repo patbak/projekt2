@@ -1,8 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.BrigadeDailyReportDto;
-import com.example.projekt.entity.CommentsDto;
-import com.example.projekt.service.BrigadeDailyReportService;
+import com.example.projekt.dto.CommentsDto;
 import com.example.projekt.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

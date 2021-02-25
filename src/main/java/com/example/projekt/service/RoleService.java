@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.RoleDto;
+import com.example.projekt.dto.RoleDto;
 import com.example.projekt.model.Role;
 import com.example.projekt.repository.RoleJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class RoleService {

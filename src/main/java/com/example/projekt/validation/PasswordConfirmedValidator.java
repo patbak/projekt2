@@ -1,7 +1,6 @@
 package com.example.projekt.validation;
 
-import com.example.projekt.entity.PasswordDto;
-import com.example.projekt.entity.UserDto;
+import com.example.projekt.dto.UserDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

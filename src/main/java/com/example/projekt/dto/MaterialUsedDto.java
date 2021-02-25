@@ -1,7 +1,4 @@
-package com.example.projekt.entity;
-
-import com.example.projekt.entity.BrigadeDailyReportDto;
-import com.example.projekt.entity.MaterialDto;
+package com.example.projekt.dto;
 
 public class MaterialUsedDto {
 

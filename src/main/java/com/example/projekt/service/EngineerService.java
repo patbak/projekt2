@@ -1,12 +1,11 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.Engineer;
-import com.example.projekt.entity.RoleDto;
+import com.example.projekt.dto.Engineer;
+import com.example.projekt.dto.RoleDto;
 import com.example.projekt.model.Role;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

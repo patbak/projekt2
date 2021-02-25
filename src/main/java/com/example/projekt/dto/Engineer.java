@@ -1,12 +1,13 @@
-package com.example.projekt.entity;
+package com.example.projekt.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
-public class LoggedInUserDto {
-    private int id;
 
-    private String permissionNumber;
+public class Engineer {
+
+    private int id;
 
     private String firstName;
 
@@ -17,22 +18,50 @@ public class LoggedInUserDto {
     private String login;
 
     private String phoneNumber;
+    @JsonIgnore
+    private String password;
 
-    private List<RoleDto> role;
-/*
+    private String permissionNumber;
 
-    private List<SimpleGrantedAuthority> roles;
-*/
+    private List<RoleDto> roles;
 
-    public LoggedInUserDto(int id, String permissionNumber, String firstName, String lastName, String email, String login, String phoneNumber, List<RoleDto> role) {
+    public Engineer() {
+    }
+
+    public Engineer(int id, String firstName, String lastName, String email, String login, String phoneNumber, String password, String permissionNumber, List<RoleDto> roles) {
         this.id = id;
-        this.permissionNumber = permissionNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.login = login;
         this.phoneNumber = phoneNumber;
-        this.role = role;
+        this.password = password;
+        this.permissionNumber = permissionNumber;
+        this.roles = roles;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleDto> roles) {
+        this.roles = roles;
+    }
+
+    public int getUserId() {
+        return id;
+    }
+
+    public void setUserId(int userId) {
+        this.id = userId;
     }
 
     public String getFirstName() {
@@ -75,12 +104,12 @@ public class LoggedInUserDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPermissionNumber() {
@@ -91,11 +120,4 @@ public class LoggedInUserDto {
         this.permissionNumber = permissionNumber;
     }
 
-    public List<RoleDto> getRole() {
-        return role;
-    }
-
-    public void setRole(List<RoleDto> role) {
-        this.role = role;
-    }
 }

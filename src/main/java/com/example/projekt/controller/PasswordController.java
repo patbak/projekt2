@@ -1,11 +1,10 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.PasswordDto;
+import com.example.projekt.dto.PasswordDto;
 import com.example.projekt.model.ResetToken;
 import com.example.projekt.model.User;
 import com.example.projekt.service.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

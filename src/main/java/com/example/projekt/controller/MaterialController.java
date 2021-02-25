@@ -1,8 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.DoneWorkDto;
-import com.example.projekt.entity.MaterialDto;
-import com.example.projekt.service.DoneWorkService;
+import com.example.projekt.dto.MaterialDto;
 import com.example.projekt.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.PasswordDto;
+import com.example.projekt.dto.PasswordDto;
 import com.example.projekt.model.ResetToken;
 import com.example.projekt.model.User;
 

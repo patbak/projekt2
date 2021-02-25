@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.*;
+import com.example.projekt.dto.*;
 import com.example.projekt.model.DailyWorkReport;
 import com.example.projekt.model.LabourStandard;
 import com.example.projekt.model.QualityAssessment;

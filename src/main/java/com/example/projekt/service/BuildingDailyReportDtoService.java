@@ -1,15 +1,13 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.*;
+import com.example.projekt.dto.*;
 import com.example.projekt.model.*;
 import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
 import com.example.projekt.repository.WeatherConditionsJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +79,14 @@ public class BuildingDailyReportDtoService {
         buildingDailyReport.setWeatherConditions(weatherConditionsDtoService.setRandomWeatherConditions());
         buildingDailyReportsJpaRepository.saveAndFlush(buildingDailyReport);
 
+    }
+
+    public void createEmptyBuildingReport(int id){
+        ConstructionSite constructionSite = constructionSiteJpaRepository.getOne(id);
+        BuildingDailyReports buildingDailyReport = new BuildingDailyReports();
+        buildingDailyReport.setConstructionSite(constructionSite);
+        buildingDailyReport.setWeatherConditions(weatherConditionsDtoService.setRandomWeatherConditions());
+        buildingDailyReportsJpaRepository.saveAndFlush(buildingDailyReport);
     }
 
     public List<CommentsDto> getBuildingDailyReportComments(int id){

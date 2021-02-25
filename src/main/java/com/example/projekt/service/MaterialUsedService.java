@@ -1,9 +1,9 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.MaterialUsedCommandDto;
-import com.example.projekt.entity.MaterialUsedDto;
-import com.example.projekt.entity.BrigadeDailyReportDto;
-import com.example.projekt.entity.MaterialDto;
+import com.example.projekt.dto.MaterialUsedCommandDto;
+import com.example.projekt.dto.MaterialUsedDto;
+import com.example.projekt.dto.BrigadeDailyReportDto;
+import com.example.projekt.dto.MaterialDto;
 import com.example.projekt.model.DailyWorkReport;
 import com.example.projekt.model.Material;
 import com.example.projekt.model.UsedMaterial;

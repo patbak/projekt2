@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.WeatherConditionsDto;
+import com.example.projekt.dto.WeatherConditionsDto;
 import com.example.projekt.model.WeatherConditions;
 import com.example.projekt.repository.WeatherConditionsJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

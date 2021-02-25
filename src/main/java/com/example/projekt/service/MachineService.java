@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.MachineDto;
+import com.example.projekt.dto.MachineDto;
 import com.example.projekt.model.Machine;
 import com.example.projekt.model.MachineReportHasMachines;
 import com.example.projekt.repository.MachineJpaRepository;

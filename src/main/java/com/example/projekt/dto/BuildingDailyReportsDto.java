@@ -1,6 +1,4 @@
-package com.example.projekt.entity;
-
-import com.example.projekt.model.WeatherConditions;
+package com.example.projekt.dto;
 
 import java.sql.Date;
 

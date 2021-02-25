@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.QualityEvaluationDto;
+import com.example.projekt.dto.QualityEvaluationDto;
 import com.example.projekt.model.QualityAssessment;
 import com.example.projekt.repository.QualityAssessmentJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

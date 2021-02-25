@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.MaterialDto;
+import com.example.projekt.dto.MaterialDto;
 import com.example.projekt.model.Material;
 import com.example.projekt.repository.MaterialJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.BuildingDto;
-import com.example.projekt.entity.UsedEquipmentDto;
-import com.example.projekt.service.BuildingService;
+import com.example.projekt.dto.UsedEquipmentDto;
 import com.example.projekt.service.UsedEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

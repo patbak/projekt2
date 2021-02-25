@@ -1,7 +1,6 @@
 package com.example.projekt.event;
 
-import com.example.projekt.entity.Account;
-import com.example.projekt.model.User;
+import com.example.projekt.dto.Account;
 import org.springframework.context.ApplicationEvent;
 
 public class UserRegistrationEvent extends ApplicationEvent {

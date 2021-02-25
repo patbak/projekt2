@@ -1,6 +1,5 @@
-package com.example.projekt.entity;
+package com.example.projekt.dto;
 
-import com.example.projekt.validation.PasswordConfirmed;
 import com.example.projekt.validation.PasswordPolicy;
 
 import javax.validation.constraints.NotEmpty;

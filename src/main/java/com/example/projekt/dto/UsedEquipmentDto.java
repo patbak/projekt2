@@ -1,6 +1,4 @@
-package com.example.projekt.entity;
-
-import com.example.projekt.model.Machine;
+package com.example.projekt.dto;
 
 public class UsedEquipmentDto {
     private int id;

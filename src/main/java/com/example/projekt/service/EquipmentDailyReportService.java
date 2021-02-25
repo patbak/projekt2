@@ -1,6 +1,6 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.*;
+import com.example.projekt.dto.*;
 import com.example.projekt.model.*;
 import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.DailyMachineWorkReportJpaRepository;

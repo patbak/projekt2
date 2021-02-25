@@ -1,6 +1,4 @@
-package com.example.projekt.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.example.projekt.dto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

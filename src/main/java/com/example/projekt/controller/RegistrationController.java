@@ -1,23 +1,16 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.Account;
-import com.example.projekt.entity.UserDto;
+import com.example.projekt.dto.Account;
+import com.example.projekt.dto.UserDto;
 import com.example.projekt.event.UserRegistrationEvent;
-import com.example.projekt.model.User;
 import com.example.projekt.repository.AccountRepository;
-import com.example.projekt.repository.UserJpaRepository;
 
 import com.example.projekt.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController

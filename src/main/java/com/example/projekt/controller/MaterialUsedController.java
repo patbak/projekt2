@@ -1,6 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.MaterialUsedDto;
+import com.example.projekt.dto.MaterialUsedDto;
 import com.example.projekt.service.MaterialUsedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

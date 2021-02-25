@@ -1,15 +1,12 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.*;
+import com.example.projekt.dto.*;
 import com.example.projekt.model.*;
-import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
 import com.example.projekt.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -96,7 +93,9 @@ public class BuildingService {
                 buildingCommandDto.getPlannedEndDate(),
                 buildingCommandDto.getRealEndDate(),
                 buildingCommandDto.getRealStartDate(),
+                true,
                 users
+
         );
 
         repository.saveAndFlush(constructionSite);
@@ -113,10 +112,10 @@ public class BuildingService {
         return engineerList;
     }
 
-    public void addEngineerToBuilding(int id, Engineer engineer){
+    public void addEngineerToBuilding(int id, EngineerCommandDto engineerCommandDto){
         ConstructionSite constructionSite = repository.getOne(id);
         Set<User> users = constructionSite.getUsers();
-        User user = userJpaRepository.getOne(engineer.getUserId());
+        User user = userJpaRepository.getOne(engineerCommandDto.getUserId());
         users.add(user);
         constructionSite.setUsers(users);
         repository.saveAndFlush(constructionSite);

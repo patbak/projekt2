@@ -1,8 +1,6 @@
 package com.example.projekt.controller;
 
-import com.example.projekt.entity.CommentsDto;
-import com.example.projekt.entity.DoneWorkDto;
-import com.example.projekt.service.CommentService;
+import com.example.projekt.dto.DoneWorkDto;
 import com.example.projekt.service.DoneWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

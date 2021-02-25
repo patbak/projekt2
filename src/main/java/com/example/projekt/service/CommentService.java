@@ -1,11 +1,10 @@
 package com.example.projekt.service;
 
-import com.example.projekt.entity.CommentsCommandDto;
-import com.example.projekt.entity.CommentsDto;
-import com.example.projekt.entity.Engineer;
+import com.example.projekt.dto.CommentsCommandDto;
+import com.example.projekt.dto.CommentsDto;
+import com.example.projekt.dto.Engineer;
 import com.example.projekt.model.BuildingDailyReports;
 import com.example.projekt.model.Comment;
-import com.example.projekt.model.DailyWorkReport;
 import com.example.projekt.model.User;
 import com.example.projekt.repository.BuildingDailyReportsJpaRepository;
 import com.example.projekt.repository.CommentJpaRepository;

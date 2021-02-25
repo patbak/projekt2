@@ -86,7 +86,7 @@ public class ConstructionSite {
     public ConstructionSite() {
     }
 
-    public ConstructionSite(String name, String buildingNumber, String coordinates, Date plannedStartDate, Date plannedEndDate, Date realEndDate, Date realStartDate, Set<User> users) {
+    public ConstructionSite(String name, String buildingNumber, String coordinates, Date plannedStartDate, Date plannedEndDate, Date realEndDate, Date realStartDate, boolean isActive, Set<User> users) {
         this.name = name;
         this.buildingNumber = buildingNumber;
         this.coordinates = coordinates;
@@ -94,6 +94,7 @@ public class ConstructionSite {
         this.plannedEndDate = plannedEndDate;
         this.realEndDate = realEndDate;
         this.realStartDate = realStartDate;
+        this.isActive = isActive;
         this.users = users;
     }
 
