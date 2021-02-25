@@ -53,7 +53,7 @@ public class BuildingService {
                 if(role.getName().equals("ENGINEER")){
                     engineer = engineerService.setEngineer(user);
                     engineers.add(engineer);
-                }else{
+                }else if(role.getName().equals("SUPERVISOR")){
                     engineer = engineerService.setEngineer(user);
                     supervisor=engineer;
                 }

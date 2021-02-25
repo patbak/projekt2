@@ -20,6 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import static com.example.projekt.security.SecurityConstants.CONFIRMATION_TOKEN_URL;
 import static com.example.projekt.security.SecurityConstants.SIGN_UP_URL;
@@ -43,9 +45,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };*/
 
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
+        http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/documentation/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
@@ -55,6 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/v2/api-docs").permitAll()
               //.antMatchers(HttpMethod.GET,"/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .cors()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
@@ -76,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        source.registerCorsConfiguration("/api/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
     }
 

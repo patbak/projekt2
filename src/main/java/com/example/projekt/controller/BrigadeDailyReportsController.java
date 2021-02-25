@@ -54,6 +54,7 @@ public class BrigadeDailyReportsController {
         workCardService.createWorkCard(id,workCardDto);
     }
 
+
     @PutMapping("/brigade-daily-reports/{brigadeDailyReportId}/work-cards/{workCardId}")
     public void updateWorkCard(
             @PathVariable int brigadeDailyReportId,
