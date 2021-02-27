@@ -50,6 +50,7 @@ public class EquipmentDailyReportsController {
     usedEquipmentService.createUsedEquipment(id, usedEquipmentCommandDto);
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/equipment-daily-reports/{dailyReportId}/used-equipments/{usedEquipmentId}")
     public void updateUsedMaterial(
             @PathVariable int dailyReportId,
@@ -62,7 +63,7 @@ public class EquipmentDailyReportsController {
     public void createWorkCard(@PathVariable int dailyReportId, @RequestBody OperatorWorkCardCommandDto operatorWorkCardCommandDto){
         operatorWorkCardsService.createOperatorWorkCard(dailyReportId, operatorWorkCardCommandDto);
     }
-
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/equipment-daily-reports/{dailyReportId}/operators-work-cards/{operatorWorkCardId}")
     public void updateWorkCard(
             @PathVariable int dailyReportId,
