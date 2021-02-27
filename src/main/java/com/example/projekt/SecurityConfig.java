@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
+        http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/documentation/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
@@ -60,8 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
               //.antMatchers(HttpMethod.GET,"/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .cors()
-                .and()
+
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security
