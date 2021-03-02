@@ -4,6 +4,7 @@ import com.example.projekt.dto.*;
 import com.example.projekt.service.BuildingDailyReportDtoService;
 import com.example.projekt.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,11 +48,14 @@ public class BuildingController {
 
     @GetMapping("/buildings/active")
     public List<BuildingDto> getActiveBuildings(){
+
         return buildingService.getBuildingsByActive(true);
     }
 
+    @PreAuthorize("hasAuthority('SUPERVISOR')")
     @PostMapping("/buildings/{id}/engineers")
     public void addEngineersToBuilding(@PathVariable int id, @RequestBody EngineerCommandDto engineerCommandDto){
+        System.out.println("test1111111");
         buildingService.addEngineerToBuilding(id, engineerCommandDto);
     }
 

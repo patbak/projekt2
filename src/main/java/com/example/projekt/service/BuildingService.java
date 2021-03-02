@@ -5,6 +5,8 @@ import com.example.projekt.model.*;
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
 import com.example.projekt.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -114,8 +116,14 @@ public class BuildingService {
 
     public void addEngineerToBuilding(int id, EngineerCommandDto engineerCommandDto){
         ConstructionSite constructionSite = repository.getOne(id);
+        User user = getSupervisor(constructionSite);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        if(!currentPrincipalName.equals(user.getLogin())){
+            return;
+        }
         Set<User> users = constructionSite.getUsers();
-        User user = userJpaRepository.getOne(engineerCommandDto.getUserId());
+        user = userJpaRepository.getOne(engineerCommandDto.getUserId());
         users.add(user);
         constructionSite.setUsers(users);
         repository.saveAndFlush(constructionSite);
@@ -141,6 +149,20 @@ public class BuildingService {
         }
         return buildingDailyReportsDtoList;
 
+    }
+
+    public User getSupervisor(ConstructionSite constructionSite){
+
+        Set<User> users = constructionSite.getUsers();
+        for(User user:users){
+            Set<Role> roles = user.getRoles();
+            for(Role role: roles){
+                if(role.getName().equals("SUPERVISOR")){
+                    return user;
+                }
+            }
+        }
+        return new User();
     }
 
 

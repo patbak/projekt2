@@ -37,9 +37,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private AuthenticationManager authenticationManager;
     private final static UrlPathHelper urlPathHelper = new UrlPathHelper();
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
-
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager){
         this.authenticationManager=authenticationManager;
     }

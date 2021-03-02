@@ -83,8 +83,10 @@ public class BuildingDailyReportDtoService {
 
     public void createEmptyBuildingReport(int id){
         ConstructionSite constructionSite = constructionSiteJpaRepository.getOne(id);
+        LocalDate localDate = LocalDate.now();
         BuildingDailyReports buildingDailyReport = new BuildingDailyReports();
         buildingDailyReport.setConstructionSite(constructionSite);
+        buildingDailyReport.setReportDate(dateConverterService.convertToDateViaSqlDate(localDate));
         buildingDailyReport.setWeatherConditions(weatherConditionsDtoService.setRandomWeatherConditions());
         buildingDailyReportsJpaRepository.saveAndFlush(buildingDailyReport);
     }
