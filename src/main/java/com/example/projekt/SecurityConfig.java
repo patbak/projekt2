@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
+        http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/documentation/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
@@ -59,6 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/v2/api-docs").permitAll()
               //.antMatchers(HttpMethod.GET,"/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .cors()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
@@ -77,12 +79,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
+/*    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
-    }
+    }*/
 
 
     @Bean

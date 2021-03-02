@@ -54,7 +54,7 @@ public class BrigadeDailyReportsController {
         workCardService.createWorkCard(id,workCardDto);
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
     @PutMapping("/brigade-daily-reports/{brigadeDailyReportId}/work-cards/{workCardId}")
     public void updateWorkCard(
             @PathVariable int brigadeDailyReportId,
@@ -84,7 +84,7 @@ public class BrigadeDailyReportsController {
         materialUsedService.createMaterialUsed(brigadeDailyReportId,materialUsedCommandDto);
 
     }
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
     @PutMapping("/brigade-daily-reports/{brigadeDailyReportId}/materials-used/{materialUsedId}")
     public void createUsedMaterial(
             @PathVariable int brigadeDailyReportId,
