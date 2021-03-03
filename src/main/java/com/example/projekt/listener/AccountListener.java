@@ -28,11 +28,9 @@ public class AccountListener implements ApplicationListener<UserRegistrationEven
     }
 
     private void confirmCreateAccount(UserRegistrationEvent event) {
-        System.out.println("Wysyłąnie maila");
         //get the account
         //create verification token
         Account account = event.getAccount();
-        System.out.println(account.getLogin());
         String token = UUID.randomUUID().toString();
         accountService.createVerificationToken(account, token);
         //get email properties

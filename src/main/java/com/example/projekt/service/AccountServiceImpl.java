@@ -39,9 +39,6 @@ public class AccountServiceImpl implements AccountService {
         verificationToken.setToken(token);
         verificationToken.setUsername(account.getLogin());
         verificationToken.setExpiryDate(verificationToken.calculateExpiryDate(verificationToken.EXPIRATION));
-        System.out.println(verificationToken.getToken());
-        System.out.println(verificationToken.getUsername());
-        System.out.println(verificationToken.getExpiryDate());
         verificationTokenRepository.saveAndFlush(verificationToken);
 
     }

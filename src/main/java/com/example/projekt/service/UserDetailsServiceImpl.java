@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
-        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getAuthorities());//o tu
+        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getAuthorities());
 
     }
 
@@ -44,35 +44,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         return authorities;
     }
-/*
-    @Override
-    public String getPassword() {
-        return user.getPassword();
-    }
 
-    @Override
-    public String getUsername() {
-        return user.getLogin();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }*/
 }
-//tu można wszczyknąć uprawnienia
+

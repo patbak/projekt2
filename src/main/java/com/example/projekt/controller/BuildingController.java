@@ -55,7 +55,6 @@ public class BuildingController {
     @PreAuthorize("hasAuthority('SUPERVISOR')")
     @PostMapping("/buildings/{id}/engineers")
     public void addEngineersToBuilding(@PathVariable int id, @RequestBody EngineerCommandDto engineerCommandDto){
-        System.out.println("test1111111");
         buildingService.addEngineerToBuilding(id, engineerCommandDto);
     }
 
