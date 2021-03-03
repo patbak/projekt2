@@ -33,6 +33,7 @@ public class AccountListener implements ApplicationListener<UserRegistrationEven
         Account account = event.getAccount();
         String token = UUID.randomUUID().toString();
         accountService.createVerificationToken(account, token);
+        System.out.println(token);
         //get email properties
         String recipientAddress = account.getEmail();
         String subject = "Account Confirmation";
