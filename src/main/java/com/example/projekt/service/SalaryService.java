@@ -1,5 +1,7 @@
 package com.example.projekt.service;
 
+import com.example.projekt.dto.SalaryDto;
+import com.example.projekt.dto.WorkerDto;
 import com.example.projekt.model.Employee;
 import com.example.projekt.model.Hours;
 import com.example.projekt.model.Salary;
@@ -27,6 +29,9 @@ public class SalaryService {
     private SalaryJpaRepository salaryJpaRepository;
     @Autowired
     private EmployeeJpaRepository employeeJpaRepository;
+    @Autowired
+    private WorkerService workerService;
+
     LocalDate startOfMonth = LocalDate.now().minusMonths(1).withDayOfMonth(1);
     LocalDate endOfMonth = LocalDate.now().minusMonths(1).withDayOfMonth(LocalDate.now().minusMonths(1).lengthOfMonth());
 
@@ -75,6 +80,33 @@ public class SalaryService {
         }
         }
         salaryJpaRepository.saveAll(salaries);
+    }
+
+    public SalaryDto setSalaryDto(Salary salary){
+        SalaryDto salaryDto = new SalaryDto(
+                salary.getIdSalary(),
+                salary.getOvertimeSalary(),
+                salary.getHarmfulHoursSalary(),
+                salary.getNightHoursSalary(),
+                salary.getHoursSalary(),
+                salary.getAmountSalary(),
+                salary.getDate(),
+                workerService.setWorker(salary.getEmployee())
+        );
+        return  salaryDto;
+    }
+
+    public List<SalaryDto> getSalaryByDate(LocalDate date){
+        LocalDate startOfMonth = date.withDayOfMonth(1);
+        LocalDate endOfMonth = date.withDayOfMonth(date.lengthOfMonth());
+        List<Salary> salaryList = salaryJpaRepository.findAllByDateBetween(startOfMonth,endOfMonth);
+        List<SalaryDto> salaryDtoList = new ArrayList<>();
+        for(Salary salary:salaryList){
+            SalaryDto salaryDto = setSalaryDto(salary);
+            salaryDtoList.add(salaryDto);
+        }
+        return salaryDtoList;
+
     }
 
 

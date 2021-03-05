@@ -69,7 +69,7 @@ public class BrigadeDailyReportsController {
 
     }
 
-    @PostMapping("/brigade-daily-reports/{brigadeDailyReportId}/done-works/{doneWorkId}")
+    @PutMapping("/brigade-daily-reports/{brigadeDailyReportId}/done-works/{doneWorkId}")
     public void updateDoneWork(
             @PathVariable int brigadeDailyReportId,
             @PathVariable int doneWorkId,

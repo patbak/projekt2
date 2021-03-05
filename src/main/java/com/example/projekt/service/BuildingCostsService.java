@@ -1,5 +1,6 @@
 package com.example.projekt.service;
 
+import com.example.projekt.dto.CostsDto;
 import com.example.projekt.model.*;
 import com.example.projekt.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class BuildingCostsService {
     private HoursJpaRepository hoursJpaRepository;
     @Autowired
     private SalaryService salaryService;
+    @Autowired
+    private BuildingService buildingService;
 
     private Costs costs;
     private LocalDate endOfMonth = LocalDate.now().minusMonths(1).withDayOfMonth(LocalDate.now().minusMonths(1).lengthOfMonth());
@@ -103,6 +106,32 @@ public class BuildingCostsService {
         List<Costs> costsList = costsJpaRepository.findAllByConstructionSite_ConstructionSiteIdOrderByDateDesc(constructionSite.getConstructionSiteId());
         Costs costs = costsList.get(0);
         return  costs.getTotalCost();
+    }
+
+    public CostsDto setCosts(Costs costs){
+        CostsDto costsDto = new CostsDto(
+                costs.getId(),
+                costs.getWorkersCost(),
+                costs.getEquipmentCost(),
+                costs.getMaterialCost(),
+                costs.getMonthlyCost(),
+                costs.getTotalCost(),
+                costs.getDate(),
+                buildingService.setBuilding(costs.getConstructionSite())
+        );
+        return costsDto;
+    }
+
+    public List<CostsDto> getCostsByDate(LocalDate date){
+        LocalDate startOfMonth = date.withDayOfMonth(1);
+        LocalDate endOfMonth = date.withDayOfMonth(date.lengthOfMonth());
+        List<Costs> costsList = costsJpaRepository.findAllByDateBetween(startOfMonth,endOfMonth);
+        List<CostsDto> costsDtoList = new ArrayList<>();
+        for (Costs costs: costsList){
+            CostsDto costsDto = setCosts(costs);
+            costsDtoList.add(costsDto);
+        }
+        return costsDtoList;
     }
 
 

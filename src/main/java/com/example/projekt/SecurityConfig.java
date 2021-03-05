@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
                 .antMatchers(HttpMethod.GET,CONFIRMATION_TOKEN_URL).permitAll()
                 .antMatchers(HttpMethod.GET,"/resetPassword").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/roles").permitAll()
                 .antMatchers(HttpMethod.POST,"/confirmResetToken").permitAll()
                 .antMatchers(HttpMethod.GET,"/v2/api-docs").permitAll()
               //.antMatchers(HttpMethod.GET,"/swagger-ui.html").permitAll()
