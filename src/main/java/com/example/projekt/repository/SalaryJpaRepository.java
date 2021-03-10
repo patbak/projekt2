@@ -13,5 +13,6 @@ public interface SalaryJpaRepository extends JpaRepository<Salary, Integer> {
 
     List<Salary> findAllByDate(LocalDate date);
     List<Salary> findAllByDateBetween(LocalDate startOfMont, LocalDate endOfMonth);
+    List<Salary> findAllByEmployee_EmployeeIdOrderByDateDesc(int id);
 
 }

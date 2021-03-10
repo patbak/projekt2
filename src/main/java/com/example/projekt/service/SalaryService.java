@@ -106,7 +106,16 @@ public class SalaryService {
             salaryDtoList.add(salaryDto);
         }
         return salaryDtoList;
+    }
 
+    public List<SalaryDto> getSalaryByEmployeeId(int id){
+        List<Salary> salaryList = salaryJpaRepository.findAllByEmployee_EmployeeIdOrderByDateDesc(id);
+        List<SalaryDto> salaryDtoList = new ArrayList<>();
+        for (Salary salary:salaryList){
+            SalaryDto salaryDto = setSalaryDto(salary);
+            salaryDtoList.add(salaryDto);
+        }
+        return  salaryDtoList;
     }
 
 
