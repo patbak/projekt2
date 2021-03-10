@@ -1,7 +1,5 @@
 package com.example.projekt.dto;
 
-import com.example.projekt.model.Employee;
-
 import java.time.LocalDate;
 
 
@@ -22,7 +20,7 @@ public class SalaryDto {
 
     private LocalDate date;
 
-    private WorkerDto workerDto;
+    private WorkerDto worker;
 
 
     public SalaryDto() {
@@ -36,7 +34,7 @@ public class SalaryDto {
         this.hoursSalary = hoursSalary;
         this.amountSalary = amountSalary;
         this.date = date;
-        this.workerDto = workerDto;
+        this.worker = workerDto;
     }
 
     public int getIdSalary() {
@@ -95,11 +93,11 @@ public class SalaryDto {
         this.date = date;
     }
 
-    public WorkerDto getWorkerDto() {
-        return workerDto;
+    public WorkerDto getWorker() {
+        return worker;
     }
 
-    public void setWorkerDto(WorkerDto workerDto) {
-        this.workerDto = workerDto;
+    public void setWorker(WorkerDto worker) {
+        this.worker = worker;
     }
 }
