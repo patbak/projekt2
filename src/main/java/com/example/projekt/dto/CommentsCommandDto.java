@@ -2,7 +2,6 @@ package com.example.projekt.dto;
 
 public class CommentsCommandDto {
 
-
     private String comment;
 
     private String commentNumber;

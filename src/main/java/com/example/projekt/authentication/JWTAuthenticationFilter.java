@@ -58,8 +58,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         } catch (IOException e){
             throw new RuntimeException(e);
         }
-
     }
+
     @Override
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
@@ -75,13 +75,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
 
         String response = "{\"token\": \""+token+"\" }";
-
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
         res.getWriter().write(response);
         res.getWriter().flush();
         res.getWriter().close();
-
     }
 
     @Override

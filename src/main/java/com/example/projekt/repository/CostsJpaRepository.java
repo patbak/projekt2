@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface CostsJpaRepository  extends JpaRepository<Costs,Integer> {
-
 List<Costs> findAllByConstructionSite_ConstructionSiteIdOrderByDateDesc(int id);
 List<Costs> findAllByDateBetween(LocalDate startOfMonth, LocalDate endOfMonth);
 

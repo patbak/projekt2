@@ -23,7 +23,6 @@ public class CostsDto {
 
     private BuildingDto buildingDto;
 
-
     public CostsDto() {
     }
 

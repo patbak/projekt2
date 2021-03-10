@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@RepositoryRestResource(path = "building", collectionResourceRel = "building")
-
 public interface ConstructionSiteJpaRepository extends JpaRepository<ConstructionSite,Integer> {
 
      List<ConstructionSite> findByNameContains(String name);

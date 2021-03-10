@@ -44,7 +44,8 @@ public class BuildingCostsService {
     @Scheduled(cron = "30 11 5 * * *")
     public void countBuildingCosts(){
         costsList = new ArrayList<>();
-        List<ConstructionSite> constructionSiteList = constructionSiteJpaRepository.findAllByIsActive(true);
+        List<ConstructionSite> constructionSiteList
+                = constructionSiteJpaRepository.findAllByIsActive(true);
         for (ConstructionSite constructionSite:constructionSiteList){
             costs = new Costs();
         countWorkersCosts(constructionSite);
@@ -122,10 +123,9 @@ public class BuildingCostsService {
         return costsDto;
     }
 
-    public List<CostsDto> getCostsByDate(LocalDate date){
-        LocalDate startOfMonth = date.withDayOfMonth(1);
-        LocalDate endOfMonth = date.withDayOfMonth(date.lengthOfMonth());
-        List<Costs> costsList = costsJpaRepository.findAllByDateBetween(startOfMonth,endOfMonth);
+    public List<CostsDto> getCostsByDate(int id){
+
+        List<Costs> costsList = costsJpaRepository.findAllByConstructionSite_ConstructionSiteIdOrderByDateDesc(id);
         List<CostsDto> costsDtoList = new ArrayList<>();
         for (Costs costs: costsList){
             CostsDto costsDto = setCosts(costs);

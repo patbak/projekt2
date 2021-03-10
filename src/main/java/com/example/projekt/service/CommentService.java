@@ -57,7 +57,12 @@ public class CommentService {
     public void createComment(int id, CommentsCommandDto commentsCommandDto){
         BuildingDailyReports buildingDailyReports = buildingDailyReportsJpaRepository.getOne(id);
         User user = userJpaRepository.getOne(commentsCommandDto.getUserId());
-        Comment comment = new Comment(commentsCommandDto.getCommentNumber(), commentsCommandDto.getComment(), buildingDailyReports, user);
+        Comment comment = new Comment(
+                commentsCommandDto.getCommentNumber(),
+                commentsCommandDto.getComment(),
+                buildingDailyReports,
+                user
+        );
         commentJpaRepository.saveAndFlush(comment);
     }
 }
